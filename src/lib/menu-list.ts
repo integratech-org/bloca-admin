@@ -30,7 +30,7 @@ type Group = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function getMenuList(pathname: string): Group[] {
+export function getMenuList(_pathname: string): Group[] {
   return [
     {
       groupLabel: "",
