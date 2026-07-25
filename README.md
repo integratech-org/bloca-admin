@@ -1,62 +1,41 @@
-# bloca-admin
+# Bloca Admin Dashboard (`bloca-admin`)
 
-Admin dashboard frontend for the BLOCA platform.
+Part of the **BLOCA** ecosystem — an IoT-monitored plastic-to-brick compactor with machine learning-based grading.
 
-## Tech stack
+`bloca-admin` is the administrative web dashboard built for facility operators and managers to monitor live compactor telemetry, sensor streams, machine learning grading results, and system health in real time.
 
-- React 19 + TypeScript
-- Vite 8
-- TanStack Router + TanStack Query
-- Tailwind CSS 4 + shadcn/ui
-- Zustand
+## Features
 
-## Prerequisites
+- **Live Telemetry & Monitoring:** Real-time dashboards tracking compaction pressure, temperature, load cells, and cycle status.
+- **ML Grading Analytics:** View and audit machine learning grading classifications for produced construction-ready bricks.
+- **Device Management:** Register, configure, and monitor IoT compactor units deployed across facilities.
+- **Role-Based Access & Audit Logs:** Secure management interfaces with granular user permissions.
 
-- Bun 1.x
+## Tech Stack
 
-## Getting started
+- **Framework:** React 19 with Vite & TypeScript
+- **Routing:** TanStack Router (`@tanstack/react-router`)
+- **State & Data Fetching:** TanStack Query (`@tanstack/react-query`) & Zustand
+- **UI & Styling:** Tailwind CSS v4 with Shadcn UI / Radix primitives
+- **Quality Control:** ESLint, Prettier, TypeScript, and Husky pre-commit hooks
 
-```bash
-# install dependencies
-bun install
+## Project Structure
 
-# run development server
-bun run dev
+```text
+bloca-admin/
+├── src/
+│   ├── assets/       # Static assets & icons
+│   ├── components/   # UI components & admin panel layout
+│   ├── hooks/        # Custom React hooks & state stores
+│   ├── routes/       # TanStack Router file-based routes
+│   ├── index.css     # Global styles & Tailwind configuration
+│   └── main.tsx      # Application entry point
+├── package.json
+└── vite.config.ts
 ```
 
-Open the app at the local URL printed by Vite (usually `http://localhost:5173`).
+## Related Repositories
 
-## Available scripts
-
-- `bun run dev` — start local development server
-- `bun run build` — type-check and create production build
-- `bun run preview` — preview production build locally
-- `bun run lint` — run ESLint
-- `bun run lint:fix` — run ESLint and fix issues
-- `bun run ts-check` — run TypeScript type checks
-- `bun run prettier:check` — verify Prettier formatting
-- `bun run prettier:fix` / `bun run format` — format codebase
-
-## Project structure
-
-```txt
-src/
-  components/    # reusable UI and layout components
-  hooks/         # custom React hooks
-  lib/           # utilities and static config (e.g., sidebar menu)
-  routes/        # TanStack file-based routes
-  main.tsx       # app entrypoint and router/query setup
-```
-
-## Current route behavior
-
-- `/` redirects to `/dashboard`
-- Root layout wraps pages with:
-  - Admin panel layout
-  - Tooltip provider
-  - Sonner toaster notifications
-
-## Notes
-
-- There is currently no required `.env` file in this app.
-- Husky and lint-staged are configured for local git hooks.
+- [`bloca-api`](https://github.com/integratech-org/bloca-api) - Backend REST API service
+- [`bloca-firmware`](https://github.com/integratech-org/bloca-firmware) - IoT microcontroller firmware
+- [`bloca-ml`](https://github.com/integratech-org/bloca-ml) - Machine learning grading service
