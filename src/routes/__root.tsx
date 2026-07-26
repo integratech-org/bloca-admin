@@ -3,13 +3,27 @@ import {
   Link,
   Outlet,
 } from "@tanstack/react-router"
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
 import { type QueryClient } from "@tanstack/react-query"
-import AdminPanelLayout from "@/components/admin-panel/admin-panel-layout"
 import { Toaster } from "sonner"
 import Providers from "./-providers"
+import { getAuth } from "@/lib/allauth"
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   {
+    beforeLoad: async ({ context }) => {
+      const session = await context.queryClient.ensureQueryData({
+        queryKey: ["authSession"],
+        queryFn: async () => {
+          const res = await getAuth()
+          return {
+            isAuthenticated: res.status === 200 && res.meta.is_authenticated,
+            user: res.status === 200 ? res.data.user : null,
+          }
+        },
+      })
+      return { session }
+    },
     component: RootComponent,
     notFoundComponent: () => {
       return (
@@ -25,10 +39,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootComponent() {
   return (
     <Providers>
-      <AdminPanelLayout>
-        <Outlet />
-        <Toaster />
-      </AdminPanelLayout>
+      <Outlet />
+      <Toaster />
+      <TanStackRouterDevtools position="bottom-right" />
     </Providers>
   )
 }

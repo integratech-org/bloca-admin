@@ -26,6 +26,7 @@ export function Sidebar() {
         className="relative flex h-full flex-col px-3 py-4 shadow-md dark:shadow-zinc-800"
       >
         <Button
+          nativeButton={false}
           className={cn(
             "mb-1 transition-transform duration-300 ease-in-out",
             !getOpenState() ? "translate-x-1" : "translate-x-0"

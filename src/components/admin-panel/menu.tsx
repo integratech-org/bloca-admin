@@ -74,6 +74,7 @@ export function Menu({ isOpen }: MenuProps) {
                         <TooltipTrigger
                           render={
                             <Button
+                              nativeButton={false}
                               className={cn(
                                 "text-muted1 hover:text-text mb-1 h-10 w-full justify-start ps-4",
                                 isActive &&

@@ -44,7 +44,7 @@
     "@commitlint/config-conventional": "^21.2.0",
     "@eslint/js": "^10",
     "@tanstack/eslint-plugin-query": "^5.101.2",
-    "@tanstack/router-plugin": "^1.168.20",
+    "@tanstack/router-plugin": "^1.168.23",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",

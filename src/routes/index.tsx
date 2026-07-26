@@ -1,7 +1,8 @@
 import { createFileRoute, redirect } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/")({
-  loader: () => {
-    redirect({ to: "/dashboard", throw: true })
+  beforeLoad: ({ context }) => {
+    const { isAuthenticated } = context.session
+    throw redirect({ to: isAuthenticated ? "/dashboard" : "/auth/sign-in" })
   },
 })
