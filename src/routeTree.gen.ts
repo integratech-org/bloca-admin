@@ -9,195 +9,318 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as appRouteRouteImport } from './routes/(app)/route'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as appSettingsRouteImport } from './routes/(app)/settings'
-import { Route as appDashboardRouteImport } from './routes/(app)/dashboard'
-import { Route as authAuthRouteRouteImport } from './routes/(auth)/auth/route'
-import { Route as authAuthSignOutRouteImport } from './routes/(auth)/auth/sign-out'
-import { Route as authAuthSignInRouteImport } from './routes/(auth)/auth/sign-in'
+import { Route as DashboardRouteRouteImport } from './routes/_dashboard/route'
+import { Route as DashboardIndexRouteImport } from './routes/_dashboard/index'
+import { Route as DashboardDeploymentRouteRouteImport } from './routes/_dashboard/deployment/route'
+import { Route as DashboardMlAuditingRouteRouteImport } from './routes/_dashboard/ml-auditing/route'
+import { Route as DashboardSystemHealthRouteRouteImport } from './routes/_dashboard/system-health/route'
+import { Route as DashboardUserManagementRouteRouteImport } from './routes/_dashboard/user-management/route'
+import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
+import { Route as DashboardDeploymentIndexRouteImport } from './routes/_dashboard/deployment/index'
+import { Route as DashboardMlAuditingIndexRouteImport } from './routes/_dashboard/ml-auditing/index'
+import { Route as DashboardSystemHealthIndexRouteImport } from './routes/_dashboard/system-health/index'
+import { Route as DashboardUserManagementIndexRouteImport } from './routes/_dashboard/user-management/index'
 
-const appRouteRoute = appRouteRouteImport.update({
-  id: '/(app)',
+const DashboardRouteRoute = DashboardRouteRouteImport.update({
+  id: '/_dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardDeploymentRouteRoute =
+  DashboardDeploymentRouteRouteImport.update({
+    id: '/deployment',
+    path: '/deployment',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardMlAuditingRouteRoute =
+  DashboardMlAuditingRouteRouteImport.update({
+    id: '/ml-auditing',
+    path: '/ml-auditing',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardSystemHealthRouteRoute =
+  DashboardSystemHealthRouteRouteImport.update({
+    id: '/system-health',
+    path: '/system-health',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardUserManagementRouteRoute =
+  DashboardUserManagementRouteRouteImport.update({
+    id: '/user-management',
+    path: '/user-management',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const AuthSignInRoute = AuthSignInRouteImport.update({
+  id: '/auth/sign-in',
+  path: '/auth/sign-in',
   getParentRoute: () => rootRouteImport,
 } as any)
-const appSettingsRoute = appSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => appRouteRoute,
-} as any)
-const appDashboardRoute = appDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => appRouteRoute,
-} as any)
-const authAuthRouteRoute = authAuthRouteRouteImport.update({
-  id: '/(auth)/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const authAuthSignOutRoute = authAuthSignOutRouteImport.update({
-  id: '/sign-out',
-  path: '/sign-out',
-  getParentRoute: () => authAuthRouteRoute,
-} as any)
-const authAuthSignInRoute = authAuthSignInRouteImport.update({
-  id: '/sign-in',
-  path: '/sign-in',
-  getParentRoute: () => authAuthRouteRoute,
-} as any)
+const DashboardDeploymentIndexRoute =
+  DashboardDeploymentIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => DashboardDeploymentRouteRoute,
+  } as any)
+const DashboardMlAuditingIndexRoute =
+  DashboardMlAuditingIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => DashboardMlAuditingRouteRoute,
+  } as any)
+const DashboardSystemHealthIndexRoute =
+  DashboardSystemHealthIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => DashboardSystemHealthRouteRoute,
+  } as any)
+const DashboardUserManagementIndexRoute =
+  DashboardUserManagementIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => DashboardUserManagementRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/auth': typeof authAuthRouteRouteWithChildren
-  '/dashboard': typeof appDashboardRoute
-  '/settings': typeof appSettingsRoute
-  '/auth/sign-in': typeof authAuthSignInRoute
-  '/auth/sign-out': typeof authAuthSignOutRoute
+  '/': typeof DashboardIndexRoute
+  '/deployment': typeof DashboardDeploymentRouteRouteWithChildren
+  '/ml-auditing': typeof DashboardMlAuditingRouteRouteWithChildren
+  '/system-health': typeof DashboardSystemHealthRouteRouteWithChildren
+  '/user-management': typeof DashboardUserManagementRouteRouteWithChildren
+  '/auth/sign-in': typeof AuthSignInRoute
+  '/deployment/': typeof DashboardDeploymentIndexRoute
+  '/ml-auditing/': typeof DashboardMlAuditingIndexRoute
+  '/system-health/': typeof DashboardSystemHealthIndexRoute
+  '/user-management/': typeof DashboardUserManagementIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/auth': typeof authAuthRouteRouteWithChildren
-  '/dashboard': typeof appDashboardRoute
-  '/settings': typeof appSettingsRoute
-  '/auth/sign-in': typeof authAuthSignInRoute
-  '/auth/sign-out': typeof authAuthSignOutRoute
+  '/auth/sign-in': typeof AuthSignInRoute
+  '/': typeof DashboardIndexRoute
+  '/deployment': typeof DashboardDeploymentIndexRoute
+  '/ml-auditing': typeof DashboardMlAuditingIndexRoute
+  '/system-health': typeof DashboardSystemHealthIndexRoute
+  '/user-management': typeof DashboardUserManagementIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/(app)': typeof appRouteRouteWithChildren
-  '/(auth)/auth': typeof authAuthRouteRouteWithChildren
-  '/(app)/dashboard': typeof appDashboardRoute
-  '/(app)/settings': typeof appSettingsRoute
-  '/(auth)/auth/sign-in': typeof authAuthSignInRoute
-  '/(auth)/auth/sign-out': typeof authAuthSignOutRoute
+  '/_dashboard': typeof DashboardRouteRouteWithChildren
+  '/_dashboard/deployment': typeof DashboardDeploymentRouteRouteWithChildren
+  '/_dashboard/ml-auditing': typeof DashboardMlAuditingRouteRouteWithChildren
+  '/_dashboard/system-health': typeof DashboardSystemHealthRouteRouteWithChildren
+  '/_dashboard/user-management': typeof DashboardUserManagementRouteRouteWithChildren
+  '/auth/sign-in': typeof AuthSignInRoute
+  '/_dashboard/': typeof DashboardIndexRoute
+  '/_dashboard/deployment/': typeof DashboardDeploymentIndexRoute
+  '/_dashboard/ml-auditing/': typeof DashboardMlAuditingIndexRoute
+  '/_dashboard/system-health/': typeof DashboardSystemHealthIndexRoute
+  '/_dashboard/user-management/': typeof DashboardUserManagementIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/auth'
-    | '/dashboard'
-    | '/settings'
+    | '/deployment'
+    | '/ml-auditing'
+    | '/system-health'
+    | '/user-management'
     | '/auth/sign-in'
-    | '/auth/sign-out'
+    | '/deployment/'
+    | '/ml-auditing/'
+    | '/system-health/'
+    | '/user-management/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/auth'
-    | '/dashboard'
-    | '/settings'
     | '/auth/sign-in'
-    | '/auth/sign-out'
+    | '/'
+    | '/deployment'
+    | '/ml-auditing'
+    | '/system-health'
+    | '/user-management'
   id:
     | '__root__'
-    | '/'
-    | '/(app)'
-    | '/(auth)/auth'
-    | '/(app)/dashboard'
-    | '/(app)/settings'
-    | '/(auth)/auth/sign-in'
-    | '/(auth)/auth/sign-out'
+    | '/_dashboard'
+    | '/_dashboard/deployment'
+    | '/_dashboard/ml-auditing'
+    | '/_dashboard/system-health'
+    | '/_dashboard/user-management'
+    | '/auth/sign-in'
+    | '/_dashboard/'
+    | '/_dashboard/deployment/'
+    | '/_dashboard/ml-auditing/'
+    | '/_dashboard/system-health/'
+    | '/_dashboard/user-management/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  appRouteRoute: typeof appRouteRouteWithChildren
-  authAuthRouteRoute: typeof authAuthRouteRouteWithChildren
+  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+  AuthSignInRoute: typeof AuthSignInRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/(app)': {
-      id: '/(app)'
+    '/_dashboard': {
+      id: '/_dashboard'
       path: ''
-      fullPath: ''
-      preLoaderRoute: typeof appRouteRouteImport
+      fullPath: '/'
+      preLoaderRoute: typeof DashboardRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_dashboard/': {
+      id: '/_dashboard/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
-    '/(app)/settings': {
-      id: '/(app)/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof appSettingsRouteImport
-      parentRoute: typeof appRouteRoute
+    '/_dashboard/deployment': {
+      id: '/_dashboard/deployment'
+      path: '/deployment'
+      fullPath: '/deployment'
+      preLoaderRoute: typeof DashboardDeploymentRouteRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
-    '/(app)/dashboard': {
-      id: '/(app)/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof appDashboardRouteImport
-      parentRoute: typeof appRouteRoute
+    '/_dashboard/ml-auditing': {
+      id: '/_dashboard/ml-auditing'
+      path: '/ml-auditing'
+      fullPath: '/ml-auditing'
+      preLoaderRoute: typeof DashboardMlAuditingRouteRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
-    '/(auth)/auth': {
-      id: '/(auth)/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof authAuthRouteRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_dashboard/system-health': {
+      id: '/_dashboard/system-health'
+      path: '/system-health'
+      fullPath: '/system-health'
+      preLoaderRoute: typeof DashboardSystemHealthRouteRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
-    '/(auth)/auth/sign-out': {
-      id: '/(auth)/auth/sign-out'
-      path: '/sign-out'
-      fullPath: '/auth/sign-out'
-      preLoaderRoute: typeof authAuthSignOutRouteImport
-      parentRoute: typeof authAuthRouteRoute
+    '/_dashboard/user-management': {
+      id: '/_dashboard/user-management'
+      path: '/user-management'
+      fullPath: '/user-management'
+      preLoaderRoute: typeof DashboardUserManagementRouteRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
-    '/(auth)/auth/sign-in': {
-      id: '/(auth)/auth/sign-in'
-      path: '/sign-in'
+    '/auth/sign-in': {
+      id: '/auth/sign-in'
+      path: '/auth/sign-in'
       fullPath: '/auth/sign-in'
-      preLoaderRoute: typeof authAuthSignInRouteImport
-      parentRoute: typeof authAuthRouteRoute
+      preLoaderRoute: typeof AuthSignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_dashboard/deployment/': {
+      id: '/_dashboard/deployment/'
+      path: '/'
+      fullPath: '/deployment/'
+      preLoaderRoute: typeof DashboardDeploymentIndexRouteImport
+      parentRoute: typeof DashboardDeploymentRouteRoute
+    }
+    '/_dashboard/ml-auditing/': {
+      id: '/_dashboard/ml-auditing/'
+      path: '/'
+      fullPath: '/ml-auditing/'
+      preLoaderRoute: typeof DashboardMlAuditingIndexRouteImport
+      parentRoute: typeof DashboardMlAuditingRouteRoute
+    }
+    '/_dashboard/system-health/': {
+      id: '/_dashboard/system-health/'
+      path: '/'
+      fullPath: '/system-health/'
+      preLoaderRoute: typeof DashboardSystemHealthIndexRouteImport
+      parentRoute: typeof DashboardSystemHealthRouteRoute
+    }
+    '/_dashboard/user-management/': {
+      id: '/_dashboard/user-management/'
+      path: '/'
+      fullPath: '/user-management/'
+      preLoaderRoute: typeof DashboardUserManagementIndexRouteImport
+      parentRoute: typeof DashboardUserManagementRouteRoute
     }
   }
 }
 
-interface appRouteRouteChildren {
-  appDashboardRoute: typeof appDashboardRoute
-  appSettingsRoute: typeof appSettingsRoute
+interface DashboardDeploymentRouteRouteChildren {
+  DashboardDeploymentIndexRoute: typeof DashboardDeploymentIndexRoute
 }
 
-const appRouteRouteChildren: appRouteRouteChildren = {
-  appDashboardRoute: appDashboardRoute,
-  appSettingsRoute: appSettingsRoute,
+const DashboardDeploymentRouteRouteChildren: DashboardDeploymentRouteRouteChildren =
+  {
+    DashboardDeploymentIndexRoute: DashboardDeploymentIndexRoute,
+  }
+
+const DashboardDeploymentRouteRouteWithChildren =
+  DashboardDeploymentRouteRoute._addFileChildren(
+    DashboardDeploymentRouteRouteChildren,
+  )
+
+interface DashboardMlAuditingRouteRouteChildren {
+  DashboardMlAuditingIndexRoute: typeof DashboardMlAuditingIndexRoute
 }
 
-const appRouteRouteWithChildren = appRouteRoute._addFileChildren(
-  appRouteRouteChildren,
-)
+const DashboardMlAuditingRouteRouteChildren: DashboardMlAuditingRouteRouteChildren =
+  {
+    DashboardMlAuditingIndexRoute: DashboardMlAuditingIndexRoute,
+  }
 
-interface authAuthRouteRouteChildren {
-  authAuthSignInRoute: typeof authAuthSignInRoute
-  authAuthSignOutRoute: typeof authAuthSignOutRoute
+const DashboardMlAuditingRouteRouteWithChildren =
+  DashboardMlAuditingRouteRoute._addFileChildren(
+    DashboardMlAuditingRouteRouteChildren,
+  )
+
+interface DashboardSystemHealthRouteRouteChildren {
+  DashboardSystemHealthIndexRoute: typeof DashboardSystemHealthIndexRoute
 }
 
-const authAuthRouteRouteChildren: authAuthRouteRouteChildren = {
-  authAuthSignInRoute: authAuthSignInRoute,
-  authAuthSignOutRoute: authAuthSignOutRoute,
+const DashboardSystemHealthRouteRouteChildren: DashboardSystemHealthRouteRouteChildren =
+  {
+    DashboardSystemHealthIndexRoute: DashboardSystemHealthIndexRoute,
+  }
+
+const DashboardSystemHealthRouteRouteWithChildren =
+  DashboardSystemHealthRouteRoute._addFileChildren(
+    DashboardSystemHealthRouteRouteChildren,
+  )
+
+interface DashboardUserManagementRouteRouteChildren {
+  DashboardUserManagementIndexRoute: typeof DashboardUserManagementIndexRoute
 }
 
-const authAuthRouteRouteWithChildren = authAuthRouteRoute._addFileChildren(
-  authAuthRouteRouteChildren,
+const DashboardUserManagementRouteRouteChildren: DashboardUserManagementRouteRouteChildren =
+  {
+    DashboardUserManagementIndexRoute: DashboardUserManagementIndexRoute,
+  }
+
+const DashboardUserManagementRouteRouteWithChildren =
+  DashboardUserManagementRouteRoute._addFileChildren(
+    DashboardUserManagementRouteRouteChildren,
+  )
+
+interface DashboardRouteRouteChildren {
+  DashboardDeploymentRouteRoute: typeof DashboardDeploymentRouteRouteWithChildren
+  DashboardMlAuditingRouteRoute: typeof DashboardMlAuditingRouteRouteWithChildren
+  DashboardSystemHealthRouteRoute: typeof DashboardSystemHealthRouteRouteWithChildren
+  DashboardUserManagementRouteRoute: typeof DashboardUserManagementRouteRouteWithChildren
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
+  DashboardDeploymentRouteRoute: DashboardDeploymentRouteRouteWithChildren,
+  DashboardMlAuditingRouteRoute: DashboardMlAuditingRouteRouteWithChildren,
+  DashboardSystemHealthRouteRoute: DashboardSystemHealthRouteRouteWithChildren,
+  DashboardUserManagementRouteRoute:
+    DashboardUserManagementRouteRouteWithChildren,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
+  DashboardRouteRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  appRouteRoute: appRouteRouteWithChildren,
-  authAuthRouteRoute: authAuthRouteRouteWithChildren,
+  DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  AuthSignInRoute: AuthSignInRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -29,7 +29,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       return (
         <div className="flex h-screen w-full flex-col items-center justify-center overflow-hidden">
           <p>This is the notFoundComponent configured on root route</p>
-          <Link to="/dashboard">Start Over</Link>
+          <Link to="/">Start Over</Link>
         </div>
       )
     },
