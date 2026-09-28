@@ -7,6 +7,7 @@ export const Route = createFileRoute("/_dashboard")({
   //   const { isAuthenticated } = context.session
   //   throw redirect({ to: isAuthenticated ? "/dashboard" : "/auth/sign-in" })
   // },
+  staticData: { breadcrumb: "Overview" },
   component: RouteComponent,
 })
 
