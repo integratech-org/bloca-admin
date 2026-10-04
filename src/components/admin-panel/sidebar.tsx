@@ -14,7 +14,7 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        "fixed top-0 left-0 z-20 h-screen -translate-x-full transition-[width] duration-300 ease-in-out lg:translate-x-0",
+        "fixed top-0 left-0 z-20 h-screen -translate-x-full bg-sidebar transition-[width] duration-300 ease-in-out lg:translate-x-0",
         !getOpenState() ? "w-22.5" : "w-72",
         settings.disabled && "hidden"
       )}
@@ -43,7 +43,7 @@ export function Sidebar() {
                     : "translate-x-0 opacity-100"
                 )}
               >
-                Brand
+                BLOCA
               </h1>
             </Link>
           }
