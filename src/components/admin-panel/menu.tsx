@@ -26,6 +26,7 @@ export function Menu({ isOpen }: MenuProps) {
     <ScrollArea className="h-0 min-h-0 flex-1 [&>div>div[style]]:block!">
       <nav className="h-full w-full pt-8">
         <ul className="flex min-h-[calc(100vh-48px-36px-16px-32px)] flex-col items-start space-y-1 px-2 lg:min-h-[calc(100vh-32px-40px-32px)]">
+          {" "}
           {menuList.map(({ groupLabel, menus }, index) => (
             <li className={cn("w-full", groupLabel ? "pt-5" : "")} key={index}>
               {(isOpen && groupLabel) || isOpen === undefined ? (
@@ -76,7 +77,7 @@ export function Menu({ isOpen }: MenuProps) {
                             <Button
                               nativeButton={false}
                               className={cn(
-                                "text-muted1 hover:text-text mb-1 h-10 w-full justify-start ps-4",
+                                "hover:text-text mb-1 h-10 w-full justify-start ps-4 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                                 isActive &&
                                   "text-primary! hover:bg-transparent!"
                               )}
