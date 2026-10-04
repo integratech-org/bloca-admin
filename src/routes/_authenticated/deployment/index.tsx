@@ -1,9 +1,16 @@
+import { PageHeader } from "@/components/page-header"
 import { createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/_authenticated/deployment/")({
-  component: RouteComponent,
+  component: DeploymentPage,
 })
 
-function RouteComponent() {
-  return <div>Hello "/_authenticated/deployment/"!</div>
+function DeploymentPage() {
+  return (
+    <PageHeader
+      eyebrow="Community Lifecycle"
+      title="Deployment Tracking"
+      description="Block placement log across Barangay Bagong Silang community projects"
+    />
+  )
 }
