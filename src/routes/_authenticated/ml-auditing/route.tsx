@@ -1,10 +1,10 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router"
 
-export const Route = createFileRoute("/_dashboard/ml-auditing")({
+export const Route = createFileRoute("/_authenticated/ml-auditing")({
   staticData: { breadcrumb: "ML Auditing" },
-  component: RouteComponent,
+  component: MLAuditingLayout,
 })
 
-function RouteComponent() {
+function MLAuditingLayout() {
   return <Outlet />
 }

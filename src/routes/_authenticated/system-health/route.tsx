@@ -1,10 +1,10 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router"
 
-export const Route = createFileRoute("/_dashboard/system-health")({
+export const Route = createFileRoute("/_authenticated/system-health")({
   staticData: { breadcrumb: "System Health" },
-  component: RouteComponent,
+  component: SystemHealthLayout,
 })
 
-function RouteComponent() {
+function SystemHealthLayout() {
   return <Outlet />
 }

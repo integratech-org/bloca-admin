@@ -1,10 +1,10 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router"
 
-export const Route = createFileRoute("/_dashboard/deployment")({
+export const Route = createFileRoute("/_authenticated/deployment")({
   staticData: { breadcrumb: "Deployment" },
-  component: RouteComponent,
+  component: DeploymentLayout,
 })
 
-function RouteComponent() {
+function DeploymentLayout() {
   return <Outlet />
 }
