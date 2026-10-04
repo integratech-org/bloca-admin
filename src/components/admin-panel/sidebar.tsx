@@ -43,9 +43,9 @@ export function Sidebar() {
                     : "translate-x-0 opacity-100"
                 )}
               >
-                <h1 className="text-lg font-bold whitespace-nowrap text-foreground">
+                <span className="font-heading text-lg font-bold whitespace-nowrap text-foreground">
                   BLOCA
-                </h1>
+                </span>
 
                 <span className="text-xs text-primary">Admin Dashboard</span>
               </div>
