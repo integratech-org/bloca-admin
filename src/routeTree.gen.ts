@@ -9,114 +9,115 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as DashboardRouteRouteImport } from './routes/_dashboard/route'
-import { Route as DashboardIndexRouteImport } from './routes/_dashboard/index'
-import { Route as DashboardDeploymentRouteRouteImport } from './routes/_dashboard/deployment/route'
-import { Route as DashboardMlAuditingRouteRouteImport } from './routes/_dashboard/ml-auditing/route'
-import { Route as DashboardSystemHealthRouteRouteImport } from './routes/_dashboard/system-health/route'
-import { Route as DashboardUserManagementRouteRouteImport } from './routes/_dashboard/user-management/route'
-import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
-import { Route as DashboardDeploymentIndexRouteImport } from './routes/_dashboard/deployment/index'
-import { Route as DashboardMlAuditingIndexRouteImport } from './routes/_dashboard/ml-auditing/index'
-import { Route as DashboardSystemHealthIndexRouteImport } from './routes/_dashboard/system-health/index'
-import { Route as DashboardUserManagementIndexRouteImport } from './routes/_dashboard/user-management/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedDeploymentRouteRouteImport } from './routes/_authenticated/deployment/route'
+import { Route as AuthenticatedMlAuditingRouteRouteImport } from './routes/_authenticated/ml-auditing/route'
+import { Route as AuthenticatedSystemHealthRouteRouteImport } from './routes/_authenticated/system-health/route'
+import { Route as AuthenticatedUserManagementRouteRouteImport } from './routes/_authenticated/user-management/route'
+import { Route as AuthenticatedDeploymentIndexRouteImport } from './routes/_authenticated/deployment/index'
+import { Route as AuthenticatedMlAuditingIndexRouteImport } from './routes/_authenticated/ml-auditing/index'
+import { Route as AuthenticatedSystemHealthIndexRouteImport } from './routes/_authenticated/system-health/index'
+import { Route as AuthenticatedUserManagementIndexRouteImport } from './routes/_authenticated/user-management/index'
+import { Route as UnauthenticatedAuthSignInRouteImport } from './routes/_unauthenticated/auth/sign-in'
 
-const DashboardRouteRoute = DashboardRouteRouteImport.update({
-  id: '/_dashboard',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardIndexRoute = DashboardIndexRouteImport.update({
+const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => DashboardRouteRoute,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const DashboardDeploymentRouteRoute =
-  DashboardDeploymentRouteRouteImport.update({
+const AuthenticatedDeploymentRouteRoute =
+  AuthenticatedDeploymentRouteRouteImport.update({
     id: '/deployment',
     path: '/deployment',
-    getParentRoute: () => DashboardRouteRoute,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const DashboardMlAuditingRouteRoute =
-  DashboardMlAuditingRouteRouteImport.update({
+const AuthenticatedMlAuditingRouteRoute =
+  AuthenticatedMlAuditingRouteRouteImport.update({
     id: '/ml-auditing',
     path: '/ml-auditing',
-    getParentRoute: () => DashboardRouteRoute,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const DashboardSystemHealthRouteRoute =
-  DashboardSystemHealthRouteRouteImport.update({
+const AuthenticatedSystemHealthRouteRoute =
+  AuthenticatedSystemHealthRouteRouteImport.update({
     id: '/system-health',
     path: '/system-health',
-    getParentRoute: () => DashboardRouteRoute,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const DashboardUserManagementRouteRoute =
-  DashboardUserManagementRouteRouteImport.update({
+const AuthenticatedUserManagementRouteRoute =
+  AuthenticatedUserManagementRouteRouteImport.update({
     id: '/user-management',
     path: '/user-management',
-    getParentRoute: () => DashboardRouteRoute,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthSignInRoute = AuthSignInRouteImport.update({
-  id: '/auth/sign-in',
-  path: '/auth/sign-in',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardDeploymentIndexRoute =
-  DashboardDeploymentIndexRouteImport.update({
+const AuthenticatedDeploymentIndexRoute =
+  AuthenticatedDeploymentIndexRouteImport.update({
     id: '/',
     path: '/',
-    getParentRoute: () => DashboardDeploymentRouteRoute,
+    getParentRoute: () => AuthenticatedDeploymentRouteRoute,
   } as any)
-const DashboardMlAuditingIndexRoute =
-  DashboardMlAuditingIndexRouteImport.update({
+const AuthenticatedMlAuditingIndexRoute =
+  AuthenticatedMlAuditingIndexRouteImport.update({
     id: '/',
     path: '/',
-    getParentRoute: () => DashboardMlAuditingRouteRoute,
+    getParentRoute: () => AuthenticatedMlAuditingRouteRoute,
   } as any)
-const DashboardSystemHealthIndexRoute =
-  DashboardSystemHealthIndexRouteImport.update({
+const AuthenticatedSystemHealthIndexRoute =
+  AuthenticatedSystemHealthIndexRouteImport.update({
     id: '/',
     path: '/',
-    getParentRoute: () => DashboardSystemHealthRouteRoute,
+    getParentRoute: () => AuthenticatedSystemHealthRouteRoute,
   } as any)
-const DashboardUserManagementIndexRoute =
-  DashboardUserManagementIndexRouteImport.update({
+const AuthenticatedUserManagementIndexRoute =
+  AuthenticatedUserManagementIndexRouteImport.update({
     id: '/',
     path: '/',
-    getParentRoute: () => DashboardUserManagementRouteRoute,
+    getParentRoute: () => AuthenticatedUserManagementRouteRoute,
+  } as any)
+const UnauthenticatedAuthSignInRoute =
+  UnauthenticatedAuthSignInRouteImport.update({
+    id: '/_unauthenticated/auth/sign-in',
+    path: '/auth/sign-in',
+    getParentRoute: () => rootRouteImport,
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof DashboardIndexRoute
-  '/deployment': typeof DashboardDeploymentRouteRouteWithChildren
-  '/ml-auditing': typeof DashboardMlAuditingRouteRouteWithChildren
-  '/system-health': typeof DashboardSystemHealthRouteRouteWithChildren
-  '/user-management': typeof DashboardUserManagementRouteRouteWithChildren
-  '/auth/sign-in': typeof AuthSignInRoute
-  '/deployment/': typeof DashboardDeploymentIndexRoute
-  '/ml-auditing/': typeof DashboardMlAuditingIndexRoute
-  '/system-health/': typeof DashboardSystemHealthIndexRoute
-  '/user-management/': typeof DashboardUserManagementIndexRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/deployment': typeof AuthenticatedDeploymentRouteRouteWithChildren
+  '/ml-auditing': typeof AuthenticatedMlAuditingRouteRouteWithChildren
+  '/system-health': typeof AuthenticatedSystemHealthRouteRouteWithChildren
+  '/user-management': typeof AuthenticatedUserManagementRouteRouteWithChildren
+  '/auth/sign-in': typeof UnauthenticatedAuthSignInRoute
+  '/deployment/': typeof AuthenticatedDeploymentIndexRoute
+  '/ml-auditing/': typeof AuthenticatedMlAuditingIndexRoute
+  '/system-health/': typeof AuthenticatedSystemHealthIndexRoute
+  '/user-management/': typeof AuthenticatedUserManagementIndexRoute
 }
 export interface FileRoutesByTo {
-  '/auth/sign-in': typeof AuthSignInRoute
-  '/': typeof DashboardIndexRoute
-  '/deployment': typeof DashboardDeploymentIndexRoute
-  '/ml-auditing': typeof DashboardMlAuditingIndexRoute
-  '/system-health': typeof DashboardSystemHealthIndexRoute
-  '/user-management': typeof DashboardUserManagementIndexRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/auth/sign-in': typeof UnauthenticatedAuthSignInRoute
+  '/deployment': typeof AuthenticatedDeploymentIndexRoute
+  '/ml-auditing': typeof AuthenticatedMlAuditingIndexRoute
+  '/system-health': typeof AuthenticatedSystemHealthIndexRoute
+  '/user-management': typeof AuthenticatedUserManagementIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_dashboard': typeof DashboardRouteRouteWithChildren
-  '/_dashboard/deployment': typeof DashboardDeploymentRouteRouteWithChildren
-  '/_dashboard/ml-auditing': typeof DashboardMlAuditingRouteRouteWithChildren
-  '/_dashboard/system-health': typeof DashboardSystemHealthRouteRouteWithChildren
-  '/_dashboard/user-management': typeof DashboardUserManagementRouteRouteWithChildren
-  '/auth/sign-in': typeof AuthSignInRoute
-  '/_dashboard/': typeof DashboardIndexRoute
-  '/_dashboard/deployment/': typeof DashboardDeploymentIndexRoute
-  '/_dashboard/ml-auditing/': typeof DashboardMlAuditingIndexRoute
-  '/_dashboard/system-health/': typeof DashboardSystemHealthIndexRoute
-  '/_dashboard/user-management/': typeof DashboardUserManagementIndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/_authenticated/deployment': typeof AuthenticatedDeploymentRouteRouteWithChildren
+  '/_authenticated/ml-auditing': typeof AuthenticatedMlAuditingRouteRouteWithChildren
+  '/_authenticated/system-health': typeof AuthenticatedSystemHealthRouteRouteWithChildren
+  '/_authenticated/user-management': typeof AuthenticatedUserManagementRouteRouteWithChildren
+  '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_unauthenticated/auth/sign-in': typeof UnauthenticatedAuthSignInRoute
+  '/_authenticated/deployment/': typeof AuthenticatedDeploymentIndexRoute
+  '/_authenticated/ml-auditing/': typeof AuthenticatedMlAuditingIndexRoute
+  '/_authenticated/system-health/': typeof AuthenticatedSystemHealthIndexRoute
+  '/_authenticated/user-management/': typeof AuthenticatedUserManagementIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -133,194 +134,197 @@ export interface FileRouteTypes {
     | '/user-management/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/auth/sign-in'
     | '/'
+    | '/auth/sign-in'
     | '/deployment'
     | '/ml-auditing'
     | '/system-health'
     | '/user-management'
   id:
     | '__root__'
-    | '/_dashboard'
-    | '/_dashboard/deployment'
-    | '/_dashboard/ml-auditing'
-    | '/_dashboard/system-health'
-    | '/_dashboard/user-management'
-    | '/auth/sign-in'
-    | '/_dashboard/'
-    | '/_dashboard/deployment/'
-    | '/_dashboard/ml-auditing/'
-    | '/_dashboard/system-health/'
-    | '/_dashboard/user-management/'
+    | '/_authenticated'
+    | '/_authenticated/deployment'
+    | '/_authenticated/ml-auditing'
+    | '/_authenticated/system-health'
+    | '/_authenticated/user-management'
+    | '/_authenticated/'
+    | '/_unauthenticated/auth/sign-in'
+    | '/_authenticated/deployment/'
+    | '/_authenticated/ml-auditing/'
+    | '/_authenticated/system-health/'
+    | '/_authenticated/user-management/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
-  AuthSignInRoute: typeof AuthSignInRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  UnauthenticatedAuthSignInRoute: typeof UnauthenticatedAuthSignInRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_dashboard': {
-      id: '/_dashboard'
+    '/_authenticated': {
+      id: '/_authenticated'
       path: ''
       fullPath: '/'
-      preLoaderRoute: typeof DashboardRouteRouteImport
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_dashboard/': {
-      id: '/_dashboard/'
+    '/_authenticated/': {
+      id: '/_authenticated/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof DashboardRouteRoute
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_dashboard/deployment': {
-      id: '/_dashboard/deployment'
+    '/_authenticated/deployment': {
+      id: '/_authenticated/deployment'
       path: '/deployment'
       fullPath: '/deployment'
-      preLoaderRoute: typeof DashboardDeploymentRouteRouteImport
-      parentRoute: typeof DashboardRouteRoute
+      preLoaderRoute: typeof AuthenticatedDeploymentRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_dashboard/ml-auditing': {
-      id: '/_dashboard/ml-auditing'
+    '/_authenticated/ml-auditing': {
+      id: '/_authenticated/ml-auditing'
       path: '/ml-auditing'
       fullPath: '/ml-auditing'
-      preLoaderRoute: typeof DashboardMlAuditingRouteRouteImport
-      parentRoute: typeof DashboardRouteRoute
+      preLoaderRoute: typeof AuthenticatedMlAuditingRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_dashboard/system-health': {
-      id: '/_dashboard/system-health'
+    '/_authenticated/system-health': {
+      id: '/_authenticated/system-health'
       path: '/system-health'
       fullPath: '/system-health'
-      preLoaderRoute: typeof DashboardSystemHealthRouteRouteImport
-      parentRoute: typeof DashboardRouteRoute
+      preLoaderRoute: typeof AuthenticatedSystemHealthRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_dashboard/user-management': {
-      id: '/_dashboard/user-management'
+    '/_authenticated/user-management': {
+      id: '/_authenticated/user-management'
       path: '/user-management'
       fullPath: '/user-management'
-      preLoaderRoute: typeof DashboardUserManagementRouteRouteImport
-      parentRoute: typeof DashboardRouteRoute
+      preLoaderRoute: typeof AuthenticatedUserManagementRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/auth/sign-in': {
-      id: '/auth/sign-in'
-      path: '/auth/sign-in'
-      fullPath: '/auth/sign-in'
-      preLoaderRoute: typeof AuthSignInRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_dashboard/deployment/': {
-      id: '/_dashboard/deployment/'
+    '/_authenticated/deployment/': {
+      id: '/_authenticated/deployment/'
       path: '/'
       fullPath: '/deployment/'
-      preLoaderRoute: typeof DashboardDeploymentIndexRouteImport
-      parentRoute: typeof DashboardDeploymentRouteRoute
+      preLoaderRoute: typeof AuthenticatedDeploymentIndexRouteImport
+      parentRoute: typeof AuthenticatedDeploymentRouteRoute
     }
-    '/_dashboard/ml-auditing/': {
-      id: '/_dashboard/ml-auditing/'
+    '/_authenticated/ml-auditing/': {
+      id: '/_authenticated/ml-auditing/'
       path: '/'
       fullPath: '/ml-auditing/'
-      preLoaderRoute: typeof DashboardMlAuditingIndexRouteImport
-      parentRoute: typeof DashboardMlAuditingRouteRoute
+      preLoaderRoute: typeof AuthenticatedMlAuditingIndexRouteImport
+      parentRoute: typeof AuthenticatedMlAuditingRouteRoute
     }
-    '/_dashboard/system-health/': {
-      id: '/_dashboard/system-health/'
+    '/_authenticated/system-health/': {
+      id: '/_authenticated/system-health/'
       path: '/'
       fullPath: '/system-health/'
-      preLoaderRoute: typeof DashboardSystemHealthIndexRouteImport
-      parentRoute: typeof DashboardSystemHealthRouteRoute
+      preLoaderRoute: typeof AuthenticatedSystemHealthIndexRouteImport
+      parentRoute: typeof AuthenticatedSystemHealthRouteRoute
     }
-    '/_dashboard/user-management/': {
-      id: '/_dashboard/user-management/'
+    '/_authenticated/user-management/': {
+      id: '/_authenticated/user-management/'
       path: '/'
       fullPath: '/user-management/'
-      preLoaderRoute: typeof DashboardUserManagementIndexRouteImport
-      parentRoute: typeof DashboardUserManagementRouteRoute
+      preLoaderRoute: typeof AuthenticatedUserManagementIndexRouteImport
+      parentRoute: typeof AuthenticatedUserManagementRouteRoute
+    }
+    '/_unauthenticated/auth/sign-in': {
+      id: '/_unauthenticated/auth/sign-in'
+      path: '/auth/sign-in'
+      fullPath: '/auth/sign-in'
+      preLoaderRoute: typeof UnauthenticatedAuthSignInRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface DashboardDeploymentRouteRouteChildren {
-  DashboardDeploymentIndexRoute: typeof DashboardDeploymentIndexRoute
+interface AuthenticatedDeploymentRouteRouteChildren {
+  AuthenticatedDeploymentIndexRoute: typeof AuthenticatedDeploymentIndexRoute
 }
 
-const DashboardDeploymentRouteRouteChildren: DashboardDeploymentRouteRouteChildren =
+const AuthenticatedDeploymentRouteRouteChildren: AuthenticatedDeploymentRouteRouteChildren =
   {
-    DashboardDeploymentIndexRoute: DashboardDeploymentIndexRoute,
+    AuthenticatedDeploymentIndexRoute: AuthenticatedDeploymentIndexRoute,
   }
 
-const DashboardDeploymentRouteRouteWithChildren =
-  DashboardDeploymentRouteRoute._addFileChildren(
-    DashboardDeploymentRouteRouteChildren,
+const AuthenticatedDeploymentRouteRouteWithChildren =
+  AuthenticatedDeploymentRouteRoute._addFileChildren(
+    AuthenticatedDeploymentRouteRouteChildren,
   )
 
-interface DashboardMlAuditingRouteRouteChildren {
-  DashboardMlAuditingIndexRoute: typeof DashboardMlAuditingIndexRoute
+interface AuthenticatedMlAuditingRouteRouteChildren {
+  AuthenticatedMlAuditingIndexRoute: typeof AuthenticatedMlAuditingIndexRoute
 }
 
-const DashboardMlAuditingRouteRouteChildren: DashboardMlAuditingRouteRouteChildren =
+const AuthenticatedMlAuditingRouteRouteChildren: AuthenticatedMlAuditingRouteRouteChildren =
   {
-    DashboardMlAuditingIndexRoute: DashboardMlAuditingIndexRoute,
+    AuthenticatedMlAuditingIndexRoute: AuthenticatedMlAuditingIndexRoute,
   }
 
-const DashboardMlAuditingRouteRouteWithChildren =
-  DashboardMlAuditingRouteRoute._addFileChildren(
-    DashboardMlAuditingRouteRouteChildren,
+const AuthenticatedMlAuditingRouteRouteWithChildren =
+  AuthenticatedMlAuditingRouteRoute._addFileChildren(
+    AuthenticatedMlAuditingRouteRouteChildren,
   )
 
-interface DashboardSystemHealthRouteRouteChildren {
-  DashboardSystemHealthIndexRoute: typeof DashboardSystemHealthIndexRoute
+interface AuthenticatedSystemHealthRouteRouteChildren {
+  AuthenticatedSystemHealthIndexRoute: typeof AuthenticatedSystemHealthIndexRoute
 }
 
-const DashboardSystemHealthRouteRouteChildren: DashboardSystemHealthRouteRouteChildren =
+const AuthenticatedSystemHealthRouteRouteChildren: AuthenticatedSystemHealthRouteRouteChildren =
   {
-    DashboardSystemHealthIndexRoute: DashboardSystemHealthIndexRoute,
+    AuthenticatedSystemHealthIndexRoute: AuthenticatedSystemHealthIndexRoute,
   }
 
-const DashboardSystemHealthRouteRouteWithChildren =
-  DashboardSystemHealthRouteRoute._addFileChildren(
-    DashboardSystemHealthRouteRouteChildren,
+const AuthenticatedSystemHealthRouteRouteWithChildren =
+  AuthenticatedSystemHealthRouteRoute._addFileChildren(
+    AuthenticatedSystemHealthRouteRouteChildren,
   )
 
-interface DashboardUserManagementRouteRouteChildren {
-  DashboardUserManagementIndexRoute: typeof DashboardUserManagementIndexRoute
+interface AuthenticatedUserManagementRouteRouteChildren {
+  AuthenticatedUserManagementIndexRoute: typeof AuthenticatedUserManagementIndexRoute
 }
 
-const DashboardUserManagementRouteRouteChildren: DashboardUserManagementRouteRouteChildren =
+const AuthenticatedUserManagementRouteRouteChildren: AuthenticatedUserManagementRouteRouteChildren =
   {
-    DashboardUserManagementIndexRoute: DashboardUserManagementIndexRoute,
+    AuthenticatedUserManagementIndexRoute:
+      AuthenticatedUserManagementIndexRoute,
   }
 
-const DashboardUserManagementRouteRouteWithChildren =
-  DashboardUserManagementRouteRoute._addFileChildren(
-    DashboardUserManagementRouteRouteChildren,
+const AuthenticatedUserManagementRouteRouteWithChildren =
+  AuthenticatedUserManagementRouteRoute._addFileChildren(
+    AuthenticatedUserManagementRouteRouteChildren,
   )
 
-interface DashboardRouteRouteChildren {
-  DashboardDeploymentRouteRoute: typeof DashboardDeploymentRouteRouteWithChildren
-  DashboardMlAuditingRouteRoute: typeof DashboardMlAuditingRouteRouteWithChildren
-  DashboardSystemHealthRouteRoute: typeof DashboardSystemHealthRouteRouteWithChildren
-  DashboardUserManagementRouteRoute: typeof DashboardUserManagementRouteRouteWithChildren
-  DashboardIndexRoute: typeof DashboardIndexRoute
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDeploymentRouteRoute: typeof AuthenticatedDeploymentRouteRouteWithChildren
+  AuthenticatedMlAuditingRouteRoute: typeof AuthenticatedMlAuditingRouteRouteWithChildren
+  AuthenticatedSystemHealthRouteRoute: typeof AuthenticatedSystemHealthRouteRouteWithChildren
+  AuthenticatedUserManagementRouteRoute: typeof AuthenticatedUserManagementRouteRouteWithChildren
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
 
-const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
-  DashboardDeploymentRouteRoute: DashboardDeploymentRouteRouteWithChildren,
-  DashboardMlAuditingRouteRoute: DashboardMlAuditingRouteRouteWithChildren,
-  DashboardSystemHealthRouteRoute: DashboardSystemHealthRouteRouteWithChildren,
-  DashboardUserManagementRouteRoute:
-    DashboardUserManagementRouteRouteWithChildren,
-  DashboardIndexRoute: DashboardIndexRoute,
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDeploymentRouteRoute:
+    AuthenticatedDeploymentRouteRouteWithChildren,
+  AuthenticatedMlAuditingRouteRoute:
+    AuthenticatedMlAuditingRouteRouteWithChildren,
+  AuthenticatedSystemHealthRouteRoute:
+    AuthenticatedSystemHealthRouteRouteWithChildren,
+  AuthenticatedUserManagementRouteRoute:
+    AuthenticatedUserManagementRouteRouteWithChildren,
+  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
 }
 
-const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
-  DashboardRouteRouteChildren,
-)
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  DashboardRouteRoute: DashboardRouteRouteWithChildren,
-  AuthSignInRoute: AuthSignInRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  UnauthenticatedAuthSignInRoute: UnauthenticatedAuthSignInRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
