@@ -5,7 +5,7 @@ import { useSidebar } from "@/hooks/use-sidebar"
 import { useStore } from "@/hooks/use-store"
 import { cn } from "@/lib/utils"
 import { Link } from "@tanstack/react-router"
-import { PanelsTopLeft } from "lucide-react"
+import Logo from "@/assets/logo.svg?react"
 
 export function Sidebar() {
   const sidebar = useStore(useSidebar, (x) => x)
@@ -28,23 +28,27 @@ export function Sidebar() {
         <Button
           nativeButton={false}
           className={cn(
-            "mb-1 transition-transform duration-300 ease-in-out",
+            "mb-1 transition-transform duration-300 ease-in-out hover:no-underline",
             !getOpenState() ? "translate-x-1" : "translate-x-0"
           )}
           variant="link"
           render={
             <Link to="/" className="flex items-center gap-2">
-              <PanelsTopLeft className="mr-1 h-6 w-6" />
-              <h1
+              <Logo className="mr-1 size-6" />
+              <div
                 className={cn(
-                  "text-lg font-bold whitespace-nowrap transition-[transform,opacity,display] duration-300 ease-in-out",
+                  "flex flex-col items-start transition-[transform,opacity,display] duration-300 ease-in-out",
                   !getOpenState()
                     ? "hidden -translate-x-96 opacity-0"
                     : "translate-x-0 opacity-100"
                 )}
               >
-                BLOCA
-              </h1>
+                <h1 className="text-lg font-bold whitespace-nowrap text-foreground">
+                  BLOCA
+                </h1>
+
+                <span className="text-xs text-primary">Admin Dashboard</span>
+              </div>
             </Link>
           }
         />
