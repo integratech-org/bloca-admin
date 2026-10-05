@@ -10,14 +10,14 @@ export const Route = createFileRoute("/_authenticated/")({
 
 function OverviewPage() {
   return (
-    <div className="flex h-full flex-col gap-8">
+    <div className="flex flex-col gap-8">
       <PageHeader
         eyebrow="Global Impact Overview"
         title="Environmental Dashboard"
         description="Bagong Silang BLOCA Program · Caloocan City · August 11, 2026"
       />
 
-      <div className="flex h-full flex-col gap-6">
+      <div className="flex flex-col gap-6">
         <StatsGrid />
         <WasteDiversionChart />
         <BrickProductionChart />

@@ -28,7 +28,7 @@ const chartConfig = {
 
 export function WasteDiversionChart() {
   return (
-    <Card className="h-full">
+    <Card>
       <CardHeader>
         <p className="font-mono text-sm tracking-wide text-muted-foreground uppercase">
           Monthly Output
@@ -37,10 +37,10 @@ export function WasteDiversionChart() {
           LDPE Waste Diversion — kg/month
         </CardTitle>
       </CardHeader>
-      <CardContent className="h-full">
+      <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-full w-full"
+          className="aspect-auto h-64 w-full sm:h-80"
         >
           <AreaChart
             accessibilityLayer
