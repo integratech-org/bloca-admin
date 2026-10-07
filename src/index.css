@@ -5,8 +5,6 @@
 @import "@fontsource-variable/inter";
 @import "@fontsource-variable/jetbrains-mono";
 
-@plugin "tailwind-scrollbar";
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -211,7 +209,7 @@
     letter-spacing: var(--tracking-normal);
   }
   html {
-    @apply font-sans;
+    @apply scrollbar-thin scrollbar-thumb-border scrollbar-track-background font-sans;
   }
   h1,
   h2,
