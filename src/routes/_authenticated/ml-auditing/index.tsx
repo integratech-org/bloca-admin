@@ -9,7 +9,7 @@ export const Route = createFileRoute("/_authenticated/ml-auditing/")({
 
 function MLAuditingPage() {
   return (
-    <div className="flex flex-col gap-8 lg:min-h-0 lg:flex-1">
+    <div className="flex flex-col gap-8 lg:min-h-0 lg:flex-1 lg:self-start">
       <PageHeader
         eyebrow="Restricted Access"
         title="ML Quality Auditing"
