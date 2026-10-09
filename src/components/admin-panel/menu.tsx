@@ -1,8 +1,7 @@
-import { Ellipsis } from "lucide-react"
+import { Ellipsis, LogOut } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { getMenuList } from "@/lib/menu-list"
 import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { CollapseMenuButton } from "@/components/admin-panel/collapse-menu-button"
 import {
   Tooltip,
@@ -23,9 +22,9 @@ export function Menu({ isOpen }: MenuProps) {
   const menuList = getMenuList(pathname)
 
   return (
-    <ScrollArea className="h-0 min-h-0 flex-1 [&>div>div[style]]:block!">
-      <nav className="h-full w-full pt-8">
-        <ul className="flex min-h-[calc(100vh-48px-36px-16px-32px)] flex-col items-start space-y-1 px-2 lg:min-h-[calc(100vh-32px-40px-32px)]">
+    <>
+      <nav className="scrollbar-thin min-h-0 w-full flex-1 overflow-x-hidden overflow-y-auto pt-8">
+        <ul className="flex flex-col items-start space-y-1 px-2">
           {" "}
           {menuList.map(({ groupLabel, menus }, index) => (
             <li className={cn("w-full", groupLabel ? "pt-5" : "")} key={index}>
@@ -131,36 +130,37 @@ export function Menu({ isOpen }: MenuProps) {
               )}
             </li>
           ))}
-          {/* <li className="flex w-full grow items-end"> */}
-          {/*   <Tooltip disableHoverablePopup> */}
-          {/*     <TooltipTrigger */}
-          {/*       render={ */}
-          {/*         <Button */}
-          {/*           onClick={() => { }} */}
-          {/*           variant="outline" */}
-          {/*           className="mt-5 h-10 w-full justify-center" */}
-          {/*         > */}
-          {/*           <span className={cn(isOpen === false ? "" : "mr-4")}> */}
-          {/*             <LogOut size={18} /> */}
-          {/*           </span> */}
-          {/*           <p */}
-          {/*             className={cn( */}
-          {/*               "whitespace-nowrap", */}
-          {/*               isOpen === false ? "hidden opacity-0" : "opacity-100" */}
-          {/*             )} */}
-          {/*           > */}
-          {/*             Sign out */}
-          {/*           </p> */}
-          {/*         </Button> */}
-          {/*       } */}
-          {/*     /> */}
-          {/*     {isOpen === false && ( */}
-          {/*       <TooltipContent side="right">Sign out</TooltipContent> */}
-          {/*     )} */}
-          {/*   </Tooltip> */}
-          {/* </li> */}
         </ul>
       </nav>
-    </ScrollArea>
+
+      <div className="w-full shrink-0 px-2 pt-2 pb-4 lg:pb-0">
+        <Tooltip disableHoverablePopup>
+          <TooltipTrigger
+            render={
+              <Button
+                onClick={() => {}}
+                variant="outline"
+                className="mt-5 h-10 w-full justify-center"
+              >
+                <span className={cn(isOpen === false ? "" : "mr-4")}>
+                  <LogOut size={18} />
+                </span>
+                <p
+                  className={cn(
+                    "whitespace-nowrap",
+                    isOpen === false ? "hidden opacity-0" : "opacity-100"
+                  )}
+                >
+                  Sign out
+                </p>
+              </Button>
+            }
+          />
+          {isOpen === false && (
+            <TooltipContent side="right">Sign out</TooltipContent>
+          )}
+        </Tooltip>
+      </div>
+    </>
   )
 }
