@@ -1,12 +1,6 @@
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   ChartContainer,
   ChartLegend,
