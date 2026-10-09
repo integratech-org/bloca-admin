@@ -10,7 +10,7 @@ export const Route = createFileRoute("/_authenticated/")({
 
 function OverviewPage() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 lg:flex-1 lg:self-start">
       <PageHeader
         eyebrow="Global Impact Overview"
         title="Environmental Dashboard"
