@@ -23,7 +23,7 @@ export function Menu({ isOpen }: MenuProps) {
 
   return (
     <>
-      <nav className="scrollbar-thin min-h-0 w-full flex-1 overflow-x-hidden overflow-y-auto pt-8">
+      <nav className="min-h-0 w-full flex-1 scrollbar-thin overflow-x-hidden overflow-y-auto pt-8">
         <ul className="flex flex-col items-start space-y-1 px-2">
           {" "}
           {menuList.map(({ groupLabel, menus }, index) => (
