@@ -8,10 +8,9 @@ import {
 import { routeTree } from "./routeTree.gen"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import "./index.css"
-import { init } from "./init"
-import { ThemeProvider } from "./components/providers/theme-provider"
+// import { init } from "./init"
 
-init()
+// init()
 
 const queryClient = new QueryClient()
 
@@ -47,9 +46,7 @@ if (!rootElement.innerHTML) {
   root.render(
     <QueryClientProvider client={queryClient}>
       <StrictMode>
-        <ThemeProvider disableTransitionOnChange={false}>
-          <RouterProvider router={router} />
-        </ThemeProvider>
+        <RouterProvider router={router} />
       </StrictMode>
     </QueryClientProvider>
   )
