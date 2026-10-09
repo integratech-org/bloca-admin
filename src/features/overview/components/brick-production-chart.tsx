@@ -38,16 +38,17 @@ export function BrickProductionChart() {
   return (
     <Card>
       <CardHeader>
-        <p className="font-mono text-sm tracking-wide text-muted-foreground uppercase">
-          Production Volume
-        </p>
+        <div className="flex items-start justify-between space-x-2">
+          <p className="font-mono text-sm tracking-wide text-muted-foreground uppercase">
+            Production Volume
+          </p>
+          <Badge className="bg-primary/10 text-primary">
+            ≥ 3.45 MPa validated
+          </Badge>
+        </div>
         <CardTitle className="text-xl font-semibold">
           Weekly BLOCA Brick Production — bricks/week
         </CardTitle>
-
-        <CardAction>
-          <Badge>≥ 3.45 MPa validated</Badge>
-        </CardAction>
       </CardHeader>
       <CardContent>
         <ChartContainer
