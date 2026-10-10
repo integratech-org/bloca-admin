@@ -8,7 +8,7 @@ const tabTriggerClassName =
 export function AuditTabs() {
   return (
     <Tabs defaultValue="logs" className="lg:min-h-0 lg:flex-1">
-      <TabsList>
+      <TabsList className="flex h-10! w-full lg:w-fit">
         <TabsTrigger value="logs" className={tabTriggerClassName}>
           Batch Prediction Logs
         </TabsTrigger>
