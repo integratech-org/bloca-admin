@@ -158,7 +158,7 @@ export const payments: Payment[] = [
 
 export function BatchPredictionPanel() {
   return (
-    <Card className="gap-0 overflow-hidden py-0 lg:min-h-[24rem] lg:flex-1">
+    <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
       <div className="flex flex-col lg:min-h-0 lg:flex-1">
         <DataTable columns={columns} data={payments} />
       </div>
