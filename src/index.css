@@ -219,4 +219,10 @@
   h6 {
     @apply font-heading;
   }
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+  .dark ::selection {
+    background-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  }
 }
