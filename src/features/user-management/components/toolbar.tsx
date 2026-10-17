@@ -19,7 +19,7 @@ export function UsersToolbar({ total }: Props) {
       </h2>
 
       <div className="flex items-center gap-2">
-        <InputGroup className="border border-border">
+        <InputGroup>
           <InputGroupInput placeholder="Search users..." />
           <InputGroupAddon>
             <Search />
