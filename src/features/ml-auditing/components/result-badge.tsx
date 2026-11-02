@@ -1,8 +1,10 @@
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
+import type { BatchStatus } from "../types"
+
 interface ResultBadgeProps {
-  result: "PASS" | "FAIL"
+  result: BatchStatus
 }
 
 export function ResultBadge({ result }: ResultBadgeProps) {

@@ -1,6 +1,6 @@
-import { type BatchPredictionLog } from "../types/batch-log"
+import type { BatchPredictionLog } from "../types"
 
-export const batchPredictionLogs: BatchPredictionLog[] = [
+export const mockBatchPredictionLogs: BatchPredictionLog[] = [
   {
     id: "B-0142",
     date: "2026-08-08",

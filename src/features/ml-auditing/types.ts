@@ -1,3 +1,5 @@
+export type BatchStatus = "PASS" | "FAIL"
+
 export interface BatchPredictionLog {
   id: string
   date: string
@@ -10,5 +12,5 @@ export interface BatchPredictionLog {
   error: number
   confidence: number
   modelVersion: string
-  result: "PASS" | "FAIL"
+  result: BatchStatus
 }

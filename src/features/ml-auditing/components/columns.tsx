@@ -1,10 +1,10 @@
 import { createColumnHelper } from "@tanstack/react-table"
 
-import { type DataTableFeatures } from "./data-table-features"
-import { type BatchPredictionLog } from "../types/batch-log"
+import type { BatchPredictionLog } from "../types"
+import type { DataTableFeatures } from "./data-table-features"
 import { ConfidenceCell } from "./confidence-cell"
-import { ResultBadge } from "./result-badge"
 import { ErrorCell } from "./error-cell"
+import { ResultBadge } from "./result-badge"
 
 const columnHelper = createColumnHelper<DataTableFeatures, BatchPredictionLog>()
 
