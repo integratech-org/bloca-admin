@@ -16,12 +16,18 @@ const columnHelper = createColumnHelper<DataTableFeatures, Payment>()
 
 export const columns = columnHelper.columns([
   columnHelper.accessor("status", {
-    header: "Status",
+    header: "User",
   }),
   columnHelper.accessor("email", {
-    header: "Email",
+    header: "Role",
   }),
   columnHelper.accessor("amount", {
-    header: "Amount",
+    header: "Last Active",
+  }),
+  columnHelper.accessor("status", {
+    header: "Joined Date",
+  }),
+  columnHelper.accessor("status", {
+    header: "Actions",
   }),
 ])
