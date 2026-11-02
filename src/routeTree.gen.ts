@@ -20,6 +20,7 @@ import { Route as AuthenticatedDeploymentIndexRouteImport } from './routes/_auth
 import { Route as AuthenticatedMlAuditingIndexRouteImport } from './routes/_authenticated/ml-auditing/index'
 import { Route as AuthenticatedSystemHealthIndexRouteImport } from './routes/_authenticated/system-health/index'
 import { Route as AuthenticatedUserManagementIndexRouteImport } from './routes/_authenticated/user-management/index'
+import { Route as AuthenticatedUserManagementUserIdRouteImport } from './routes/_authenticated/user-management/$userId'
 import { Route as UnauthenticatedAuthForgotPasswordRouteImport } from './routes/_unauthenticated/auth/forgot-password'
 import { Route as UnauthenticatedAuthResetPasswordRouteImport } from './routes/_unauthenticated/auth/reset-password'
 import { Route as UnauthenticatedAuthSignInRouteImport } from './routes/_unauthenticated/auth/sign-in'
@@ -86,6 +87,12 @@ const AuthenticatedUserManagementIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedUserManagementRouteRoute,
   } as any)
+const AuthenticatedUserManagementUserIdRoute =
+  AuthenticatedUserManagementUserIdRouteImport.update({
+    id: '/$userId',
+    path: '/$userId',
+    getParentRoute: () => AuthenticatedUserManagementRouteRoute,
+  } as any)
 const UnauthenticatedAuthForgotPasswordRoute =
   UnauthenticatedAuthForgotPasswordRouteImport.update({
     id: '/auth/forgot-password',
@@ -117,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/ml-auditing': typeof AuthenticatedMlAuditingRouteRouteWithChildren
   '/system-health': typeof AuthenticatedSystemHealthRouteRouteWithChildren
   '/user-management': typeof AuthenticatedUserManagementRouteRouteWithChildren
+  '/user-management/$userId': typeof AuthenticatedUserManagementUserIdRoute
   '/auth/forgot-password': typeof UnauthenticatedAuthForgotPasswordRoute
   '/auth/reset-password': typeof UnauthenticatedAuthResetPasswordRoute
   '/auth/sign-in': typeof UnauthenticatedAuthSignInRoute
@@ -128,6 +136,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof AuthenticatedIndexRoute
+  '/user-management/$userId': typeof AuthenticatedUserManagementUserIdRoute
   '/auth/forgot-password': typeof UnauthenticatedAuthForgotPasswordRoute
   '/auth/reset-password': typeof UnauthenticatedAuthResetPasswordRoute
   '/auth/sign-in': typeof UnauthenticatedAuthSignInRoute
@@ -146,6 +155,7 @@ export interface FileRoutesById {
   '/_authenticated/system-health': typeof AuthenticatedSystemHealthRouteRouteWithChildren
   '/_authenticated/user-management': typeof AuthenticatedUserManagementRouteRouteWithChildren
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/user-management/$userId': typeof AuthenticatedUserManagementUserIdRoute
   '/_unauthenticated/auth/forgot-password': typeof UnauthenticatedAuthForgotPasswordRoute
   '/_unauthenticated/auth/reset-password': typeof UnauthenticatedAuthResetPasswordRoute
   '/_unauthenticated/auth/sign-in': typeof UnauthenticatedAuthSignInRoute
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/ml-auditing'
     | '/system-health'
     | '/user-management'
+    | '/user-management/$userId'
     | '/auth/forgot-password'
     | '/auth/reset-password'
     | '/auth/sign-in'
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/user-management/$userId'
     | '/auth/forgot-password'
     | '/auth/reset-password'
     | '/auth/sign-in'
@@ -191,6 +203,7 @@ export interface FileRouteTypes {
     | '/_authenticated/system-health'
     | '/_authenticated/user-management'
     | '/_authenticated/'
+    | '/_authenticated/user-management/$userId'
     | '/_unauthenticated/auth/forgot-password'
     | '/_unauthenticated/auth/reset-password'
     | '/_unauthenticated/auth/sign-in'
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUserManagementIndexRouteImport
       parentRoute: typeof AuthenticatedUserManagementRouteRoute
     }
+    '/_authenticated/user-management/$userId': {
+      id: '/_authenticated/user-management/$userId'
+      path: '/$userId'
+      fullPath: '/user-management/$userId'
+      preLoaderRoute: typeof AuthenticatedUserManagementUserIdRouteImport
+      parentRoute: typeof AuthenticatedUserManagementRouteRoute
+    }
     '/_unauthenticated/auth/forgot-password': {
       id: '/_unauthenticated/auth/forgot-password'
       path: '/auth/forgot-password'
@@ -359,11 +379,14 @@ const AuthenticatedSystemHealthRouteRouteWithChildren =
   )
 
 interface AuthenticatedUserManagementRouteRouteChildren {
+  AuthenticatedUserManagementUserIdRoute: typeof AuthenticatedUserManagementUserIdRoute
   AuthenticatedUserManagementIndexRoute: typeof AuthenticatedUserManagementIndexRoute
 }
 
 const AuthenticatedUserManagementRouteRouteChildren: AuthenticatedUserManagementRouteRouteChildren =
   {
+    AuthenticatedUserManagementUserIdRoute:
+      AuthenticatedUserManagementUserIdRoute,
     AuthenticatedUserManagementIndexRoute:
       AuthenticatedUserManagementIndexRoute,
   }
