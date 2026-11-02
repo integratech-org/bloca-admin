@@ -1,8 +1,8 @@
-interface ConfidenceCellProps {
+interface Props {
   value: number
 }
 
-export function ConfidenceCell({ value }: ConfidenceCellProps) {
+export function ConfidenceCell({ value }: Props) {
   const percentage = (value * 100).toFixed(1)
 
   return (

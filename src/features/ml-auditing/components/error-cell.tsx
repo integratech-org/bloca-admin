@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils"
 
-interface ErrorCellProps {
+interface Props {
   value: number
   threshold?: number
 }
 
-export function ErrorCell({ value, threshold = 0.1 }: ErrorCellProps) {
+export function ErrorCell({ value, threshold = 0.1 }: Props) {
   const isHighError = value > threshold
 
   return (

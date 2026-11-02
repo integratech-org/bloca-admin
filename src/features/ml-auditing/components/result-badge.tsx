@@ -3,11 +3,11 @@ import { cn } from "@/lib/utils"
 
 import type { BatchStatus } from "../types"
 
-interface ResultBadgeProps {
+interface Props {
   result: BatchStatus
 }
 
-export function ResultBadge({ result }: ResultBadgeProps) {
+export function ResultBadge({ result }: Props) {
   return (
     <Badge
       className={cn(
