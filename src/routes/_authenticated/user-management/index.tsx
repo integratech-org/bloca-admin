@@ -1,10 +1,12 @@
+import { createFileRoute } from "@tanstack/react-router"
+
 import { PageHeader } from "@/components/page-header"
 import { Card } from "@/components/ui/card"
-import { UsersDataTable } from "@/features/user-management/components/data-table"
-import { UsersToolbar } from "@/features/user-management/components/toolbar"
-import { createFileRoute } from "@tanstack/react-router"
 import { columns } from "@/features/user-management/components/columns"
+import { UsersDataTable } from "@/features/user-management/components/data-table"
 import { UsersPagination } from "@/features/user-management/components/pagination"
+import { UsersToolbar } from "@/features/user-management/components/toolbar"
+import { mockUsers } from "@/features/user-management/data/mock-users"
 
 export const Route = createFileRoute("/_authenticated/user-management/")({
   component: UserManagementPage,
@@ -20,9 +22,9 @@ function UserManagementPage() {
       />
 
       <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
-        <UsersToolbar total={10} />
+        <UsersToolbar total={mockUsers.length} />
         <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
-          <UsersDataTable columns={columns} data={[]} />
+          <UsersDataTable columns={columns} data={mockUsers} />
         </Card>
         <UsersPagination />
       </div>

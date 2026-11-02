@@ -1,33 +1,62 @@
 import { createColumnHelper } from "@tanstack/react-table"
+import { formatDistanceToNow } from "date-fns"
 
-import { type DataTableFeatures } from "./data-table-features"
+import type { User } from "../types"
+import type { DataTableFeatures } from "./data-table-features"
+import { RoleBadge } from "./role-badge"
+import { StatusBadge } from "./status-badge"
+import { UserActions } from "./user-actions"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
-
-// Use `accessor` for data columns and `display` for columns without one.
-const columnHelper = createColumnHelper<DataTableFeatures, Payment>()
+const columnHelper = createColumnHelper<DataTableFeatures, User>()
 
 export const columns = columnHelper.columns([
-  columnHelper.accessor("status", {
-    header: "User",
+  columnHelper.accessor("name", {
+    header: "Name",
+    cell: ({ getValue }) => <span className="font-medium">{getValue()}</span>,
   }),
   columnHelper.accessor("email", {
+    header: "Email",
+    cell: ({ getValue }) => (
+      <span className="text-muted-foreground">{getValue()}</span>
+    ),
+  }),
+  columnHelper.accessor("role", {
     header: "Role",
+    cell: ({ getValue }) => <RoleBadge role={getValue()} />,
   }),
-  columnHelper.accessor("amount", {
+  columnHelper.accessor("status", {
+    header: "Status",
+    cell: ({ getValue }) => <StatusBadge status={getValue()} />,
+  }),
+  columnHelper.accessor("lastActive", {
     header: "Last Active",
+    cell: ({ getValue }) => {
+      const date = new Date(getValue())
+      return (
+        <span className="text-sm text-muted-foreground">
+          {formatDistanceToNow(date, { addSuffix: true })}
+        </span>
+      )
+    },
   }),
-  columnHelper.accessor("status", {
-    header: "Joined Date",
+  columnHelper.accessor("createdDate", {
+    header: "Joined",
+    cell: ({ getValue }) => {
+      const date = new Date(getValue())
+      return (
+        <span className="text-sm text-muted-foreground tabular-nums">
+          {date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+        </span>
+      )
+    },
   }),
-  columnHelper.accessor("status", {
+  columnHelper.display({
+    id: "actions",
     header: "Actions",
+    cell: ({ row }) => <UserActions user={row.original} />,
   }),
 ])
