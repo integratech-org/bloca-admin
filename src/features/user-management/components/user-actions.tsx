@@ -9,7 +9,16 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { MoreHorizontal, UserCog, Ban, Trash2 } from "lucide-react"
 
-import type { User } from "../types"
+// TODO: Import User from ../types when feat/user-mock-data branch merges
+interface User {
+  id: string
+  name: string
+  email: string
+  role: "system_admin" | "barangay_admin" | "operator"
+  status: "active" | "pending" | "disabled"
+  createdDate: string
+  lastActive: string
+}
 
 interface UserActionsProps {
   user: User

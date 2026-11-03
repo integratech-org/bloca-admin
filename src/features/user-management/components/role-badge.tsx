@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 
-import type { UserRole } from "../types"
+// TODO: Import UserRole from ../types when feat/user-mock-data branch merges
+type UserRole = "system_admin" | "barangay_admin" | "operator"
 
 const roleLabels: Record<UserRole, string> = {
   system_admin: "System Admin",

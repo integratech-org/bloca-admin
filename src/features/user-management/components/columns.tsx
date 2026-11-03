@@ -1,11 +1,21 @@
 import { createColumnHelper } from "@tanstack/react-table"
 import { formatDistanceToNow } from "date-fns"
 
-import type { User } from "../types"
 import type { DataTableFeatures } from "./data-table-features"
 import { RoleBadge } from "./role-badge"
 import { StatusBadge } from "./status-badge"
 import { UserActions } from "./user-actions"
+
+// TODO: Import User type from ../types when feat/user-mock-data branch merges
+interface User {
+  id: string
+  name: string
+  email: string
+  role: "system_admin" | "barangay_admin" | "operator"
+  status: "active" | "pending" | "disabled"
+  createdDate: string
+  lastActive: string
+}
 
 const columnHelper = createColumnHelper<DataTableFeatures, User>()
 

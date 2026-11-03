@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 
-import type { UserStatus } from "../types"
+// TODO: Import UserStatus from ../types when feat/user-mock-data branch merges
+type UserStatus = "active" | "pending" | "disabled"
 
 const statusLabels: Record<UserStatus, string> = {
   active: "Active",
