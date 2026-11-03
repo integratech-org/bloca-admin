@@ -1,40 +1,14 @@
 import { createColumnHelper } from "@tanstack/react-table"
 import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
+
 import type { DataTableFeatures } from "./data-table-features"
-import type { DiagnosticLog, DiagnosticStatus } from "../types"
-
-// ---- Status display config ----
-
-const statusConfig: Record<DiagnosticStatus, { badge: string; label: string }> =
-  {
-    normal: {
-      badge: "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300",
-      label: "Normal",
-    },
-    warning: {
-      badge:
-        "bg-yellow-50 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-300",
-      label: "Warning",
-    },
-    error: {
-      badge: "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300",
-      label: "Error",
-    },
-  }
-
-// Reading text color when out of range
-const readingColorClass: Record<DiagnosticStatus, string> = {
-  normal: "",
-  warning: "text-orange-600 dark:text-orange-400",
-  error: "text-red-600 dark:text-red-400",
-}
-
-// ---- Column definitions ----
+import type { DiagnosticLog } from "../types"
+import { ReadingCell } from "./reading-cell"
+import { StatusBadge } from "./status-badge"
 
 const columnHelper = createColumnHelper<DataTableFeatures, DiagnosticLog>()
 
-export const diagnosticsColumns = columnHelper.columns([
+export const columns = columnHelper.columns([
   columnHelper.accessor("timestamp", {
     header: "Timestamp ↓",
     cell: ({ getValue }) => (
@@ -57,19 +31,9 @@ export const diagnosticsColumns = columnHelper.columns([
   }),
   columnHelper.accessor("reading", {
     header: "Reading",
-    cell: ({ getValue, row }) => {
-      const status = row.original.status
-      return (
-        <span
-          className={cn(
-            "font-mono text-sm font-medium",
-            readingColorClass[status]
-          )}
-        >
-          {getValue()}
-        </span>
-      )
-    },
+    cell: ({ getValue, row }) => (
+      <ReadingCell value={getValue()} status={row.original.status} />
+    ),
   }),
   columnHelper.accessor("normalRange", {
     header: "Normal Range",
@@ -89,10 +53,7 @@ export const diagnosticsColumns = columnHelper.columns([
   }),
   columnHelper.accessor("status", {
     header: "Status",
-    cell: ({ getValue }) => {
-      const config = statusConfig[getValue()]
-      return <Badge className={config.badge}>{config.label}</Badge>
-    },
+    cell: ({ getValue }) => <StatusBadge status={getValue()} />,
   }),
   columnHelper.accessor("notes", {
     header: "Notes",
