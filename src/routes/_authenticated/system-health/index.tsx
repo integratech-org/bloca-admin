@@ -24,7 +24,7 @@ function SystemHealthPage() {
 
       <div className="flex flex-col gap-6 lg:min-h-0 lg:flex-1">
         <section className="flex flex-col gap-3">
-          <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+          <p className="font-heading text-xs font-semibold tracking-widest text-muted-foreground uppercase">
             Filtration Lifespan
           </p>
           <StatsGrid />
@@ -32,7 +32,7 @@ function SystemHealthPage() {
 
         <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
           {/* Title and filter moved outside table per SE feedback */}
-          <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="flex items-end justify-between gap-4">
             <div>
               <h3 className="font-heading text-base font-semibold">
                 Hardware Diagnostics Log
