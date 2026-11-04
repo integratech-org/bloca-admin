@@ -3,7 +3,7 @@ import { columns, type Payment } from "./columns"
 import { DataTable } from "./data-table"
 import { Badge } from "@/components/ui/badge"
 
-export const payments: Payment[] = [
+const payments: Payment[] = [
   {
     id: "PAY-001",
     amount: 2500,

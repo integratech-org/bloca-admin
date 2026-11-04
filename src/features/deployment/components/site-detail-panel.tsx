@@ -1,17 +1,12 @@
 import { useState } from "react"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { cn } from "@/lib/utils"
 import type { DeploymentSite } from "../types"
 
-// ---- Toggle class ----
-
-const toggleItemClassName =
-  "data-pressed:bg-primary data-pressed:text-primary-foreground"
-
-// ---- Status display config ----
+// ---- Constants ----
 
 const statusConfig = {
   completed: {
@@ -61,39 +56,51 @@ export function SiteDetailPanel({
   const selectedSite = sites.find((s) => s.id === selectedSiteId)
 
   return (
-    <Card className="flex flex-col overflow-hidden lg:min-h-0 lg:flex-1">
-      {/* Header: title + inline tab pills */}
-      <CardHeader className="shrink-0">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <span className="font-heading text-base font-semibold">
-            Site Detail
-          </span>
-          <ToggleGroup
-            value={[activeTab]}
-            onValueChange={([next]) => {
-              if (next) setActiveTab(next)
-            }}
-            className="flex"
-          >
-            <ToggleGroupItem value="all" className={toggleItemClassName}>
-              All
-            </ToggleGroupItem>
-            <ToggleGroupItem value="completed" className={toggleItemClassName}>
-              Completed
-            </ToggleGroupItem>
-            <ToggleGroupItem value="active" className={toggleItemClassName}>
-              Active
-            </ToggleGroupItem>
-            <ToggleGroupItem value="planned" className={toggleItemClassName}>
-              Planned
-            </ToggleGroupItem>
-          </ToggleGroup>
+    <Card className="overflow-hidden lg:min-h-0 lg:flex-1">
+      <CardContent className="relative flex h-[400px] flex-col p-0 lg:h-[550px]">
+        {/* Header: title + inline tab pills */}
+        <div className="shrink-0 border-b px-6 py-1">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="font-heading text-base font-semibold">
+              Site Detail
+            </span>
+            <ToggleGroup
+              value={[activeTab]}
+              onValueChange={([next]) => {
+                if (next) setActiveTab(next)
+              }}
+              className="flex"
+            >
+              <ToggleGroupItem
+                value="all"
+                className="data-pressed:bg-primary data-pressed:text-primary-foreground"
+              >
+                All
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="completed"
+                className="data-pressed:bg-primary data-pressed:text-primary-foreground"
+              >
+                Completed
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="active"
+                className="data-pressed:bg-primary data-pressed:text-primary-foreground"
+              >
+                Active
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="planned"
+                className="data-pressed:bg-primary data-pressed:text-primary-foreground"
+              >
+                Planned
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
         </div>
-      </CardHeader>
 
-      {/* Body: scrollable list */}
-      <CardContent className="flex min-h-0 flex-1 flex-col p-0">
-        <div className="min-h-0 flex-1 overflow-y-auto">
+        {/* Body: scrollable list with styled scrollbar */}
+        <div className="min-h-0 flex-1 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent overflow-y-auto hover:scrollbar-thumb-muted-foreground/20">
           <div className="divide-y">
             {filteredSites.length > 0 ? (
               filteredSites.map((site) => (
@@ -115,15 +122,15 @@ export function SiteDetailPanel({
             )}
           </div>
         </div>
-      </CardContent>
 
-      {/* Fixed bottom: site detail — only shown when a site is selected */}
-      {selectedSite && (
-        <>
-          <Separator />
-          <SiteDetailView site={selectedSite} />
-        </>
-      )}
+        {/* Fixed bottom: site detail — only shown when a site is selected */}
+        {selectedSite && (
+          <>
+            <Separator />
+            <SiteDetailView site={selectedSite} />
+          </>
+        )}
+      </CardContent>
     </Card>
   )
 }
