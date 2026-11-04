@@ -113,7 +113,7 @@ export function DeploymentMap({
   onSiteSelect,
 }: DeploymentMapProps) {
   return (
-    <Card className="overflow-hidden lg:min-h-0 lg:flex-1">
+    <Card className="isolate overflow-hidden lg:min-h-0 lg:flex-1">
       <CardContent className="p-0">
         <div className="relative h-[400px] w-full lg:h-[600px]">
           <MapContainer
