@@ -10,6 +10,6 @@ export interface User {
   role: UserRole
   status: UserStatus
   avatarUrl: string
-  createdDate: string
+  createdAt: string
   lastActive: string
 }
