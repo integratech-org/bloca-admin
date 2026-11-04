@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/page-header"
 import { Card } from "@/components/ui/card"
 import { columns } from "@/features/system-health/components/columns"
 import { DataTable } from "@/features/system-health/components/data-table"
-import { DiagnosticsFilters } from "@/features/system-health/components/filters"
+import { DiagnosticsToolbar } from "@/features/system-health/components/toolbar"
 import { DiagnosticsPagination } from "@/features/system-health/components/pagination"
 import { StatsGrid } from "@/features/system-health/components/stats-grid"
 import { mockDiagnosticLogs } from "@/features/system-health/data/mock-logs"
@@ -31,23 +31,10 @@ function SystemHealthPage() {
         </section>
 
         <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
-          {/* Title and filter moved outside table per SE feedback */}
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <h3 className="font-heading text-base font-semibold">
-                Hardware Diagnostics Log
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                ESP32 &amp; Raspberry Pi sensor readings
-              </p>
-            </div>
-            <DiagnosticsFilters />
-          </div>
-
+          <DiagnosticsToolbar total={mockDiagnosticLogs.length} />
           <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
             <DataTable columns={columns} data={mockDiagnosticLogs} />
           </Card>
-
           <DiagnosticsPagination />
         </div>
       </div>
