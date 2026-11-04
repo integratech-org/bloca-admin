@@ -91,9 +91,8 @@ export function SiteDetailPanel({
         </div>
       </CardHeader>
 
-      {/* Body: scrollable list + conditional detail panel */}
+      {/* Body: scrollable list */}
       <CardContent className="flex min-h-0 flex-1 flex-col p-0">
-        {/* Scrollable site list */}
         <div className="min-h-0 flex-1 overflow-y-auto">
           <div className="divide-y">
             {filteredSites.length > 0 ? (
@@ -116,15 +115,15 @@ export function SiteDetailPanel({
             )}
           </div>
         </div>
-
-        {/* Site detail — only shown when a site is selected */}
-        {selectedSite && (
-          <>
-            <Separator />
-            <SiteDetailView site={selectedSite} />
-          </>
-        )}
       </CardContent>
+
+      {/* Fixed bottom: site detail — only shown when a site is selected */}
+      {selectedSite && (
+        <>
+          <Separator />
+          <SiteDetailView site={selectedSite} />
+        </>
+      )}
     </Card>
   )
 }

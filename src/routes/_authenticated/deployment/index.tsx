@@ -24,17 +24,21 @@ function DeploymentPage() {
       <div className="flex flex-col gap-6 lg:min-h-0 lg:flex-1">
         <DeploymentStats />
 
-        <div className="grid grid-cols-1 gap-6 lg:min-h-0 lg:flex-1 lg:grid-cols-2">
-          <DeploymentMap
-            sites={mockDeploymentSites}
-            selectedSiteId={selectedSiteId}
-            onSiteSelect={setSelectedSiteId}
-          />
-          <SiteDetailPanel
-            sites={mockDeploymentSites}
-            selectedSiteId={selectedSiteId}
-            onSiteSelect={setSelectedSiteId}
-          />
+        <div className="grid grid-cols-1 gap-6 lg:min-h-0 lg:flex-1 lg:grid-cols-5">
+          <div className="lg:col-span-3">
+            <DeploymentMap
+              sites={mockDeploymentSites}
+              selectedSiteId={selectedSiteId}
+              onSiteSelect={setSelectedSiteId}
+            />
+          </div>
+          <div className="lg:col-span-2">
+            <SiteDetailPanel
+              sites={mockDeploymentSites}
+              selectedSiteId={selectedSiteId}
+              onSiteSelect={setSelectedSiteId}
+            />
+          </div>
         </div>
       </div>
     </div>
