@@ -31,11 +31,11 @@ function SystemHealthPage() {
         </section>
 
         <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
-          {/* Title and filter moved outside table per SE feedback */}
-          <div className="flex items-end justify-between gap-4">
+          {/* Title and toolbar row */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
             <div>
               <h3 className="font-heading text-base font-semibold">
-                Hardware Diagnostics Log
+                Hardware Diagnostics Logic
               </h3>
               <p className="text-sm text-muted-foreground">
                 ESP32 &amp; Raspberry Pi sensor readings
