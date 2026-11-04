@@ -1,13 +1,15 @@
-export type UserRole = "system_admin" | "barangay_admin" | "operator"
-export type UserStatus = "active" | "pending" | "disabled"
+export type UserRole = "Admin" | "Operator"
+
+export type UserStatus = "Active" | "Inactive" | "Pending"
 
 export interface User {
   id: string
-  name: string
+  firstName: string
+  lastName: string
   email: string
-  avatarUrl: string
   role: UserRole
   status: UserStatus
-  lastActive: string
+  avatarUrl: string
   createdDate: string
+  lastActive: string
 }
