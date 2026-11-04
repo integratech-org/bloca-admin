@@ -2,14 +2,10 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { cn } from "@/lib/utils"
 import type { DeploymentSite } from "../types"
-
-// ---- Toggle class ----
-
-const toggleItemClassName =
-  "data-pressed:bg-primary data-pressed:text-primary-foreground"
+import { SiteDetailToolbar } from "./site-detail-toolbar"
+import { SiteDetailPagination } from "./site-detail-pagination"
 
 // ---- Status display config ----
 
@@ -48,7 +44,7 @@ export function SiteDetailPanel({
   selectedSiteId,
   onSiteSelect,
 }: SiteDetailPanelProps) {
-  const [activeTab, setActiveTab] = useState("all")
+  const [activeTab] = useState("all")
 
   const filteredSites = sites.filter((site) => {
     if (activeTab === "all") return true
@@ -62,37 +58,13 @@ export function SiteDetailPanel({
 
   return (
     <Card className="flex flex-col overflow-hidden lg:min-h-0 lg:flex-1">
-      {/* Header: title + inline tab pills */}
+      {/* Header with toolbar */}
       <CardHeader className="shrink-0">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <span className="font-heading text-base font-semibold">
-            Site Detail
-          </span>
-          <ToggleGroup
-            value={[activeTab]}
-            onValueChange={([next]) => {
-              if (next) setActiveTab(next)
-            }}
-            className="flex"
-          >
-            <ToggleGroupItem value="all" className={toggleItemClassName}>
-              All
-            </ToggleGroupItem>
-            <ToggleGroupItem value="completed" className={toggleItemClassName}>
-              Completed
-            </ToggleGroupItem>
-            <ToggleGroupItem value="active" className={toggleItemClassName}>
-              Active
-            </ToggleGroupItem>
-            <ToggleGroupItem value="planned" className={toggleItemClassName}>
-              Planned
-            </ToggleGroupItem>
-          </ToggleGroup>
-        </div>
+        <SiteDetailToolbar />
       </CardHeader>
 
       {/* Body: scrollable list + conditional detail panel */}
-      <CardContent className="flex min-h-0 flex-1 flex-col p-0">
+      <CardContent className="flex min-h-0 flex-1 flex-col gap-4 p-0">
         {/* Scrollable site list */}
         <div className="min-h-0 flex-1 overflow-y-auto">
           <div className="divide-y">
@@ -115,6 +87,11 @@ export function SiteDetailPanel({
               </p>
             )}
           </div>
+        </div>
+
+        {/* Pagination */}
+        <div className="shrink-0 px-6 pb-4">
+          <SiteDetailPagination />
         </div>
 
         {/* Site detail — only shown when a site is selected */}
