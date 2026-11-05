@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router"
 
 import { PageHeader } from "@/components/page-header"
 import { Card } from "@/components/ui/card"
+import { ExportTableButton } from "@/components/export-table-button"
 import { columns } from "@/features/system-health/components/columns"
 import { DataTable } from "@/features/system-health/components/data-table"
 import { DiagnosticsFilters } from "@/features/system-health/components/filters"
@@ -41,7 +42,20 @@ function SystemHealthPage() {
                 ESP32 &amp; Raspberry Pi sensor readings
               </p>
             </div>
-            <DiagnosticsFilters />
+            <div className="flex items-center gap-2">
+              <ExportTableButton
+                data={mockDiagnosticLogs}
+                filename="system-health-diagnostics"
+                columnHeaders={[
+                  { key: "timestamp", label: "Timestamp" },
+                  { key: "device", label: "Device" },
+                  { key: "component", label: "Component" },
+                  { key: "reading", label: "Reading" },
+                  { key: "status", label: "Status" },
+                ]}
+              />
+              <DiagnosticsFilters />
+            </div>
           </div>
 
           <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
