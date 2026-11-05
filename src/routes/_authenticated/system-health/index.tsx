@@ -31,7 +31,7 @@ function SystemHealthPage() {
         </section>
 
         <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
-          <DiagnosticsToolbar total={mockDiagnosticLogs.length} />
+          <DiagnosticsToolbar />
           <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
             <DataTable columns={columns} data={mockDiagnosticLogs} />
           </Card>

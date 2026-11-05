@@ -6,17 +6,12 @@ import {
 import { Search } from "lucide-react"
 import { DiagnosticsFilters } from "./filters"
 
-interface Props {
-  total: number
-}
-
-export function DiagnosticsToolbar({ total }: Props) {
+export function DiagnosticsToolbar() {
   return (
     <div className="flex items-center justify-between">
       <div>
         <h2 className="font-heading text-lg font-semibold">
-          Hardware Diagnostics Log{" "}
-          <span className="text-muted-foreground">{total}</span>
+          Hardware Diagnostics Log
         </h2>
         <p className="text-sm text-muted-foreground">
           ESP32 &amp; Raspberry Pi sensor readings
