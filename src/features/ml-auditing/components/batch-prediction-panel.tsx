@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { BatchLogsToolbar } from "./batch-logs-toolbar"
 import { BatchLogsPagination } from "./batch-logs-pagination"
 
-export const payments: Payment[] = [
+const payments: Payment[] = [
   {
     id: "PAY-001",
     amount: 2500,

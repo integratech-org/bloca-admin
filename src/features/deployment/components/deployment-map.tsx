@@ -58,6 +58,32 @@ function MapController({
   return null
 }
 
+// Invalidates map size after mount and on window resize
+function MapInvalidator() {
+  const map = useMap()
+
+  useEffect(() => {
+    // Initial invalidate after mount
+    const timer = setTimeout(() => {
+      map.invalidateSize()
+    }, 100)
+
+    // Invalidate on window resize
+    const handleResize = () => {
+      map.invalidateSize()
+    }
+
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [map])
+
+  return null
+}
+
 // Manages tile layer switching (OSM ↔ Esri satellite).
 // Owns ALL tile layer management — no static <TileLayer> in JSX to avoid duplicate loads.
 function MapLayerToggle() {
@@ -114,16 +140,17 @@ export function DeploymentMap({
 }: DeploymentMapProps) {
   return (
     <Card className="overflow-hidden lg:min-h-0 lg:flex-1">
-      <CardContent className="p-0">
-        <div className="relative h-[400px] w-full lg:h-[600px]">
+      <CardContent className="relative p-0">
+        <div className="relative h-[400px] w-full lg:h-[550px]">
           <MapContainer
             center={BAGONG_SILANG_CENTER}
             zoom={14}
             scrollWheelZoom={true}
             className="h-full w-full"
-            style={{ height: "100%", width: "100%" }}
+            style={{ height: "100%", width: "100%", zIndex: 0 }}
           >
             <MapController selectedSiteId={selectedSiteId} sites={sites} />
+            <MapInvalidator />
             {/* MapLayerToggle owns all tile layers — no static <TileLayer> here */}
             <MapLayerToggle />
             {sites.map((site) => (
