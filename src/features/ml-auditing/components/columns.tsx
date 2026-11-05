@@ -1,27 +1,89 @@
 import { createColumnHelper } from "@tanstack/react-table"
 
-import { type DataTableFeatures } from "./data-table-features"
+import type { BatchPredictionLog } from "../types"
+import type { DataTableFeatures } from "./data-table-features"
+import { ConfidenceCell } from "./confidence-cell"
+import { ErrorCell } from "./error-cell"
+import { ResultBadge } from "./result-badge"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
-
-// Use `accessor` for data columns and `display` for columns without one.
-const columnHelper = createColumnHelper<DataTableFeatures, Payment>()
+const columnHelper = createColumnHelper<DataTableFeatures, BatchPredictionLog>()
 
 export const columns = columnHelper.columns([
-  columnHelper.accessor("status", {
-    header: "Status",
+  columnHelper.accessor("id", {
+    header: "BATCH ID",
+    cell: ({ getValue }) => (
+      <span className="font-medium text-primary">{getValue()}</span>
+    ),
   }),
-  columnHelper.accessor("email", {
-    header: "Email",
+  columnHelper.accessor("date", {
+    header: "DATE",
+    cell: ({ getValue }) => (
+      <span className="text-muted-foreground tabular-nums">{getValue()}</span>
+    ),
   }),
-  columnHelper.accessor("amount", {
-    header: "Amount",
+  columnHelper.accessor("ldpeKg", {
+    header: "LDPE (KG)",
+    cell: ({ getValue }) => (
+      <span className="tabular-nums">{getValue().toFixed(1)}</span>
+    ),
+  }),
+  columnHelper.accessor("fillerKg", {
+    header: "FILLER (KG)",
+    cell: ({ getValue }) => (
+      <span className="tabular-nums">{getValue().toFixed(1)}</span>
+    ),
+  }),
+  columnHelper.accessor("tempCelsius", {
+    header: "TEMP°C",
+    cell: ({ getValue }) => <span className="tabular-nums">{getValue()}</span>,
+  }),
+  columnHelper.accessor("psi", {
+    header: "PSI",
+    cell: ({ getValue }) => <span className="tabular-nums">{getValue()}</span>,
+  }),
+  columnHelper.accessor("predictedMpa", {
+    header: "PREDICTED MPA",
+    cell: ({ getValue }) => (
+      <span className="font-medium tabular-nums">{getValue().toFixed(2)}</span>
+    ),
+  }),
+  columnHelper.accessor("actualMpa", {
+    header: "ACTUAL MPA",
+    cell: ({ getValue, row }) => {
+      const isPass = row.original.result === "PASS"
+      return (
+        <span
+          className={
+            isPass
+              ? "font-medium text-green-600 tabular-nums dark:text-green-400"
+              : "font-medium text-red-600 tabular-nums dark:text-red-400"
+          }
+        >
+          {getValue().toFixed(2)}
+        </span>
+      )
+    },
+  }),
+  columnHelper.accessor("error", {
+    header: () => (
+      <span>
+        <span className="font-normal">ERROR</span>
+      </span>
+    ),
+    cell: ({ getValue }) => <ErrorCell value={getValue()} />,
+  }),
+  columnHelper.accessor("confidence", {
+    header: "CONFIDENCE",
+    cell: ({ getValue }) => <ConfidenceCell value={getValue()} />,
+  }),
+  columnHelper.accessor("modelVersion", {
+    header: "MODEL",
+    cell: ({ getValue }) => (
+      <span className="text-xs text-muted-foreground">{getValue()}</span>
+    ),
+  }),
+  columnHelper.accessor("result", {
+    header: "RESULT",
+    cell: ({ getValue }) => <ResultBadge result={getValue()} />,
   }),
 ])
