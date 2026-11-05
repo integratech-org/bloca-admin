@@ -1,4 +1,5 @@
-import { useTable, type ColumnDef, type RowData } from "@tanstack/react-table"
+import type { ColumnDef, RowData } from "@tanstack/react-table"
+import { useTable } from "@tanstack/react-table"
 
 import {
   Table,
@@ -9,7 +10,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { features, type DataTableFeatures } from "./data-table-features"
+import type { DataTableFeatures } from "./data-table-features"
+import { features } from "./data-table-features"
 
 interface DataTableProps<TData extends RowData> {
   columns: ColumnDef<DataTableFeatures, TData>[]
