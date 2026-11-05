@@ -2,6 +2,8 @@ import { Card, CardFooter } from "@/components/ui/card"
 import { columns, type Payment } from "./columns"
 import { DataTable } from "./data-table"
 import { Badge } from "@/components/ui/badge"
+import { BatchLogsToolbar } from "./batch-logs-toolbar"
+import { BatchLogsPagination } from "./batch-logs-pagination"
 
 export const payments: Payment[] = [
   {
@@ -158,15 +160,19 @@ export const payments: Payment[] = [
 
 export function BatchPredictionPanel() {
   return (
-    <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
-      <div className="flex flex-col lg:min-h-0 lg:flex-1">
-        <DataTable columns={columns} data={payments} />
-      </div>
-      <CardFooter className="shrink-0">
-        <Badge className="bg-primary/10 text-primary">
-          Threshold: ≥ 3.45 MPa
-        </Badge>
-      </CardFooter>
-    </Card>
+    <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
+      <BatchLogsToolbar total={payments.length} />
+      <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
+        <div className="flex flex-col lg:min-h-0 lg:flex-1">
+          <DataTable columns={columns} data={payments} />
+        </div>
+        <CardFooter className="shrink-0">
+          <Badge className="bg-primary/10 text-primary">
+            Threshold: ≥ 3.45 MPa
+          </Badge>
+        </CardFooter>
+      </Card>
+      <BatchLogsPagination />
+    </div>
   )
 }
