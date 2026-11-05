@@ -4,7 +4,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group"
 import { Search } from "lucide-react"
-import { DefectStatusFilter } from "./defect-status-filter"
+import { DefectStatusFilters } from "./defect-status-filters"
 
 interface Props {
   total: number
@@ -25,7 +25,7 @@ export function DefectReviewToolbar({ total }: Props) {
             <Search />
           </InputGroupAddon>
         </InputGroup>
-        <DefectStatusFilter />
+        <DefectStatusFilters />
       </div>
     </div>
   )
