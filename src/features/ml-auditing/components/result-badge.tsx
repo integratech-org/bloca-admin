@@ -3,8 +3,8 @@ import { Badge } from "@/components/ui/badge"
 import type { BatchStatus } from "../types"
 
 const statusColors = {
-  PASS: "bg-green-500/10 text-green-700 dark:text-green-400",
-  FAIL: "bg-red-500/10 text-red-700 dark:text-red-400",
+  PASS: "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300",
+  FAIL: "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300",
 } as const
 
 interface Props {
