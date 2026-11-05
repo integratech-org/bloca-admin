@@ -9,19 +9,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { MoreHorizontal, UserCog, Ban, Trash2 } from "lucide-react"
 
-export function UserActions({
-  user,
-}: {
-  user: { id: string; status: string }
-}) {
+export function UserActions({ user }: { user: { id: string } }) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="h-8 w-8 p-0">
-          <span className="sr-only">Open menu</span>
-          <MoreHorizontal className="h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger
+        render={
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
+        }
+      />
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem onClick={() => console.log("Edit", user.id)}>
@@ -30,7 +28,7 @@ export function UserActions({
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => console.log("Toggle status", user.id)}>
           <Ban className="mr-2 h-4 w-4" />
-          {user.status === "active" ? "Disable" : "Enable"} Account
+          Toggle Account
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
