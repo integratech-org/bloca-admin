@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { cn } from "@/lib/utils"
 import type { DeploymentSite } from "../types"
 
@@ -43,7 +42,7 @@ export function SiteDetailPanel({
   selectedSiteId,
   onSiteSelect,
 }: SiteDetailPanelProps) {
-  const [activeTab, setActiveTab] = useState("all")
+  const [activeTab] = useState("all")
 
   const filteredSites = sites.filter((site) => {
     if (activeTab === "all") return true
@@ -123,6 +122,12 @@ export function SiteDetailPanel({
           </div>
         </div>
 
+        {/* Pagination */}
+        <div className="shrink-0 px-6 pb-4">
+          <SiteDetailPagination />
+        </div>
+
+        {/* Site detail — only shown when a site is selected */}
         {/* Fixed bottom: site detail — only shown when a site is selected */}
         {selectedSite && (
           <>
