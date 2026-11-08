@@ -8,9 +8,18 @@ import {
   DropdownMenuTrigger,
   DropdownMenuGroup,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
-import { ChevronDown, ArrowLeft } from "lucide-react"
+import {
+  ChevronDown,
+  ArrowLeft,
+  PencilIcon,
+  LockIcon,
+  UserRoundXIcon,
+} from "lucide-react"
 import { mockUsers } from "@/features/user-management/data/mock-users"
+import { UserSummaryCard } from "@/features/user-management/components/user-summary-card"
+import { UserPersonalInfoCard } from "@/features/user-management/components/user-personal-info-card"
 
 export const Route = createFileRoute("/_authenticated/user-management/$userId")(
   {
@@ -58,18 +67,33 @@ function UserDetailPage() {
         <DropdownMenu>
           <DropdownMenuTrigger
             render={
-              <Button variant="outline">
+              <Button>
                 Select Actions
                 <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             }
           />
-          <DropdownMenuContent align="end" className="w-48">
+          <DropdownMenuContent align="end" className="w-45">
             <DropdownMenuGroup>
-              <DropdownMenuLabel>User Actions</DropdownMenuLabel>
-              <DropdownMenuItem disabled>Edit User</DropdownMenuItem>
-              <DropdownMenuItem disabled>Reset Password</DropdownMenuItem>
-              <DropdownMenuItem disabled>Disable Account</DropdownMenuItem>
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem>
+                <PencilIcon className="mr-2 h-4 w-4" />
+                Edit Account
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <LockIcon className="mr-2 h-4 w-4" />
+                Reset Password
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem
+                onClick={() => console.log("Delete", user.id)}
+                variant="destructive"
+              >
+                <UserRoundXIcon className="mr-2 h-4 w-4" />
+                Disable Account
+              </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -77,16 +101,17 @@ function UserDetailPage() {
 
       {/* Content Area - Placeholder */}
       <div className="flex flex-col gap-6 lg:flex-1">
+        {/* Summary Card */}
+        <UserSummaryCard user={user} />
+
+        {/* Personal Infomration Card  */}
+        <UserPersonalInfoCard user={user} />
+
+        {/* Placeholder for future content */}
         <div className="rounded-lg border border-dashed border-muted-foreground/25 p-8 text-center">
           <p className="text-sm text-muted-foreground">
-            User details content will be added in separate tasks
-          </p>
-          <p className="mt-2 text-xs text-muted-foreground">
-            Current user:{" "}
-            <span className="font-mono">
-              {user.firstName} {user.lastName}
-            </span>{" "}
-            ({user.id})
+            Account Information and Recent Activity sections will be added in
+            separate tasks
           </p>
         </div>
       </div>
