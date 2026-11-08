@@ -4,7 +4,7 @@ import { useState } from "react"
 const toggleGroupItemClassName =
   "data-pressed:bg-primary data-pressed:text-primary-foreground"
 
-export function DefectStatusFilter() {
+export function DefectStatusFilters() {
   const [status, setStatus] = useState("all")
 
   return (

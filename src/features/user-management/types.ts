@@ -11,4 +11,5 @@ export interface User {
   status: UserStatus
   avatarUrl: string
   createdAt: string
+  lastActive: string
 }
