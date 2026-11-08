@@ -14,4 +14,5 @@ export interface User {
   lastActive: string
   mobile: string
   address: string
+  assignedMachine?: string | null
 }
