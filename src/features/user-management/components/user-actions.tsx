@@ -9,6 +9,7 @@ import {
   DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu"
 import { MoreHorizontal, Trash2, Eye, Pencil } from "lucide-react"
+import { Link } from "@tanstack/react-router"
 
 export function UserActions({
   user,
@@ -28,10 +29,18 @@ export function UserActions({
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuGroup>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem onClick={() => console.log("Edit", user.id)}>
-            <Eye className="mr-2 h-4 w-4" />
-            View Details
-          </DropdownMenuItem>
+          <DropdownMenuItem
+            render={
+              <Link
+                to="/user-management/$userId"
+                params={{ userId: user.id }}
+                className="flex items-center"
+              >
+                <Eye className="mr-2 h-4 w-4" />
+                View Details
+              </Link>
+            }
+          ></DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => console.log("Toggle status", user.id)}
           >
