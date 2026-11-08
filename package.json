@@ -14,7 +14,8 @@
     "pre-commit": "lint-staged",
     "postinstall": "husky",
     "ts-check": "tsc --noEmit true --project ./tsconfig.json",
-    "format": "prettier:fix",
+    "format": "bun run prettier:fix",
+    "format:check": "bun run prettier:check",
     "prepare": "husky",
     "typecheck": "tsc -b"
   },
