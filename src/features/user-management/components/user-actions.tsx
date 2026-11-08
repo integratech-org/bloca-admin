@@ -16,11 +16,11 @@ export function UserActions({
 }) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="h-8 w-8 p-0">
-          <span className="sr-only">Open menu</span>
-          <MoreHorizontal className="h-4 w-4" />
-        </Button>
+      <DropdownMenuTrigger
+        render={<Button variant="ghost" className="h-8 w-8 p-0" />}
+      >
+        <span className="sr-only">Open menu</span>
+        <MoreHorizontal className="h-4 w-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
@@ -30,7 +30,7 @@ export function UserActions({
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => console.log("Toggle status", user.id)}>
           <Ban className="mr-2 h-4 w-4" />
-          {user.status === "active" ? "Disable" : "Enable"} Account
+          {user.status === "Active" ? "Disable" : "Enable"} Account
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem

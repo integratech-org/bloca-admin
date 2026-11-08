@@ -1,24 +1,22 @@
 import { cva, type VariantProps } from "class-variance-authority"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
-
-// TODO: Import UserStatus from ../types when feat/user-mock-data branch merges
-type UserStatus = "active" | "pending" | "disabled"
+import type { UserStatus } from "../types"
 
 const statusLabels: Record<UserStatus, string> = {
-  active: "Active",
-  pending: "Pending",
-  disabled: "Disabled",
+  Active: "Active",
+  Inactive: "Inactive",
+  Pending: "Pending",
 }
 
 const statusBadgeVariants = cva("", {
   variants: {
     status: {
-      active:
+      Active:
         "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300",
-      pending:
+      Pending:
         "bg-yellow-50 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-300",
-      disabled: "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300",
+      Inactive: "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300",
     },
   },
 })
