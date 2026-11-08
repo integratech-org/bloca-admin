@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ExportTableButton } from "@/components/export-table-button"
 import { BatchPredictionPanel } from "./batch-prediction-panel"
 import { DefectReviewPanel } from "./defect-review-panel"
-import { payments } from "./batch-prediction-panel"
+import { mockBatchPredictionLogs } from "../data/mock-batch-logs"
 
 const tabTriggerClassName =
   "data-active:bg-primary data-active:text-primary-foreground data-active:hover:text-primary-foreground dark:data-active:bg-primary dark:data-active:text-primary-foreground dark:data-active:hover:text-primary-foreground"
@@ -20,13 +20,21 @@ export function AuditTabs() {
           </TabsTrigger>
         </TabsList>
         <ExportTableButton
-          data={payments}
+          data={mockBatchPredictionLogs}
           filename="ml-auditing-batch-logs"
           columnHeaders={[
-            { key: "id", label: "ID" },
-            { key: "status", label: "Status" },
-            { key: "email", label: "Email" },
-            { key: "amount", label: "Amount" },
+            { key: "id", label: "Batch ID" },
+            { key: "date", label: "Date" },
+            { key: "ldpeKg", label: "LDPE (KG)" },
+            { key: "fillerKg", label: "Filler (KG)" },
+            { key: "tempCelsius", label: "Temp°C" },
+            { key: "psi", label: "PSI" },
+            { key: "predictedMpa", label: "Predicted MPa" },
+            { key: "actualMpa", label: "Actual MPa" },
+            { key: "error", label: "Error" },
+            { key: "confidence", label: "Confidence" },
+            { key: "modelVersion", label: "Model" },
+            { key: "result", label: "Result" },
           ]}
         />
       </div>

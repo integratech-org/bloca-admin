@@ -13,4 +13,5 @@ export interface BatchPredictionLog {
   confidence: number
   modelVersion: string
   result: BatchStatus
+  [key: string]: unknown
 }
