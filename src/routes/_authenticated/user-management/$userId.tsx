@@ -21,6 +21,8 @@ import { mockUsers } from "@/features/user-management/data/mock-users"
 import { UserSummaryCard } from "@/features/user-management/components/user-summary-card"
 import { UserPersonalInfoCard } from "@/features/user-management/components/user-personal-info-card"
 import { UserAccountInfoCard } from "@/features/user-management/components/user-account-info-card"
+import { RecentActivityTable } from "@/features/user-management/components/recent-activity-table"
+import { mockBatchActivities } from "@/features/user-management/data/mock-activity"
 
 export const Route = createFileRoute("/_authenticated/user-management/$userId")(
   {
@@ -35,6 +37,8 @@ function UserDetailPage() {
     from: "/_authenticated/user-management/$userId",
   })
   const user = mockUsers.find((u) => u.id === userId)
+
+  const userActivities = mockBatchActivities.filter((a) => a.userId === userId)
 
   // User Not Found Fallback
   if (!user) {
@@ -111,13 +115,7 @@ function UserDetailPage() {
           <UserAccountInfoCard user={user} />
         </div>
 
-        {/* Placeholder for future content */}
-        <div className="rounded-lg border border-dashed border-muted-foreground/25 p-8 text-center">
-          <p className="text-sm text-muted-foreground">
-            Account Information and Recent Activity sections will be added in
-            separate tasks
-          </p>
-        </div>
+        <RecentActivityTable activities={userActivities} />
       </div>
     </div>
   )
