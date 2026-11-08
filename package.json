@@ -14,8 +14,10 @@
     "pre-commit": "lint-staged",
     "postinstall": "husky",
     "ts-check": "tsc --noEmit true --project ./tsconfig.json",
-    "format": "prettier:fix",
-    "prepare": "husky"
+    "format": "bun run prettier:fix",
+    "format:check": "bun run prettier:check",
+    "prepare": "husky",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
