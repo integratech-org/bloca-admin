@@ -13,6 +13,7 @@ export const mockUsers: User[] = [
     createdAt: "2025-01-15",
     mobile: "(+63)9123456789",
     address: "Blk 76 Lot 12 House 5 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: null, // ← ADD (Admin doesn't have machine)
   },
   {
     id: "USR-002",
@@ -26,6 +27,7 @@ export const mockUsers: User[] = [
     createdAt: "2025-02-20",
     mobile: "(+63)9234567890",
     address: "Blk 121 Lot 8 House 3 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: null, // ← ADD
   },
   {
     id: "USR-003",
@@ -39,6 +41,7 @@ export const mockUsers: User[] = [
     createdAt: "2025-03-10",
     mobile: "(+63)9345678901",
     address: "Blk 45 Lot 3 House 7 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: "BLOCA machine01", // ← ADD (Operator has machine)
   },
   {
     id: "USR-004",
@@ -52,6 +55,7 @@ export const mockUsers: User[] = [
     createdAt: "2026-10-28",
     mobile: "(+63)9456789012",
     address: "Blk 89 Lot 15 House 2 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: null, // ← ADD (Pending user not assigned yet)
   },
   {
     id: "USR-005",
@@ -65,6 +69,7 @@ export const mockUsers: User[] = [
     createdAt: "2025-04-05",
     mobile: "(+63)9567890123",
     address: "Blk 102 Lot 6 House 9 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: null, // ← ADD
   },
   {
     id: "USR-006",
@@ -78,6 +83,7 @@ export const mockUsers: User[] = [
     createdAt: "2025-05-12",
     mobile: "(+63)9678901234",
     address: "Blk 56 Lot 11 House 4 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: "BLOCA machine02", // ← ADD
   },
   {
     id: "USR-007",
@@ -91,6 +97,7 @@ export const mockUsers: User[] = [
     createdAt: "2025-06-18",
     mobile: "(+63)9789012345",
     address: "Blk 134 Lot 2 House 8 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: null, // ← ADD
   },
   {
     id: "USR-008",
@@ -104,6 +111,7 @@ export const mockUsers: User[] = [
     createdAt: "2025-07-22",
     mobile: "(+63)9890123456",
     address: "Blk 78 Lot 9 House 1 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: "BLOCA machine03", // ← ADD
   },
   {
     id: "USR-009",
@@ -117,6 +125,7 @@ export const mockUsers: User[] = [
     createdAt: "2026-10-25",
     mobile: "(+63)9901234567",
     address: "Blk 93 Lot 14 House 6 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: null, // ← ADD
   },
   {
     id: "USR-010",
@@ -130,6 +139,7 @@ export const mockUsers: User[] = [
     createdAt: "2025-01-20",
     mobile: "(+63)9012345678",
     address: "Blk 115 Lot 7 House 10 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: null, // ← ADD
   },
   {
     id: "USR-011",
@@ -143,6 +153,7 @@ export const mockUsers: User[] = [
     createdAt: "2025-08-30",
     mobile: "(+63)9123450987",
     address: "Blk 67 Lot 4 House 12 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: "BLOCA machine04", // ← ADD
   },
   {
     id: "USR-012",
@@ -156,5 +167,6 @@ export const mockUsers: User[] = [
     createdAt: "2025-09-14",
     mobile: "(+63)9234561098",
     address: "Blk 88 Lot 1 House 11 Brgy Bagong Silang, Caloocan City",
+    assignedMachine: "BLOCA machine05", // ← ADD
   },
 ]
