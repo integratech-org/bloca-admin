@@ -1,11 +1,10 @@
 import { createColumnHelper } from "@tanstack/react-table"
 import { formatDistanceToNow } from "date-fns"
-
+import type { User } from "../types"
 import type { DataTableFeatures } from "./data-table-features"
 import { RoleBadge } from "./role-badge"
 import { StatusBadge } from "./status-badge"
 import { UserActions } from "./user-actions"
-import type { User } from "../types"
 
 const columnHelper = createColumnHelper<DataTableFeatures, User>()
 
