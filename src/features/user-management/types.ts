@@ -12,4 +12,6 @@ export interface User {
   avatarUrl: string
   createdAt: string
   lastActive: string
+  mobile: string
+  address: string
 }
