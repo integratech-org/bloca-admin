@@ -34,7 +34,7 @@ function SettingsLayout() {
 
       <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
         {/* Side Tabs */}
-        <Card className="py-2 lg:w-60 lg:shrink-0">
+        <Card className="w-fit py-2 lg:w-60 lg:shrink-0 lg:self-start">
           <nav className="flex flex-row gap-1 px-2 lg:flex-col">
             {tabs.map((tab) => {
               const isActive = pathname === tab.href
