@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
@@ -9,22 +9,17 @@ import type { ProfileData } from "../types/profile"
 
 interface ProfileInformationCardProps {
   profileData: ProfileData
+  isEditing: boolean
+  onToggleEdit: () => void
 }
 
 export function ProfileInformationCard({
   profileData,
+  isEditing,
+  onToggleEdit,
 }: ProfileInformationCardProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const [isEditing, setIsEditing] = useState(false)
   const initials = `${profileData.firstName[0] || ""}${profileData.lastName[0] || ""}`
-
-  const handleToggleEdit = () => {
-    if (isEditing) {
-      // TODO: Save logic here
-      console.log("Saving...")
-    }
-    setIsEditing(!isEditing)
-  }
 
   return (
     <Card>
@@ -37,7 +32,7 @@ export function ProfileInformationCard({
             Update your personal details and photo.
           </p>
         </div>
-        <Button size="sm" onClick={handleToggleEdit}>
+        <Button size="sm" onClick={onToggleEdit}>
           {isEditing ? "Save changes" : "Edit"}
         </Button>
       </CardHeader>

@@ -1,8 +1,11 @@
+import { useState } from "react"
 import { createFileRoute } from "@tanstack/react-router"
 import { ProfileInformationCard } from "@/features/settings/components/profile-information-card"
+import { AddressCard } from "@/features/settings/components/address-card"
 import { ContactCard } from "@/features/settings/components/contact-card"
 import {
   mockProfileData,
+  mockAddressData,
   mockContactData,
 } from "@/features/settings/data/mock-profile"
 
@@ -12,11 +15,25 @@ export const Route = createFileRoute("/_authenticated/settings/profile")({
 })
 
 function ProfilePage() {
+  const [isEditing, setIsEditing] = useState(false)
+
+  const handleToggleEdit = () => {
+    if (isEditing) {
+      // TODO: Save logic here
+      console.log("Saving profile and address...")
+    }
+    setIsEditing(!isEditing)
+  }
+
   return (
     <div className="space-y-6">
-      <ProfileInformationCard profileData={mockProfileData} />
+      <ProfileInformationCard
+        profileData={mockProfileData}
+        isEditing={isEditing}
+        onToggleEdit={handleToggleEdit}
+      />
 
-      {/* TODO: Address card will be added here */}
+      <AddressCard data={mockAddressData} isEditing={isEditing} />
 
       <ContactCard data={mockContactData} />
     </div>

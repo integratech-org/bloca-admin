@@ -5,6 +5,12 @@ export interface ProfileData {
   avatarUrl?: string | null
 }
 
+export interface AddressData {
+  street: string
+  barangay: string
+  city: string
+}
+
 export interface ContactData {
   contactNumber: string
 }
