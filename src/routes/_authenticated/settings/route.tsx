@@ -43,13 +43,6 @@ function SettingsLayout() {
                 <div key={tab.id} className="relative w-full">
                   {isActive && (
                     <motion.div
-                      className="absolute top-0 left-0 h-full w-1 rounded-md bg-primary"
-                      layoutId="active-settings-indicator"
-                    />
-                  )}
-
-                  {isActive && (
-                    <motion.div
                       className="absolute top-0 left-0 h-full w-full rounded-md bg-primary/10"
                       layoutId="active-settings-background"
                     />
