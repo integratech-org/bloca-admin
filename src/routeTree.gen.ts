@@ -14,10 +14,14 @@ import { Route as UnauthenticatedRouteRouteImport } from './routes/_unauthentica
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedDeploymentRouteRouteImport } from './routes/_authenticated/deployment/route'
 import { Route as AuthenticatedMlAuditingRouteRouteImport } from './routes/_authenticated/ml-auditing/route'
+import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedSystemHealthRouteRouteImport } from './routes/_authenticated/system-health/route'
 import { Route as AuthenticatedUserManagementRouteRouteImport } from './routes/_authenticated/user-management/route'
 import { Route as AuthenticatedDeploymentIndexRouteImport } from './routes/_authenticated/deployment/index'
 import { Route as AuthenticatedMlAuditingIndexRouteImport } from './routes/_authenticated/ml-auditing/index'
+import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
+import { Route as AuthenticatedSettingsProfileRouteImport } from './routes/_authenticated/settings/profile'
+import { Route as AuthenticatedSettingsSecurityRouteImport } from './routes/_authenticated/settings/security'
 import { Route as AuthenticatedSystemHealthIndexRouteImport } from './routes/_authenticated/system-health/index'
 import { Route as AuthenticatedUserManagementIndexRouteImport } from './routes/_authenticated/user-management/index'
 import { Route as AuthenticatedUserManagementUserIdRouteImport } from './routes/_authenticated/user-management/$userId'
@@ -51,6 +55,12 @@ const AuthenticatedMlAuditingRouteRoute =
     path: '/ml-auditing',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSettingsRouteRoute =
+  AuthenticatedSettingsRouteRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSystemHealthRouteRoute =
   AuthenticatedSystemHealthRouteRouteImport.update({
     id: '/system-health',
@@ -74,6 +84,24 @@ const AuthenticatedMlAuditingIndexRoute =
     id: '/',
     path: '/',
     getParentRoute: () => AuthenticatedMlAuditingRouteRoute,
+  } as any)
+const AuthenticatedSettingsIndexRoute =
+  AuthenticatedSettingsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSettingsRouteRoute,
+  } as any)
+const AuthenticatedSettingsProfileRoute =
+  AuthenticatedSettingsProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => AuthenticatedSettingsRouteRoute,
+  } as any)
+const AuthenticatedSettingsSecurityRoute =
+  AuthenticatedSettingsSecurityRouteImport.update({
+    id: '/security',
+    path: '/security',
+    getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
 const AuthenticatedSystemHealthIndexRoute =
   AuthenticatedSystemHealthIndexRouteImport.update({
@@ -122,8 +150,11 @@ export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/deployment': typeof AuthenticatedDeploymentRouteRouteWithChildren
   '/ml-auditing': typeof AuthenticatedMlAuditingRouteRouteWithChildren
+  '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/system-health': typeof AuthenticatedSystemHealthRouteRouteWithChildren
   '/user-management': typeof AuthenticatedUserManagementRouteRouteWithChildren
+  '/settings/profile': typeof AuthenticatedSettingsProfileRoute
+  '/settings/security': typeof AuthenticatedSettingsSecurityRoute
   '/user-management/$userId': typeof AuthenticatedUserManagementUserIdRoute
   '/auth/forgot-password': typeof UnauthenticatedAuthForgotPasswordRoute
   '/auth/reset-password': typeof UnauthenticatedAuthResetPasswordRoute
@@ -131,11 +162,14 @@ export interface FileRoutesByFullPath {
   '/auth/verify-otp': typeof UnauthenticatedAuthVerifyOtpRoute
   '/deployment/': typeof AuthenticatedDeploymentIndexRoute
   '/ml-auditing/': typeof AuthenticatedMlAuditingIndexRoute
+  '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/system-health/': typeof AuthenticatedSystemHealthIndexRoute
   '/user-management/': typeof AuthenticatedUserManagementIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AuthenticatedIndexRoute
+  '/settings/profile': typeof AuthenticatedSettingsProfileRoute
+  '/settings/security': typeof AuthenticatedSettingsSecurityRoute
   '/user-management/$userId': typeof AuthenticatedUserManagementUserIdRoute
   '/auth/forgot-password': typeof UnauthenticatedAuthForgotPasswordRoute
   '/auth/reset-password': typeof UnauthenticatedAuthResetPasswordRoute
@@ -143,6 +177,7 @@ export interface FileRoutesByTo {
   '/auth/verify-otp': typeof UnauthenticatedAuthVerifyOtpRoute
   '/deployment': typeof AuthenticatedDeploymentIndexRoute
   '/ml-auditing': typeof AuthenticatedMlAuditingIndexRoute
+  '/settings': typeof AuthenticatedSettingsIndexRoute
   '/system-health': typeof AuthenticatedSystemHealthIndexRoute
   '/user-management': typeof AuthenticatedUserManagementIndexRoute
 }
@@ -152,9 +187,12 @@ export interface FileRoutesById {
   '/_unauthenticated': typeof UnauthenticatedRouteRouteWithChildren
   '/_authenticated/deployment': typeof AuthenticatedDeploymentRouteRouteWithChildren
   '/_authenticated/ml-auditing': typeof AuthenticatedMlAuditingRouteRouteWithChildren
+  '/_authenticated/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/_authenticated/system-health': typeof AuthenticatedSystemHealthRouteRouteWithChildren
   '/_authenticated/user-management': typeof AuthenticatedUserManagementRouteRouteWithChildren
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/settings/profile': typeof AuthenticatedSettingsProfileRoute
+  '/_authenticated/settings/security': typeof AuthenticatedSettingsSecurityRoute
   '/_authenticated/user-management/$userId': typeof AuthenticatedUserManagementUserIdRoute
   '/_unauthenticated/auth/forgot-password': typeof UnauthenticatedAuthForgotPasswordRoute
   '/_unauthenticated/auth/reset-password': typeof UnauthenticatedAuthResetPasswordRoute
@@ -162,6 +200,7 @@ export interface FileRoutesById {
   '/_unauthenticated/auth/verify-otp': typeof UnauthenticatedAuthVerifyOtpRoute
   '/_authenticated/deployment/': typeof AuthenticatedDeploymentIndexRoute
   '/_authenticated/ml-auditing/': typeof AuthenticatedMlAuditingIndexRoute
+  '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/system-health/': typeof AuthenticatedSystemHealthIndexRoute
   '/_authenticated/user-management/': typeof AuthenticatedUserManagementIndexRoute
 }
@@ -171,8 +210,11 @@ export interface FileRouteTypes {
     | '/'
     | '/deployment'
     | '/ml-auditing'
+    | '/settings'
     | '/system-health'
     | '/user-management'
+    | '/settings/profile'
+    | '/settings/security'
     | '/user-management/$userId'
     | '/auth/forgot-password'
     | '/auth/reset-password'
@@ -180,11 +222,14 @@ export interface FileRouteTypes {
     | '/auth/verify-otp'
     | '/deployment/'
     | '/ml-auditing/'
+    | '/settings/'
     | '/system-health/'
     | '/user-management/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/settings/profile'
+    | '/settings/security'
     | '/user-management/$userId'
     | '/auth/forgot-password'
     | '/auth/reset-password'
@@ -192,6 +237,7 @@ export interface FileRouteTypes {
     | '/auth/verify-otp'
     | '/deployment'
     | '/ml-auditing'
+    | '/settings'
     | '/system-health'
     | '/user-management'
   id:
@@ -200,9 +246,12 @@ export interface FileRouteTypes {
     | '/_unauthenticated'
     | '/_authenticated/deployment'
     | '/_authenticated/ml-auditing'
+    | '/_authenticated/settings'
     | '/_authenticated/system-health'
     | '/_authenticated/user-management'
     | '/_authenticated/'
+    | '/_authenticated/settings/profile'
+    | '/_authenticated/settings/security'
     | '/_authenticated/user-management/$userId'
     | '/_unauthenticated/auth/forgot-password'
     | '/_unauthenticated/auth/reset-password'
@@ -210,6 +259,7 @@ export interface FileRouteTypes {
     | '/_unauthenticated/auth/verify-otp'
     | '/_authenticated/deployment/'
     | '/_authenticated/ml-auditing/'
+    | '/_authenticated/settings/'
     | '/_authenticated/system-health/'
     | '/_authenticated/user-management/'
   fileRoutesById: FileRoutesById
@@ -256,6 +306,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMlAuditingRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/system-health': {
       id: '/_authenticated/system-health'
       path: '/system-health'
@@ -283,6 +340,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/ml-auditing/'
       preLoaderRoute: typeof AuthenticatedMlAuditingIndexRouteImport
       parentRoute: typeof AuthenticatedMlAuditingRouteRoute
+    }
+    '/_authenticated/settings/': {
+      id: '/_authenticated/settings/'
+      path: '/'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
+      parentRoute: typeof AuthenticatedSettingsRouteRoute
+    }
+    '/_authenticated/settings/profile': {
+      id: '/_authenticated/settings/profile'
+      path: '/profile'
+      fullPath: '/settings/profile'
+      preLoaderRoute: typeof AuthenticatedSettingsProfileRouteImport
+      parentRoute: typeof AuthenticatedSettingsRouteRoute
+    }
+    '/_authenticated/settings/security': {
+      id: '/_authenticated/settings/security'
+      path: '/security'
+      fullPath: '/settings/security'
+      preLoaderRoute: typeof AuthenticatedSettingsSecurityRouteImport
+      parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
     '/_authenticated/system-health/': {
       id: '/_authenticated/system-health/'
@@ -364,6 +442,24 @@ const AuthenticatedMlAuditingRouteRouteWithChildren =
     AuthenticatedMlAuditingRouteRouteChildren,
   )
 
+interface AuthenticatedSettingsRouteRouteChildren {
+  AuthenticatedSettingsProfileRoute: typeof AuthenticatedSettingsProfileRoute
+  AuthenticatedSettingsSecurityRoute: typeof AuthenticatedSettingsSecurityRoute
+  AuthenticatedSettingsIndexRoute: typeof AuthenticatedSettingsIndexRoute
+}
+
+const AuthenticatedSettingsRouteRouteChildren: AuthenticatedSettingsRouteRouteChildren =
+  {
+    AuthenticatedSettingsProfileRoute: AuthenticatedSettingsProfileRoute,
+    AuthenticatedSettingsSecurityRoute: AuthenticatedSettingsSecurityRoute,
+    AuthenticatedSettingsIndexRoute: AuthenticatedSettingsIndexRoute,
+  }
+
+const AuthenticatedSettingsRouteRouteWithChildren =
+  AuthenticatedSettingsRouteRoute._addFileChildren(
+    AuthenticatedSettingsRouteRouteChildren,
+  )
+
 interface AuthenticatedSystemHealthRouteRouteChildren {
   AuthenticatedSystemHealthIndexRoute: typeof AuthenticatedSystemHealthIndexRoute
 }
@@ -399,6 +495,7 @@ const AuthenticatedUserManagementRouteRouteWithChildren =
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDeploymentRouteRoute: typeof AuthenticatedDeploymentRouteRouteWithChildren
   AuthenticatedMlAuditingRouteRoute: typeof AuthenticatedMlAuditingRouteRouteWithChildren
+  AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedSystemHealthRouteRoute: typeof AuthenticatedSystemHealthRouteRouteWithChildren
   AuthenticatedUserManagementRouteRoute: typeof AuthenticatedUserManagementRouteRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
@@ -409,6 +506,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedDeploymentRouteRouteWithChildren,
   AuthenticatedMlAuditingRouteRoute:
     AuthenticatedMlAuditingRouteRouteWithChildren,
+  AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedSystemHealthRouteRoute:
     AuthenticatedSystemHealthRouteRouteWithChildren,
   AuthenticatedUserManagementRouteRoute:
