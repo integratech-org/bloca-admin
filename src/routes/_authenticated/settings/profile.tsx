@@ -1,5 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { createFileRoute } from "@tanstack/react-router"
+import { ProfileInformationCard } from "@/features/settings/components/profile-information-card"
+import { ContactCard } from "@/features/settings/components/contact-card"
+import {
+  mockProfileData,
+  mockContactData,
+} from "@/features/settings/data/mock-profile"
 
 export const Route = createFileRoute("/_authenticated/settings/profile")({
   staticData: { breadcrumb: "Profile" },
@@ -8,15 +13,12 @@ export const Route = createFileRoute("/_authenticated/settings/profile")({
 
 function ProfilePage() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Profile Settings</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm text-muted-foreground">
-          Profile configuration will be implemented here.
-        </p>
-      </CardContent>
-    </Card>
+    <div className="space-y-6">
+      <ProfileInformationCard data={mockProfileData} />
+
+      {/* TODO: Address card will be added here */}
+
+      <ContactCard data={mockContactData} />
+    </div>
   )
 }
