@@ -8,13 +8,15 @@ import { Input } from "@/components/ui/input"
 import type { ProfileData } from "../types/profile"
 
 interface ProfileInformationCardProps {
-  data: ProfileData
+  profileData: ProfileData
 }
 
-export function ProfileInformationCard({ data }: ProfileInformationCardProps) {
+export function ProfileInformationCard({
+  profileData,
+}: ProfileInformationCardProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [isEditing, setIsEditing] = useState(false)
-  const initials = `${data.firstName[0] || ""}${data.lastName[0] || ""}`
+  const initials = `${profileData.firstName[0] || ""}${profileData.lastName[0] || ""}`
 
   const handleToggleEdit = () => {
     if (isEditing) {
@@ -43,8 +45,8 @@ export function ProfileInformationCard({ data }: ProfileInformationCardProps) {
         {/* Avatar section */}
         <div className="flex items-center gap-4">
           <Avatar size="lg">
-            {data.avatarUrl ? (
-              <AvatarImage src={data.avatarUrl} alt="Profile" />
+            {profileData.avatarUrl ? (
+              <AvatarImage src={profileData.avatarUrl} alt="Profile" />
             ) : (
               <AvatarFallback>{initials}</AvatarFallback>
             )}
@@ -52,9 +54,11 @@ export function ProfileInformationCard({ data }: ProfileInformationCardProps) {
           <div className="flex flex-col gap-2">
             <div className="flex flex-col">
               <span className="text-sm font-medium">
-                {data.firstName} {data.lastName}
+                {profileData.firstName} {profileData.lastName}
               </span>
-              <span className="text-xs text-muted-foreground">{data.role}</span>
+              <span className="text-xs text-muted-foreground">
+                {profileData.role}
+              </span>
             </div>
             {isEditing && (
               <button
@@ -82,7 +86,7 @@ export function ProfileInformationCard({ data }: ProfileInformationCardProps) {
               <Label htmlFor="firstName">First name</Label>
               <Input
                 id="firstName"
-                defaultValue={data.firstName}
+                defaultValue={profileData.firstName}
                 placeholder="First name"
                 disabled={!isEditing}
               />
@@ -92,7 +96,7 @@ export function ProfileInformationCard({ data }: ProfileInformationCardProps) {
               <Label htmlFor="lastName">Last name</Label>
               <Input
                 id="lastName"
-                defaultValue={data.lastName}
+                defaultValue={profileData.lastName}
                 placeholder="Last name"
                 disabled={!isEditing}
               />

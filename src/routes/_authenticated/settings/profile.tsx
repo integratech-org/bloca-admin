@@ -14,12 +14,9 @@ export const Route = createFileRoute("/_authenticated/settings/profile")({
 function ProfilePage() {
   return (
     <div className="space-y-6">
-      <ProfileInformationCard data={mockProfileData} />
+      <ProfileInformationCard profileData={mockProfileData} />
 
       {/* TODO: Address card will be added here */}
-      <div>
-        <h1> Address </h1>
-      </div>
 
       <ContactCard data={mockContactData} />
     </div>
