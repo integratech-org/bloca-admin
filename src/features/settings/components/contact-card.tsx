@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Field } from "@/components/ui/field"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { Phone } from "lucide-react"
 import type { ContactData } from "../types/profile"
 
 interface ContactCardProps {
@@ -25,10 +24,7 @@ export function ContactCard({ data }: ContactCardProps) {
   return (
     <Card>
       <CardHeader className="flex flex-row items-start gap-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
-          <Phone className="h-5 w-5 text-primary" />
-        </div>
-        <div className="flex flex-1 flex-col gap-1">
+        <div className="flex flex-1 flex-col">
           <h3 className="font-heading text-base font-semibold">Contact</h3>
           <p className="text-sm text-muted-foreground">
             How we reach you about account activity and alerts.

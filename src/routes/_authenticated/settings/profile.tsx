@@ -17,6 +17,9 @@ function ProfilePage() {
       <ProfileInformationCard data={mockProfileData} />
 
       {/* TODO: Address card will be added here */}
+      <div>
+        <h1> Address </h1>
+      </div>
 
       <ContactCard data={mockContactData} />
     </div>
