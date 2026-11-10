@@ -20,6 +20,7 @@ import {
 import { mockUsers } from "@/features/user-management/data/mock-users"
 import { UserSummaryCard } from "@/features/user-management/components/user-summary-card"
 import { UserPersonalInfoCard } from "@/features/user-management/components/user-personal-info-card"
+import { UserAccountInfoCard } from "@/features/user-management/components/user-account-info-card"
 
 export const Route = createFileRoute("/_authenticated/user-management/$userId")(
   {
@@ -104,8 +105,11 @@ function UserDetailPage() {
         {/* Summary Card */}
         <UserSummaryCard user={user} />
 
-        {/* Personal Infomration Card  */}
-        <UserPersonalInfoCard user={user} />
+        {/* Personal Info & Account Info - Side by Side */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <UserPersonalInfoCard user={user} />
+          <UserAccountInfoCard user={user} />
+        </div>
 
         {/* Placeholder for future content */}
         <div className="rounded-lg border border-dashed border-muted-foreground/25 p-8 text-center">
