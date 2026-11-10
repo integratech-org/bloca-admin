@@ -9,8 +9,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Eye, Pencil, KeyRound, X, Trash2, MoreVertical } from "lucide-react"
+import { Link } from "@tanstack/react-router"
+import type { Machine } from "../types"
 
-export function MachineActions() {
+interface MachineActionsProps {
+  machine: Machine
+}
+
+export function MachineActions({ machine }: MachineActionsProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -22,10 +28,18 @@ export function MachineActions() {
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuGroup>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem>
-            <Eye />
-            View
-          </DropdownMenuItem>
+          <DropdownMenuItem
+            render={
+              <Link
+                to="/system-health/$machineId"
+                params={{ machineId: machine.machineId }}
+                className="flex items-center"
+              >
+                <Eye className="h-4 w-4" />
+                View
+              </Link>
+            }
+          ></DropdownMenuItem>
           <DropdownMenuItem>
             <Pencil />
             Edit
