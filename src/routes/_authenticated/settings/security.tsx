@@ -1,5 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { createFileRoute } from "@tanstack/react-router"
+import { EmailAddressCard } from "@/features/settings/components/email-address-card"
+import { mockEmailData } from "@/features/settings/data/mock-security"
 
 export const Route = createFileRoute("/_authenticated/settings/security")({
   staticData: { breadcrumb: "Security" },
@@ -8,15 +9,8 @@ export const Route = createFileRoute("/_authenticated/settings/security")({
 
 function SecurityPage() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Security Settings</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm text-muted-foreground">
-          Security configuration will be implemented here.
-        </p>
-      </CardContent>
-    </Card>
+    <div className="space-y-6">
+      <EmailAddressCard data={mockEmailData} />
+    </div>
   )
 }
