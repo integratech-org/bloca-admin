@@ -12,4 +12,5 @@ export interface DiagnosticLog {
   power: string | null
   status: DiagnosticStatus
   notes: string | null
+  [key: string]: unknown
 }
