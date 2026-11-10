@@ -1,6 +1,6 @@
 import type { Machine } from "../types"
 
-const mockMachinesData: Machine[] = [
+export const mockMachines: Machine[] = [
   {
     machineId: "BLC-001",
     name: "BLOCA machine01",
@@ -42,18 +42,3 @@ const mockMachinesData: Machine[] = [
     hardwareVersion: "Physical Unit v2.1",
   },
 ]
-
-// Async functions for API-like interface
-export async function getAllMachines(): Promise<Machine[]> {
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 500))
-  return mockMachinesData
-}
-
-export async function getMachineById(
-  machineId: string
-): Promise<Machine | undefined> {
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 300))
-  return mockMachinesData.find((machine) => machine.machineId === machineId)
-}

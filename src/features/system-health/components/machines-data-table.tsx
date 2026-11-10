@@ -16,13 +16,11 @@ import { machinesFeatures } from "./machines-data-table-features"
 interface DataTableProps<TData extends RowData> {
   columns: ColumnDef<MachinesDataTableFeatures, TData>[]
   data: TData[]
-  isLoading?: boolean
 }
 
 export function MachinesDataTable<TData extends RowData>({
   columns,
   data,
-  isLoading = false,
 }: DataTableProps<TData>) {
   const table = useTable({
     features: machinesFeatures,
@@ -32,14 +30,6 @@ export function MachinesDataTable<TData extends RowData>({
     manualSorting: true,
     manualFiltering: true,
   })
-
-  if (isLoading) {
-    return (
-      <div className="flex h-full min-h-[400px] items-center justify-center">
-        <p className="text-muted-foreground">Loading machines...</p>
-      </div>
-    )
-  }
 
   return (
     <div className="scrollbar-thin lg:min-h-0 lg:flex-1 lg:overflow-auto">
