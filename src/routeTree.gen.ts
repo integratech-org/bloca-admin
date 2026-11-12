@@ -23,6 +23,7 @@ import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authen
 import { Route as AuthenticatedSettingsProfileRouteImport } from './routes/_authenticated/settings/profile'
 import { Route as AuthenticatedSettingsSecurityRouteImport } from './routes/_authenticated/settings/security'
 import { Route as AuthenticatedSystemHealthIndexRouteImport } from './routes/_authenticated/system-health/index'
+import { Route as AuthenticatedSystemHealthMachineIdRouteImport } from './routes/_authenticated/system-health/$machineId'
 import { Route as AuthenticatedUserManagementIndexRouteImport } from './routes/_authenticated/user-management/index'
 import { Route as AuthenticatedUserManagementUserIdRouteImport } from './routes/_authenticated/user-management/$userId'
 import { Route as UnauthenticatedAuthForgotPasswordRouteImport } from './routes/_unauthenticated/auth/forgot-password'
@@ -109,6 +110,12 @@ const AuthenticatedSystemHealthIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSystemHealthRouteRoute,
   } as any)
+const AuthenticatedSystemHealthMachineIdRoute =
+  AuthenticatedSystemHealthMachineIdRouteImport.update({
+    id: '/$machineId',
+    path: '/$machineId',
+    getParentRoute: () => AuthenticatedSystemHealthRouteRoute,
+  } as any)
 const AuthenticatedUserManagementIndexRoute =
   AuthenticatedUserManagementIndexRouteImport.update({
     id: '/',
@@ -155,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/user-management': typeof AuthenticatedUserManagementRouteRouteWithChildren
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/security': typeof AuthenticatedSettingsSecurityRoute
+  '/system-health/$machineId': typeof AuthenticatedSystemHealthMachineIdRoute
   '/user-management/$userId': typeof AuthenticatedUserManagementUserIdRoute
   '/auth/forgot-password': typeof UnauthenticatedAuthForgotPasswordRoute
   '/auth/reset-password': typeof UnauthenticatedAuthResetPasswordRoute
@@ -170,6 +178,7 @@ export interface FileRoutesByTo {
   '/': typeof AuthenticatedIndexRoute
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/security': typeof AuthenticatedSettingsSecurityRoute
+  '/system-health/$machineId': typeof AuthenticatedSystemHealthMachineIdRoute
   '/user-management/$userId': typeof AuthenticatedUserManagementUserIdRoute
   '/auth/forgot-password': typeof UnauthenticatedAuthForgotPasswordRoute
   '/auth/reset-password': typeof UnauthenticatedAuthResetPasswordRoute
@@ -193,6 +202,7 @@ export interface FileRoutesById {
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/_authenticated/settings/security': typeof AuthenticatedSettingsSecurityRoute
+  '/_authenticated/system-health/$machineId': typeof AuthenticatedSystemHealthMachineIdRoute
   '/_authenticated/user-management/$userId': typeof AuthenticatedUserManagementUserIdRoute
   '/_unauthenticated/auth/forgot-password': typeof UnauthenticatedAuthForgotPasswordRoute
   '/_unauthenticated/auth/reset-password': typeof UnauthenticatedAuthResetPasswordRoute
@@ -215,6 +225,7 @@ export interface FileRouteTypes {
     | '/user-management'
     | '/settings/profile'
     | '/settings/security'
+    | '/system-health/$machineId'
     | '/user-management/$userId'
     | '/auth/forgot-password'
     | '/auth/reset-password'
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
     | '/'
     | '/settings/profile'
     | '/settings/security'
+    | '/system-health/$machineId'
     | '/user-management/$userId'
     | '/auth/forgot-password'
     | '/auth/reset-password'
@@ -252,6 +264,7 @@ export interface FileRouteTypes {
     | '/_authenticated/'
     | '/_authenticated/settings/profile'
     | '/_authenticated/settings/security'
+    | '/_authenticated/system-health/$machineId'
     | '/_authenticated/user-management/$userId'
     | '/_unauthenticated/auth/forgot-password'
     | '/_unauthenticated/auth/reset-password'
@@ -369,6 +382,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSystemHealthIndexRouteImport
       parentRoute: typeof AuthenticatedSystemHealthRouteRoute
     }
+    '/_authenticated/system-health/$machineId': {
+      id: '/_authenticated/system-health/$machineId'
+      path: '/$machineId'
+      fullPath: '/system-health/$machineId'
+      preLoaderRoute: typeof AuthenticatedSystemHealthMachineIdRouteImport
+      parentRoute: typeof AuthenticatedSystemHealthRouteRoute
+    }
     '/_authenticated/user-management/': {
       id: '/_authenticated/user-management/'
       path: '/'
@@ -461,11 +481,14 @@ const AuthenticatedSettingsRouteRouteWithChildren =
   )
 
 interface AuthenticatedSystemHealthRouteRouteChildren {
+  AuthenticatedSystemHealthMachineIdRoute: typeof AuthenticatedSystemHealthMachineIdRoute
   AuthenticatedSystemHealthIndexRoute: typeof AuthenticatedSystemHealthIndexRoute
 }
 
 const AuthenticatedSystemHealthRouteRouteChildren: AuthenticatedSystemHealthRouteRouteChildren =
   {
+    AuthenticatedSystemHealthMachineIdRoute:
+      AuthenticatedSystemHealthMachineIdRoute,
     AuthenticatedSystemHealthIndexRoute: AuthenticatedSystemHealthIndexRoute,
   }
 
