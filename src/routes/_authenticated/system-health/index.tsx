@@ -2,12 +2,11 @@ import { createFileRoute } from "@tanstack/react-router"
 
 import { PageHeader } from "@/components/page-header"
 import { Card } from "@/components/ui/card"
-import { columns } from "@/features/system-health/components/columns"
-import { DataTable } from "@/features/system-health/components/data-table"
-import { DiagnosticsToolbar } from "@/features/system-health/components/toolbar"
-import { DiagnosticsPagination } from "@/features/system-health/components/pagination"
-import { StatsGrid } from "@/features/system-health/components/stats-grid"
-import { mockDiagnosticLogs } from "@/features/system-health/data/mock-logs"
+import { machinesColumns } from "@/features/system-health/components/machines-columns"
+import { MachinesDataTable } from "@/features/system-health/components/machines-data-table"
+import { MachinesPagination } from "@/features/system-health/components/machines-pagination"
+import { MachinesToolbar } from "@/features/system-health/components/machines-toolbar"
+import { mockMachines } from "@/features/system-health/data/mock-machines"
 
 export const Route = createFileRoute("/_authenticated/system-health/")({
   component: SystemHealthPage,
@@ -15,28 +14,19 @@ export const Route = createFileRoute("/_authenticated/system-health/")({
 
 function SystemHealthPage() {
   return (
-    <div className="flex flex-col gap-8 lg:min-h-0 lg:flex-1">
+    <div className="flex flex-col gap-8 lg:flex-1">
       <PageHeader
-        eyebrow="Hardware Monitoring"
+        eyebrow="HARDWARE MONITORING"
         title="System Health & Maintenance"
-        description="Edge device diagnostics · BLOCA Physical Unit v2.1 · Last synced 7 min ago"
+        description="Select a machine to view its filtration lifespan and hardware diagnostics."
       />
 
-      <div className="flex flex-col gap-6 lg:min-h-0 lg:flex-1">
-        <section className="flex flex-col gap-3">
-          <p className="font-heading text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-            Filtration Lifespan
-          </p>
-          <StatsGrid />
-        </section>
-
-        <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
-          <DiagnosticsToolbar />
-          <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
-            <DataTable columns={columns} data={mockDiagnosticLogs} />
-          </Card>
-          <DiagnosticsPagination />
-        </div>
+      <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
+        <MachinesToolbar total={mockMachines.length} />
+        <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
+          <MachinesDataTable columns={machinesColumns} data={mockMachines} />
+        </Card>
+        <MachinesPagination total={mockMachines.length} />
       </div>
     </div>
   )
