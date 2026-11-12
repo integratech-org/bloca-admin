@@ -1,11 +1,8 @@
-import { useState } from "react"
 import { createFileRoute } from "@tanstack/react-router"
 import { ProfileInformationCard } from "@/features/settings/components/profile-information-card"
-import { AddressCard } from "@/features/settings/components/address-card"
 import { ContactCard } from "@/features/settings/components/contact-card"
 import {
   mockProfileData,
-  mockAddressData,
   mockContactData,
 } from "@/features/settings/data/mock-profile"
 
@@ -27,13 +24,9 @@ function ProfilePage() {
 
   return (
     <div className="space-y-6">
-      <ProfileInformationCard
-        profileData={mockProfileData}
-        isEditing={isEditing}
-        onToggleEdit={handleToggleEdit}
-      />
+      <ProfileInformationCard profileData={mockProfileData} />
 
-      <AddressCard data={mockAddressData} isEditing={isEditing} />
+      {/* TODO: Address card will be added here */}
 
       <ContactCard data={mockContactData} />
     </div>

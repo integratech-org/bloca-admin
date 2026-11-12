@@ -12,4 +12,16 @@ export interface DiagnosticLog {
   power: string | null
   status: DiagnosticStatus
   notes: string | null
+  [key: string]: unknown
+}
+
+export type TokenStatus = "Active" | "Revoked" | "Not Issued"
+
+export interface Machine {
+  machineId: string
+  name: string
+  site: string
+  tokenStatus: TokenStatus
+  lastSynced: string
+  hardwareVersion?: string
 }
