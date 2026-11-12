@@ -12,6 +12,16 @@ export const Route = createFileRoute("/_authenticated/settings/profile")({
 })
 
 function ProfilePage() {
+  const [isEditing, setIsEditing] = useState(false)
+
+  const handleToggleEdit = () => {
+    if (isEditing) {
+      // TODO: Save logic here
+      console.log("Saving profile and address...")
+    }
+    setIsEditing(!isEditing)
+  }
+
   return (
     <div className="space-y-6">
       <ProfileInformationCard profileData={mockProfileData} />
