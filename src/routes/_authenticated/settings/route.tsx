@@ -34,20 +34,13 @@ function SettingsLayout() {
 
       <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
         {/* Side Tabs */}
-        <Card className="py-2 lg:w-60 lg:shrink-0">
+        <Card className="w-fit py-2 lg:w-60 lg:shrink-0 lg:self-start">
           <nav className="flex flex-row gap-1 px-2 lg:flex-col">
             {tabs.map((tab) => {
               const isActive = pathname === tab.href
 
               return (
                 <div key={tab.id} className="relative w-full">
-                  {isActive && (
-                    <motion.div
-                      className="absolute top-0 left-0 h-full w-1 rounded-md bg-primary"
-                      layoutId="active-settings-indicator"
-                    />
-                  )}
-
                   {isActive && (
                     <motion.div
                       className="absolute top-0 left-0 h-full w-full rounded-md bg-primary/10"
