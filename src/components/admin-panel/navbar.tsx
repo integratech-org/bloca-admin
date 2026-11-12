@@ -1,6 +1,7 @@
 import { SheetMenu } from "@/components/admin-panel/sheet-menu"
 import { RouterBreadcrumb } from "../router-breadcrumb"
 import { ModeToggle } from "../mode-toggle"
+import { UserNav } from "../user-nav"
 
 export function Navbar() {
   return (
@@ -10,9 +11,9 @@ export function Navbar() {
           <SheetMenu />
           <RouterBreadcrumb />
         </div>
-        <div className="flex flex-1 items-center justify-end">
+        <div className="flex flex-1 items-center justify-end gap-2">
           <ModeToggle />
-          {/* <UserNav /> */}
+          <UserNav />
         </div>
       </div>
     </header>
