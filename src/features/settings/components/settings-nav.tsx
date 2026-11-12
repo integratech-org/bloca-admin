@@ -23,9 +23,9 @@ export function SettingsNav() {
             nativeButton={false}
             render={<Link to={item.to} />}
             className={cn(
-              "hover:text-text w-full hover:bg-sidebar-accent hover:text-sidebar-accent-foreground md:justify-start",
+              "w-full hover:bg-sidebar-accent hover:text-sidebar-accent-foreground md:justify-start",
               isActive &&
-                "bg-primary/10 font-medium text-primary! hover:bg-primary/10 hover:text-primary!"
+                "bg-primary/10 text-primary! hover:bg-primary/10 hover:text-primary!"
             )}
           >
             {item.label}
