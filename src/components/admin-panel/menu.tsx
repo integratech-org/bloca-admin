@@ -76,7 +76,7 @@ export function Menu({ isOpen }: MenuProps) {
                             <Button
                               nativeButton={false}
                               className={cn(
-                                "hover:text-text mb-1 h-10 w-full justify-start ps-4 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                                "mb-1 h-10 w-full justify-start ps-4 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                                 isActive &&
                                   "text-primary! hover:bg-transparent!"
                               )}

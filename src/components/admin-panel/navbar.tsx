@@ -1,7 +1,7 @@
 import { SheetMenu } from "@/components/admin-panel/sheet-menu"
 import { RouterBreadcrumb } from "../router-breadcrumb"
 import { ModeToggle } from "../mode-toggle"
-import { UserNav } from "../user-nav"
+import { UserNav } from "./user-nav"
 
 export function Navbar() {
   return (
