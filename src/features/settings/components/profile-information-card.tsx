@@ -1,104 +1,66 @@
-import { useRef, useState } from "react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Field, FieldGroup } from "@/components/ui/field"
-import { Label } from "@/components/ui/label"
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import type { ProfileData } from "../types/profile"
 
-interface ProfileInformationCardProps {
-  profileData: ProfileData
-}
-
-export function ProfileInformationCard({
-  profileData,
-}: ProfileInformationCardProps) {
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const [isEditing, setIsEditing] = useState(false)
-  const initials = `${profileData.firstName[0] || ""}${profileData.lastName[0] || ""}`
-
-  const handleToggleEdit = () => {
-    if (isEditing) {
-      // TODO: Save logic here
-      console.log("Saving...")
-    }
-    setIsEditing(!isEditing)
-  }
-
+export function ProfileInformationCard() {
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
-        <div className="flex flex-col gap-1">
-          <h3 className="font-heading text-base font-semibold">
-            Profile information
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            Update your personal details and photo.
-          </p>
-        </div>
-        <Button size="sm" onClick={handleToggleEdit}>
-          {isEditing ? "Save changes" : "Edit"}
-        </Button>
+      <CardHeader>
+        <CardTitle className="text-xl font-semibold">
+          Profile information
+        </CardTitle>
+        <CardDescription>
+          Your name is locked. Only your photo can be changed here.
+        </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
-        {/* Avatar section */}
+      <CardContent className="flex flex-col gap-6">
         <div className="flex items-center gap-4">
-          <Avatar size="lg">
-            {profileData.avatarUrl ? (
-              <AvatarImage src={profileData.avatarUrl} alt="Profile" />
-            ) : (
-              <AvatarFallback>{initials}</AvatarFallback>
-            )}
+          <Avatar className="size-20">
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>CN</AvatarFallback>
           </Avatar>
+
           <div className="flex flex-col gap-2">
-            <div className="flex flex-col">
-              <span className="text-sm font-medium">
-                {profileData.firstName} {profileData.lastName}
-              </span>
-              <span className="text-xs text-muted-foreground">
-                {profileData.role}
-              </span>
+            <div>
+              <p className="text-lg font-medium">John Doe</p>
+              <p className="text-sm text-muted-foreground">System Admin</p>
             </div>
-            {isEditing && (
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="text-sm font-medium text-primary hover:underline"
-              >
-                Change photo
-              </button>
-            )}
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              className="hidden"
-            />
+            <Button type="button" variant="outline" size="sm">
+              Change photo
+            </Button>
           </div>
         </div>
 
-        {/* Form fields */}
         <FieldGroup>
-          {/* First Name & Last Name - Two column grid */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
             <Field>
-              <Label htmlFor="firstName">First name</Label>
+              <FieldLabel htmlFor="firstName">First name</FieldLabel>
               <Input
                 id="firstName"
-                defaultValue={profileData.firstName}
+                type="text"
                 placeholder="First name"
-                disabled={!isEditing}
+                value="John"
+                defaultValue="John"
+                disabled
               />
             </Field>
-
             <Field>
-              <Label htmlFor="lastName">Last name</Label>
+              <FieldLabel htmlFor="lastName">Last name</FieldLabel>
               <Input
                 id="lastName"
-                defaultValue={profileData.lastName}
+                type="text"
                 placeholder="Last name"
-                disabled={!isEditing}
+                value="Doe"
+                defaultValue="Doe"
+                disabled
               />
             </Field>
           </div>

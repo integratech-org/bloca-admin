@@ -43,28 +43,34 @@ export function RouterBreadcrumb() {
     return null
   }
 
-  return (
-    <Breadcrumb>
-      <BreadcrumbList>
-        {breadcrumbs.map((crumb, index) => {
-          const isLast = index === breadcrumbs.length - 1
+  const pageTitle = breadcrumbs[breadcrumbs.length - 1].label
 
-          return (
-            <Fragment key={`${crumb.path}-${index}`}>
-              <BreadcrumbItem>
-                {isLast ? (
-                  <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
-                ) : (
-                  <BreadcrumbLink
-                    render={<Link to={crumb.path}>{crumb.label}</Link>}
-                  />
-                )}
-              </BreadcrumbItem>
-              {!isLast && <BreadcrumbSeparator />}
-            </Fragment>
-          )
-        })}
-      </BreadcrumbList>
-    </Breadcrumb>
+  return (
+    <>
+      <span className="text-base font-semibold md:hidden">{pageTitle}</span>
+
+      <Breadcrumb className="hidden md:block">
+        <BreadcrumbList>
+          {breadcrumbs.map((crumb, index) => {
+            const isLast = index === breadcrumbs.length - 1
+
+            return (
+              <Fragment key={`${crumb.path}-${index}`}>
+                <BreadcrumbItem>
+                  {isLast ? (
+                    <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
+                  ) : (
+                    <BreadcrumbLink
+                      render={<Link to={crumb.path}>{crumb.label}</Link>}
+                    />
+                  )}
+                </BreadcrumbItem>
+                {!isLast && <BreadcrumbSeparator />}
+              </Fragment>
+            )
+          })}
+        </BreadcrumbList>
+      </Breadcrumb>
+    </>
   )
 }
