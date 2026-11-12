@@ -8,21 +8,9 @@ import {
   DropdownMenuTrigger,
   DropdownMenuGroup,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
-import {
-  ChevronDown,
-  ArrowLeft,
-  PencilIcon,
-  LockIcon,
-  UserRoundXIcon,
-} from "lucide-react"
+import { ChevronDown, ArrowLeft } from "lucide-react"
 import { mockUsers } from "@/features/user-management/data/mock-users"
-import { UserSummaryCard } from "@/features/user-management/components/user-summary-card"
-import { UserPersonalInfoCard } from "@/features/user-management/components/user-personal-info-card"
-import { UserAccountInfoCard } from "@/features/user-management/components/user-account-info-card"
-import { RecentActivityTable } from "@/features/user-management/components/recent-activity-table"
-import { mockBatchActivities } from "@/features/user-management/data/mock-activity"
 
 export const Route = createFileRoute("/_authenticated/user-management/$userId")(
   {
@@ -37,8 +25,6 @@ function UserDetailPage() {
     from: "/_authenticated/user-management/$userId",
   })
   const user = mockUsers.find((u) => u.id === userId)
-
-  const userActivities = mockBatchActivities.filter((a) => a.userId === userId)
 
   // User Not Found Fallback
   if (!user) {
@@ -72,33 +58,18 @@ function UserDetailPage() {
         <DropdownMenu>
           <DropdownMenuTrigger
             render={
-              <Button>
+              <Button variant="outline">
                 Select Actions
                 <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             }
           />
-          <DropdownMenuContent align="end" className="w-45">
+          <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuGroup>
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem>
-                <PencilIcon className="mr-2 h-4 w-4" />
-                Edit Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <LockIcon className="mr-2 h-4 w-4" />
-                Reset Password
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem
-                onClick={() => console.log("Delete", user.id)}
-                variant="destructive"
-              >
-                <UserRoundXIcon className="mr-2 h-4 w-4" />
-                Disable Account
-              </DropdownMenuItem>
+              <DropdownMenuLabel>User Actions</DropdownMenuLabel>
+              <DropdownMenuItem disabled>Edit User</DropdownMenuItem>
+              <DropdownMenuItem disabled>Reset Password</DropdownMenuItem>
+              <DropdownMenuItem disabled>Disable Account</DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -106,16 +77,18 @@ function UserDetailPage() {
 
       {/* Content Area - Placeholder */}
       <div className="flex flex-col gap-6 lg:flex-1">
-        {/* Summary Card */}
-        <UserSummaryCard user={user} />
-
-        {/* Personal Info & Account Info - Side by Side */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <UserPersonalInfoCard user={user} />
-          <UserAccountInfoCard user={user} />
+        <div className="rounded-lg border border-dashed border-muted-foreground/25 p-8 text-center">
+          <p className="text-sm text-muted-foreground">
+            User details content will be added in separate tasks
+          </p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Current user:{" "}
+            <span className="font-mono">
+              {user.firstName} {user.lastName}
+            </span>{" "}
+            ({user.id})
+          </p>
         </div>
-
-        <RecentActivityTable activities={userActivities} />
       </div>
     </div>
   )
