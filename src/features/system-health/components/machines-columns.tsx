@@ -73,6 +73,6 @@ export const machinesColumns = columnHelper.columns([
   columnHelper.display({
     id: "actions",
     header: "Actions",
-    cell: () => <MachineActions />,
+    cell: ({ row }) => <MachineActions machine={row.original} />,
   }),
 ])
