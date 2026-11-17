@@ -8,24 +8,38 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Eye, Pencil, KeyRound, X, Trash2, MoreVertical } from "lucide-react"
+import { Eye, Pencil, KeyRound, X, Trash2, MoreHorizontal } from "lucide-react"
+import { Link } from "@tanstack/react-router"
 
-export function MachineActions() {
+export function MachineActions({
+  machine,
+}: {
+  machine: { machineId: string }
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
         render={<Button variant="ghost" size="icon" />}
         aria-label="Open menu"
       >
-        <MoreVertical className="h-4 w-4" />
+        <MoreHorizontal className="h-4 w-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuGroup>
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem>
-            <Eye />
-            View
-          </DropdownMenuItem>
+          <DropdownMenuItem
+            render={
+              <Link
+                to="/system-health/$machineId"
+                params={{ machineId: machine.machineId }}
+                className="flex items-center"
+              >
+                <Eye />
+                View Details
+              </Link>
+            }
+          ></DropdownMenuItem>
+
           <DropdownMenuItem>
             <Pencil />
             Edit
