@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -11,7 +12,7 @@ import {
 import type { Machine } from "@/types/api"
 import { MoreHorizontal } from "lucide-react"
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// @ts-expect-error - intentionally unused / expected type error
 export function MachinesRowActions({ machine }: { machine: Machine }) {
   return (
     <DropdownMenu>

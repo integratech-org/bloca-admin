@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 
-import type { DiagnosticStatus } from "../types"
+import type { DiagnosticStatus } from "../../types"
 
 const statusColors: Record<DiagnosticStatus, string> = {
   normal: "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300",
