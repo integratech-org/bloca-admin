@@ -1,3 +1,5 @@
+export type TokenStatus = "active" | "revoked" | "not_issued"
+
 export type DiagnosticStatus = "normal" | "warning" | "error"
 
 export type DeviceId = "ESP32-A" | "ESP32-B" | "RPI-01"
@@ -13,15 +15,4 @@ export interface DiagnosticLog {
   status: DiagnosticStatus
   notes: string | null
   [key: string]: unknown
-}
-
-export type TokenStatus = "Active" | "Revoked" | "Not Issued"
-
-export interface Machine {
-  machineId: string
-  name: string
-  site: string
-  tokenStatus: TokenStatus
-  lastSynced: string
-  hardwareVersion?: string
 }

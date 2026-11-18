@@ -10,11 +10,11 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import type { MachinesDataTableFeatures } from "./machines-data-table-features"
-import { machinesFeatures } from "./machines-data-table-features"
+import type { DataTableFeatures } from "./data-table-features"
+import { features } from "./data-table-features"
 
 interface DataTableProps<TData extends RowData> {
-  columns: ColumnDef<MachinesDataTableFeatures, TData>[]
+  columns: ColumnDef<DataTableFeatures, TData>[]
   data: TData[]
 }
 
@@ -23,7 +23,7 @@ export function MachinesDataTable<TData extends RowData>({
   data,
 }: DataTableProps<TData>) {
   const table = useTable({
-    features: machinesFeatures,
+    features,
     data,
     columns,
     manualPagination: true,
@@ -67,7 +67,7 @@ export function MachinesDataTable<TData extends RowData>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No machines found.
+                No results.
               </TableCell>
             </TableRow>
           )}
