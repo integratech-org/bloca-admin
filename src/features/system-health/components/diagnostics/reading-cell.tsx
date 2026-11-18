@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 
-import type { DiagnosticStatus } from "../types"
+import type { DiagnosticStatus } from "../../types"
 
 const readingColors: Record<DiagnosticStatus, string> = {
   normal: "",
