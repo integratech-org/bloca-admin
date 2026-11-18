@@ -20,6 +20,7 @@ interface DataTableProps<TData extends RowData> {
   data: TData[]
   isLoading?: boolean
   isDimmed?: boolean
+  skeletonRows?: number
 }
 
 export function DataTable<TData extends RowData>({
@@ -27,6 +28,7 @@ export function DataTable<TData extends RowData>({
   data,
   isLoading,
   isDimmed,
+  skeletonRows = 10,
 }: DataTableProps<TData>) {
   const table = useTable({
     features,
@@ -62,11 +64,13 @@ export function DataTable<TData extends RowData>({
           )}
         >
           {isLoading ? (
-            Array.from({ length: 10 }).map((_, i) => (
-              <TableRow key={i}>
-                {columns.map((_, j) => (
-                  <TableCell key={j}>
-                    <Skeleton className="h-5 w-full" />
+            Array.from({ length: skeletonRows }).map((_, i) => (
+              <TableRow key={i} className="hover:bg-transparent">
+                {table.getVisibleLeafColumns().map((column) => (
+                  <TableCell key={column.id}>
+                    {column.columnDef.meta?.skeleton ?? (
+                      <Skeleton className="h-5 w-full" />
+                    )}
                   </TableCell>
                 ))}
               </TableRow>

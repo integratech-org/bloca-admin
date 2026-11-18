@@ -11,6 +11,7 @@ import {
 import type { Machine } from "@/types/api"
 import { MoreHorizontal } from "lucide-react"
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function MachinesRowActions({ machine }: { machine: Machine }) {
   return (
     <DropdownMenu>

@@ -1,10 +1,12 @@
 import { useMachines } from "../../api/get-machines"
-import { Card } from "@/components/ui/card"
-import { MachinesToolbar } from "@/features/system-health/components/machines/machines-toolbar"
-import { machinesColumns } from "@/features/system-health/components/machines/machines-columns"
+import { columns } from "@/features/system-health/components/machines/columns"
 import { DataTable } from "@/components/data-table"
-import { DataTablePagination } from "@/components/pagination"
+import { DataTablePagination } from "@/components/data-table/data-table-pagination"
 import { getRouteApi } from "@tanstack/react-router"
+import { Card } from "@/components/ui/card"
+import { DataTableToolbar } from "@/components/data-table/data-table-toolbar"
+import { MachinesFilters } from "./filters"
+import { AddMachineDialog } from "./add-machine-dialog"
 
 const routeApi = getRouteApi("/_authenticated/system-health/")
 
@@ -21,10 +23,17 @@ export function MachinesList() {
 
   return (
     <>
-      <MachinesToolbar total={machines?.count} />
-      <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
+      <DataTableToolbar
+        title="All machines"
+        total={machines?.count}
+        searchPlaceholder="Search machines..."
+        isLoading={machinesQuery.isLoading}
+        filters={<MachinesFilters />}
+        actions={<AddMachineDialog />}
+      />
+      <Card className="overflow-hidden py-0 lg:min-h-0 lg:flex-1">
         <DataTable
-          columns={machinesColumns}
+          columns={columns}
           data={machines?.results ?? []}
           isLoading={machinesQuery.isLoading}
           isDimmed={machinesQuery.isPlaceholderData}

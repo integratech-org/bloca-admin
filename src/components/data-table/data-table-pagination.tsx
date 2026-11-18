@@ -42,7 +42,7 @@ export function DataTablePagination({
   }
 
   return (
-    <div className="flex items-center justify-between gap-4">
+    <div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-between sm:gap-4">
       <Field orientation="horizontal" className="w-fit">
         <FieldLabel htmlFor="select-rows-per-page">Rows per page</FieldLabel>
         <Select

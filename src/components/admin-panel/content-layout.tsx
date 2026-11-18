@@ -6,9 +6,9 @@ interface ContentLayoutProps {
 
 export function ContentLayout({ children }: ContentLayoutProps) {
   return (
-    <div className="flex h-screen w-full flex-col overflow-hidden">
+    <div className="flex min-h-dvh w-full flex-col lg:h-dvh lg:overflow-hidden">
       <Navbar />
-      <div className="min-h-0 flex-1 scrollbar-none overflow-y-auto bg-background px-4 pt-8 pb-8 sm:px-8 lg:flex">
+      <div className="flex-1 scrollbar-none bg-background px-4 pt-8 pb-8 sm:px-8 lg:flex lg:min-h-0 lg:overflow-y-auto">
         {children}
       </div>
     </div>
