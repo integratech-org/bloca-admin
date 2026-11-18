@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { PageHeader } from "@/components/page-header"
 import { StatsGrid } from "@/features/system-health/components/stats-grid"
-import { DiagnosticsToolbar } from "@/features/system-health/components/toolbar"
+import { DiagnosticsToolbar } from "@/features/system-health/components/detail/toolbar"
 import { DataTable } from "@/features/system-health/components/data-table"
-import { columns } from "@/features/system-health/components/columns"
+import { columns } from "@/features/system-health/components/list/machines-columns"
 import { DiagnosticsPagination } from "@/features/system-health/components/pagination"
 import { mockDiagnosticLogs } from "@/features/system-health/data/mock-logs"
 import { mockMachines } from "@/features/system-health/data/mock-machines"
@@ -16,10 +16,10 @@ export const Route = createFileRoute(
   "/_authenticated/system-health/$machineId"
 )({
   staticData: { breadcrumb: "Machine Details" },
-  component: MachineDetailPage,
+  component: SystemHealthDetailPage,
 })
 
-function MachineDetailPage() {
+function SystemHealthDetailPage() {
   const { machineId } = Route.useParams()
   const machine = mockMachines.find((m) => m.machineId === machineId)
 
