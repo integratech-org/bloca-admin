@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router"
-
 import { PageHeader } from "@/components/page-header"
-import { Card } from "@/components/ui/card"
-import { machinesColumns } from "@/features/system-health/components/machines-columns"
-import { MachinesDataTable } from "@/features/system-health/components/machines-data-table"
-import { MachinesPagination } from "@/features/system-health/components/machines-pagination"
-import { MachinesToolbar } from "@/features/system-health/components/machines-toolbar"
-import { mockMachines } from "@/features/system-health/data/mock-machines"
+import { MachinesList } from "@/features/system-health/components/machines/machines-list"
+import { zodValidator } from "@tanstack/zod-adapter"
+import { z } from "zod"
+
+const machineSearchSchema = z.object({
+  page: z.number().default(1),
+  pageSize: z.number().default(25),
+})
 
 export const Route = createFileRoute("/_authenticated/system-health/")({
+  validateSearch: zodValidator(machineSearchSchema),
   component: SystemHealthPage,
 })
 
@@ -16,17 +18,13 @@ function SystemHealthPage() {
   return (
     <div className="flex flex-col gap-8 lg:flex-1">
       <PageHeader
-        eyebrow="HARDWARE MONITORING"
+        eyebrow="Hardware Monitoring"
         title="System Health & Maintenance"
         description="Select a machine to view its filtration lifespan and hardware diagnostics."
       />
 
       <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
-        <MachinesToolbar total={mockMachines.length} />
-        <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
-          <MachinesDataTable columns={machinesColumns} data={mockMachines} />
-        </Card>
-        <MachinesPagination total={mockMachines.length} />
+        <MachinesList />
       </div>
     </div>
   )

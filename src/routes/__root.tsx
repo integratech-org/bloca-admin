@@ -3,7 +3,7 @@ import {
   Link,
   Outlet,
 } from "@tanstack/react-router"
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
+// import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"
 import { type QueryClient } from "@tanstack/react-query"
 import { Toaster } from "sonner"
 import Providers from "./-providers"
@@ -41,7 +41,7 @@ function RootComponent() {
     <Providers>
       <Outlet />
       <Toaster />
-      <TanStackRouterDevtools position="bottom-right" />
+      {/* <TanStackRouterDevtools position="bottom-right" /> */}
     </Providers>
   )
 }

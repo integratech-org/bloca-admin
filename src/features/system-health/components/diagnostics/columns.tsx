@@ -2,7 +2,7 @@ import { createColumnHelper } from "@tanstack/react-table"
 import { Badge } from "@/components/ui/badge"
 
 import type { DataTableFeatures } from "./data-table-features"
-import type { DiagnosticLog } from "../types"
+import type { DiagnosticLog } from "../../types"
 import { ReadingCell } from "./reading-cell"
 import { StatusBadge } from "./status-badge"
 
