@@ -11,11 +11,11 @@ import { AddMachineDialog } from "./add-machine-dialog"
 const routeApi = getRouteApi("/_authenticated/system-health/")
 
 export function MachinesList() {
-  const { page, pageSize } = routeApi.useSearch()
+  const { search, page, pageSize } = routeApi.useSearch()
   const navigate = routeApi.useNavigate()
 
   const machinesQuery = useMachines({
-    params: { page, page_size: pageSize },
+    params: { search, page, page_size: pageSize },
   })
 
   const machines = machinesQuery?.data
@@ -27,6 +27,12 @@ export function MachinesList() {
         title="All machines"
         total={machines?.count}
         searchPlaceholder="Search machines..."
+        searchValue={search}
+        onSearchChange={(newSearch) => {
+          navigate({
+            search: (prev) => ({ ...prev, search: newSearch, page: 1 }),
+          })
+        }}
         isLoading={machinesQuery.isLoading}
         filters={<MachinesFilters />}
         actions={<AddMachineDialog />}
