@@ -5,6 +5,7 @@ import { zodValidator } from "@tanstack/zod-adapter"
 import { z } from "zod"
 
 const machineSearchSchema = z.object({
+  search: z.string().optional(),
   page: z.number().default(1),
   pageSize: z.number().default(25),
 })
