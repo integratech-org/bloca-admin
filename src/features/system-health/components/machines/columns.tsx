@@ -2,7 +2,7 @@ import { createColumnHelper } from "@tanstack/react-table"
 import type { Machine } from "@/types/api"
 import { MachinesRowActions } from "./machines-row-actions"
 import { TokenStatusBadge } from "./token-status-badge"
-import { formatDistanceToNow } from "date-fns"
+import { format } from "date-fns"
 import { Skeleton } from "@/components/ui/skeleton"
 import type { DataTableFeatures } from "@/components/data-table/data-table-features"
 
@@ -25,9 +25,16 @@ export const columns = columnHelper.columns([
   }),
   columnHelper.accessor("created_at", {
     header: "Created",
-    cell: ({ getValue }) =>
-      formatDistanceToNow(getValue(), { addSuffix: true }),
+    cell: ({ getValue }) => format(getValue(), "dd MMM yyyy, HH:mm:ss"),
     meta: { skeleton: <Skeleton className="h-5 w-28" /> },
+  }),
+  columnHelper.accessor("deleted_at", {
+    header: "Deleted",
+    cell: ({ getValue }) => {
+      const value = getValue()
+      if (!value) return "—"
+      return format(value, "dd MMM yyyy, HH:mm:ss")
+    },
   }),
   columnHelper.display({
     id: "actions",
