@@ -15,19 +15,64 @@ import {
   FieldDescription,
   FieldGroup,
   FieldLabel,
+  FieldError,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { KeyRound, Plus } from "lucide-react"
+import type z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Controller, useForm } from "react-hook-form"
+import {
+  useCreateMachine,
+  createMachineInputSchema,
+} from "../../api/create-machine"
+import { DashRing } from "@/components/loading-ui/dash-ring"
+import { useState } from "react"
+import { useMachineTokenStore } from "../../stores/machine-token-store"
 
 export function AddMachineDialog() {
+  const [open, setOpen] = useState(false)
+  const createMachineMutation = useCreateMachine()
+  const show = useMachineTokenStore((s) => s.show)
+
+  const form = useForm<z.infer<typeof createMachineInputSchema>>({
+    resolver: zodResolver(createMachineInputSchema),
+    defaultValues: {
+      name: "",
+      site: "",
+    },
+  })
+
+  function onSubmit(data: z.infer<typeof createMachineInputSchema>) {
+    createMachineMutation.mutate(
+      { data },
+      {
+        onSuccess: (res) => {
+          setOpen(false)
+          form.reset()
+          show(res)
+        },
+      }
+    )
+  }
+
   return (
-    <Dialog>
-      <form>
-        <DialogTrigger render={<Button />}>
-          <Plus />
-          Add Machine
-        </DialogTrigger>
-        <DialogContent>
+    <Dialog
+      open={open}
+      onOpenChange={(next, eventDetails) => {
+        if (!next && createMachineMutation.isPending) {
+          eventDetails.cancel()
+          return
+        }
+        setOpen(next)
+      }}
+    >
+      <DialogTrigger render={<Button />}>
+        <Plus />
+        Add Machine
+      </DialogTrigger>
+      <DialogContent>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
           <DialogHeader>
             <DialogTitle>Add machine</DialogTitle>
             <DialogDescription>
@@ -35,25 +80,54 @@ export function AddMachineDialog() {
             </DialogDescription>
           </DialogHeader>
           <FieldGroup>
-            <Field>
-              <FieldLabel htmlFor="name">Machine name</FieldLabel>
-              <Input id="name" name="name" placeholder="e.g. BLOCA-machine0" />
-              <FieldDescription>
-                A name to identify this machine in the dashboard.
-              </FieldDescription>
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="site">Site</FieldLabel>
-              <Input
-                id="site"
-                name="site"
-                placeholder="e.g. Bagong Silang, Caloocan"
-              />
-              <FieldDescription>
-                Where the machine is installed.
-              </FieldDescription>
-            </Field>
+            <Controller
+              name="name"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="name">
+                    Machine name <span className="text-destructive">*</span>
+                  </FieldLabel>
+                  <Input
+                    {...field}
+                    id="name"
+                    aria-invalid={fieldState.invalid}
+                    placeholder="e.g. BLOCA-machine0"
+                    autoComplete="off"
+                  />
+                  <FieldDescription>
+                    A name to identify this machine in the dashboard.
+                  </FieldDescription>
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              name="site"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="site">Site</FieldLabel>
+                  <Input
+                    {...field}
+                    id="site"
+                    aria-invalid={fieldState.invalid}
+                    placeholder="e.g. Bagong Silang, Caloocan"
+                    autoComplete="off"
+                  />
+                  <FieldDescription>
+                    Where the machine is installed.
+                  </FieldDescription>
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
           </FieldGroup>
+
           <Alert className="border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50">
             <KeyRound />
             <AlertTitle>Access token</AlertTitle>
@@ -62,12 +136,32 @@ export function AddMachineDialog() {
               copy it right away.
             </AlertDescription>
           </Alert>
+
           <DialogFooter>
-            <DialogClose render={<Button variant="outline">Cancel</Button>} />
-            <Button type="submit">Add machine</Button>
+            <DialogClose
+              render={
+                <Button
+                  type="button"
+                  variant="outline"
+                  disabled={createMachineMutation.isPending}
+                >
+                  Cancel
+                </Button>
+              }
+            />
+            <Button type="submit" disabled={createMachineMutation.isPending}>
+              {createMachineMutation.isPending ? (
+                <>
+                  <DashRing />
+                  Creating...
+                </>
+              ) : (
+                "Create machine"
+              )}
+            </Button>
           </DialogFooter>
-        </DialogContent>
-      </form>
+        </form>
+      </DialogContent>
     </Dialog>
   )
 }

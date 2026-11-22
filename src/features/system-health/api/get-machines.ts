@@ -2,17 +2,17 @@ import { keepPreviousData, queryOptions, useQuery } from "@tanstack/react-query"
 
 import { api } from "@/lib/api-client"
 import type { QueryConfig } from "@/lib/react-query"
-import type { GetMachinesParams, MachinePage } from "@/types/api"
+import type { MachineQuery, MachinePage } from "@/types/api"
 
 export const getMachines = (
-  params: GetMachinesParams = {}
+  params: MachineQuery = {}
 ): Promise<MachinePage> => {
   return api.get("/api/machines", {
     params,
   })
 }
 
-export const getMachinesQueryOptions = (params: GetMachinesParams = {}) => {
+export const getMachinesQueryOptions = (params: MachineQuery = {}) => {
   return queryOptions({
     queryKey: ["machines", params],
     queryFn: () => getMachines(params),
@@ -20,7 +20,7 @@ export const getMachinesQueryOptions = (params: GetMachinesParams = {}) => {
 }
 
 type UseMachinesOptions = {
-  params?: GetMachinesParams
+  params?: MachineQuery
   queryConfig?: QueryConfig<typeof getMachinesQueryOptions>
 }
 
