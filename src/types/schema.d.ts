@@ -12,10 +12,10 @@ export interface paths {
             cookie?: never;
         };
         /** Get Machines */
-        get: operations["machine_get_machines_63a9f567"];
+        get: operations["machine_get_machines_2324df2f"];
         put?: never;
         /** Create Machine */
-        post: operations["machine_create_machine_4da51a45"];
+        post: operations["machine_create_machine_0b4d2f96"];
         delete?: never;
         options?: never;
         head?: never;
@@ -30,15 +30,32 @@ export interface paths {
             cookie?: never;
         };
         /** Get Machine */
-        get: operations["machine_get_machine_567985d7"];
+        get: operations["machine_get_machine_6c3f1870"];
         put?: never;
         post?: never;
         /** Delete Machine */
-        delete: operations["machine_delete_machine_4f89debf"];
+        delete: operations["machine_delete_machine_6278a9bc"];
         options?: never;
         head?: never;
         /** Update Machine */
-        patch: operations["machine_update_machine_1c06f9eb"];
+        patch: operations["machine_update_machine_41fd577f"];
+        trace?: never;
+    };
+    "/api/machines/{machine_id}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Restore Machine */
+        post: operations["machine_restore_machine_129182f9"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/api/machines/{machine_id}/token/": {
@@ -51,7 +68,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Issue Token */
-        post: operations["machine_issue_token_d9148267"];
+        post: operations["machine_issue_token_18d0d403"];
         delete?: never;
         options?: never;
         head?: never;
@@ -68,7 +85,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Revoke Token */
-        post: operations["machine_revoke_token_1ad75cf2"];
+        post: operations["machine_revoke_token_866c7167"];
         delete?: never;
         options?: never;
         head?: never;
@@ -83,7 +100,7 @@ export interface paths {
             cookie?: never;
         };
         /** Stream */
-        get: operations["machine_stream_d19cc15c"];
+        get: operations["machine_stream_aa09072d"];
         put?: never;
         post?: never;
         delete?: never;
@@ -101,11 +118,31 @@ export interface components {
             /** Search */
             search?: string | null;
         };
+        /** MachineFilterSchema */
+        MachineFilterSchema: {
+            /** @default active */
+            show: "active" | "deleted" | "all";
+            token_status?: components["schemas"]["TokenStatus"] | null;
+            /** Created After */
+            created_after?: string | null;
+            /** Created Before */
+            created_before?: string | null;
+        };
+        /**
+         * Show
+         * @enum {string}
+         */
+        Show: "active" | "deleted" | "all";
+        /**
+         * TokenStatus
+         * @enum {string}
+         */
+        TokenStatus: "active" | "revoked" | "not_issued";
         /** DynamicInput */
         ninja_extra__ordering__models__Ordering__create_input___locals___DynamicInput: {
             /**
              * Ordering
-             * @default created_at
+             * @default name,created_at
              */
             ordering: string | null;
         };
@@ -124,6 +161,11 @@ export interface components {
         };
         /** MachineOut */
         MachineOut: {
+            /**
+             * Deleted At
+             * @description Timestamp when the machine was deleted, if applicable
+             */
+            deleted_at: string | null;
             /** @description Status of the machine token */
             token_status: components["schemas"]["TokenStatus"];
             /** Id */
@@ -142,8 +184,6 @@ export interface components {
              * Format: date-time
              */
             updated_at: string;
-            /** Deleted At */
-            deleted_at?: string | null;
         };
         /** PaginatedResponseSchema[MachineOut] */
         PaginatedResponseSchema_MachineOut_: {
@@ -156,11 +196,6 @@ export interface components {
             /** Results */
             results: components["schemas"]["MachineOut"][];
         };
-        /**
-         * TokenStatus
-         * @enum {string}
-         */
-        TokenStatus: "active" | "revoked" | "not_issued";
         /** MachineCreateOut */
         MachineCreateOut: {
             /**
@@ -168,12 +203,8 @@ export interface components {
              * @description Token for the machine
              */
             token: string;
-            /** Id */
-            id?: string | null;
             /** Name */
             name: string;
-            /** Site */
-            site?: string | null;
         };
         /** MachineCreateIn */
         MachineCreateIn: {
@@ -185,9 +216,8 @@ export interface components {
             /**
              * Site
              * @description Site of the machine
-             * @default
              */
-            site: string;
+            site?: string | null;
         };
         /** MachineUpdateOut */
         MachineUpdateOut: {
@@ -208,9 +238,8 @@ export interface components {
             /**
              * Site
              * @description Site of the machine
-             * @default
              */
-            site: string;
+            site?: string | null;
         };
         /** MachineIssueTokenOut */
         MachineIssueTokenOut: {
@@ -219,6 +248,8 @@ export interface components {
              * @description Token for the machine
              */
             token: string;
+            /** Name */
+            name: string;
         };
     };
     responses: never;
@@ -229,9 +260,13 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    machine_get_machines_63a9f567: {
+    machine_get_machines_2324df2f: {
         parameters: {
             query?: {
+                show?: "active" | "deleted" | "all";
+                token_status?: components["schemas"]["TokenStatus"] | null;
+                created_after?: string | null;
+                created_before?: string | null;
                 search?: string | null;
                 ordering?: string | null;
                 page?: number;
@@ -254,7 +289,7 @@ export interface operations {
             };
         };
     };
-    machine_create_machine_4da51a45: {
+    machine_create_machine_0b4d2f96: {
         parameters: {
             query?: never;
             header?: never;
@@ -278,7 +313,7 @@ export interface operations {
             };
         };
     };
-    machine_get_machine_567985d7: {
+    machine_get_machine_6c3f1870: {
         parameters: {
             query?: never;
             header?: never;
@@ -300,7 +335,7 @@ export interface operations {
             };
         };
     };
-    machine_delete_machine_4f89debf: {
+    machine_delete_machine_6278a9bc: {
         parameters: {
             query?: never;
             header?: never;
@@ -320,7 +355,7 @@ export interface operations {
             };
         };
     };
-    machine_update_machine_1c06f9eb: {
+    machine_update_machine_41fd577f: {
         parameters: {
             query?: never;
             header?: never;
@@ -346,7 +381,27 @@ export interface operations {
             };
         };
     };
-    machine_issue_token_d9148267: {
+    machine_restore_machine_129182f9: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                machine_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No Content */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    machine_issue_token_18d0d403: {
         parameters: {
             query?: never;
             header?: never;
@@ -368,7 +423,7 @@ export interface operations {
             };
         };
     };
-    machine_revoke_token_1ad75cf2: {
+    machine_revoke_token_866c7167: {
         parameters: {
             query?: never;
             header?: never;
@@ -388,7 +443,7 @@ export interface operations {
             };
         };
     };
-    machine_stream_d19cc15c: {
+    machine_stream_aa09072d: {
         parameters: {
             query?: never;
             header?: never;

@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card"
 import { DataTableToolbar } from "@/components/data-table/data-table-toolbar"
 import { MachinesFilters } from "./filters"
 import { AddMachineDialog } from "./add-machine-dialog"
+import { MachineTokenDialog } from "./machine-token-dialog"
 
 const routeApi = getRouteApi("/_authenticated/system-health/")
 
@@ -20,7 +21,6 @@ export function MachinesList() {
 
   const machines = machinesQuery?.data
   const totalPages = Math.ceil((machines?.count ?? 0) / pageSize)
-
   return (
     <>
       <DataTableToolbar
@@ -58,6 +58,7 @@ export function MachinesList() {
           })
         }}
       />
+      <MachineTokenDialog />
     </>
   )
 }
