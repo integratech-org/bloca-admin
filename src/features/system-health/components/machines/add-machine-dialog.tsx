@@ -50,7 +50,7 @@ export function AddMachineDialog() {
         onSuccess: (res) => {
           setOpen(false)
           form.reset()
-          show(res)
+          show(res, "created")
         },
       }
     )

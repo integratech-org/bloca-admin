@@ -16,15 +16,36 @@ import {
   CodeBlockHeader,
   CodeBlockTitle,
 } from "@/components/ui/code-block"
-import { useMachineTokenStore } from "../../stores/machine-token-store"
+import {
+  useMachineTokenStore,
+  type MachineTokenMode,
+} from "../../stores/machine-token-store"
 import { TriangleAlertIcon } from "lucide-react"
+
+const COPY: Record<
+  MachineTokenMode,
+  { title: string; description: (name?: string) => string }
+> = {
+  created: {
+    title: "Machine created",
+    description: (name) =>
+      `${name} is registered. Copy its device token and add it to the machine's edge config.`,
+  },
+  rotated: {
+    title: "Machine token rotated",
+    description: (name) =>
+      `${name} has a new device token. Copy it and update the machine's edge config.`,
+  },
+}
 
 export function MachineTokenDialog() {
   const open = useMachineTokenStore((s) => s.open)
+  const mode = useMachineTokenStore((s) => s.mode)
   const machine = useMachineTokenStore((s) => s.machine)
   const close = useMachineTokenStore((s) => s.close)
   const reset = useMachineTokenStore((s) => s.reset)
 
+  const copy = COPY[mode]
   const output = machine?.token ? `DEVICE_TOKEN=${machine.token}` : ""
 
   return (
@@ -39,10 +60,9 @@ export function MachineTokenDialog() {
     >
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Machine created</AlertDialogTitle>
+          <AlertDialogTitle>{copy.title}</AlertDialogTitle>
           <AlertDialogDescription>
-            {machine?.name} is registered. Copy its access token and add it to
-            the machine's edge config.
+            {copy.description(machine?.name)}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
