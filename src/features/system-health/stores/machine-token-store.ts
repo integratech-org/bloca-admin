@@ -1,7 +1,7 @@
 import type { MachineCreateResult } from "@/types/api"
 import { create } from "zustand"
 
-export type MachineTokenMode = "created" | "rotated"
+export type MachineTokenMode = "created" | "rotated" | "issued"
 
 type MachineTokenStore = {
   open: boolean

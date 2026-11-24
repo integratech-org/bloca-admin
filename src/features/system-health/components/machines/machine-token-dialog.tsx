@@ -31,10 +31,15 @@ const COPY: Record<
     description: (name) =>
       `${name} is registered. Copy its device token and add it to the machine's edge config.`,
   },
-  rotated: {
-    title: "Machine token rotated",
+  issued: {
+    title: "Device token issued",
     description: (name) =>
-      `${name} has a new device token. Copy it and update the machine's edge config.`,
+      `${name} now has a device token. Copy it and add it to the machine's edge config.`,
+  },
+  rotated: {
+    title: "Device token rotated",
+    description: (name) =>
+      `${name} has a new device token. The old one no longer works, so copy this and update the machine's edge config.`,
   },
 }
 

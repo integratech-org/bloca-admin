@@ -18,7 +18,7 @@ type UseIssueTokenOptions = {
   mutationConfig?: MutationConfig<typeof issueToken>
 }
 
-export const useRevokeToken = ({
+export const useIssueToken = ({
   mutationConfig,
 }: UseIssueTokenOptions = {}) => {
   const queryClient = useQueryClient()
