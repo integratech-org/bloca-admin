@@ -17,11 +17,27 @@ import { RestoreMachineDialog } from "./restore-machine-dialog"
 const routeApi = getRouteApi("/_authenticated/system-health/")
 
 export function MachinesList() {
-  const { search, page, pageSize } = routeApi.useSearch()
+  const {
+    search,
+    page,
+    pageSize,
+    show,
+    tokenStatus,
+    createdAfter,
+    createdBefore,
+  } = routeApi.useSearch()
   const navigate = routeApi.useNavigate()
 
   const machinesQuery = useMachines({
-    params: { search, page, page_size: pageSize },
+    params: {
+      search,
+      page,
+      page_size: pageSize,
+      show,
+      token_status: tokenStatus,
+      created_after: createdAfter,
+      created_before: createdBefore,
+    },
   })
 
   const machines = machinesQuery?.data
@@ -39,7 +55,28 @@ export function MachinesList() {
           })
         }}
         isLoading={machinesQuery.isLoading}
-        filters={<MachinesFilters />}
+        filters={
+          <MachinesFilters
+            values={{
+              show,
+              token_status: tokenStatus,
+              created_after: createdAfter,
+              created_before: createdBefore,
+            }}
+            onApply={(newFilters) => {
+              navigate({
+                search: (prev) => ({
+                  ...prev,
+                  show: newFilters.show,
+                  tokenStatus: newFilters.token_status ?? undefined,
+                  createdAfter: newFilters.created_after ?? undefined,
+                  createdBefore: newFilters.created_before ?? undefined,
+                  page: 1,
+                }),
+              })
+            }}
+          />
+        }
         actions={<AddMachineDialog />}
       />
       <Card className="overflow-hidden py-0 lg:min-h-0 lg:flex-1">

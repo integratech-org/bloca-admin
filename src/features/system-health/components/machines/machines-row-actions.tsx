@@ -53,57 +53,65 @@ export function MachinesRowActions({ machine }: { machine: Machine }) {
         <TooltipContent>Actions</TooltipContent>
       </Tooltip>
       <DropdownMenuContent className="w-fit" align="end">
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <Eye /> View
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => showUpdateMachineDialog(machine)}>
-            <Pencil /> Edit
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-
-        <DropdownMenuSeparator />
-
-        <DropdownMenuGroup>
-          {machine.token_status === "active" ? (
-            <>
-              <DropdownMenuItem onClick={() => showIssueTokenDialog(machine)}>
-                <RefreshCw />
-                Rotate token
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                variant="destructive"
-                onClick={() => showRevokeTokenDialog(machine)}
-              >
-                <Ban />
-                Revoke token
-              </DropdownMenuItem>
-            </>
-          ) : (
-            <DropdownMenuItem onClick={() => showIssueTokenDialog(machine)}>
-              <KeyRound /> Issue token
-            </DropdownMenuItem>
-          )}
-        </DropdownMenuGroup>
-
-        <DropdownMenuSeparator />
-
-        <DropdownMenuGroup>
-          {machine.deleted_at ? (
+        {machine.deleted_at ? (
+          <DropdownMenuGroup>
             <DropdownMenuItem onClick={() => showRestoreMachineDialog(machine)}>
               <RotateCcw />
               Restore
             </DropdownMenuItem>
-          ) : (
-            <DropdownMenuItem
-              variant="destructive"
-              onClick={() => showDeleteMachineDialog(machine)}
-            >
-              <Trash2 />
-              Delete
-            </DropdownMenuItem>
-          )}
-        </DropdownMenuGroup>
+          </DropdownMenuGroup>
+        ) : (
+          <>
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <Eye /> View
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => showUpdateMachineDialog(machine)}
+              >
+                <Pencil /> Edit
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuGroup>
+              {machine.token_status === "active" ? (
+                <>
+                  <DropdownMenuItem
+                    onClick={() => showIssueTokenDialog(machine)}
+                  >
+                    <RefreshCw />
+                    Rotate token
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    variant="destructive"
+                    onClick={() => showRevokeTokenDialog(machine)}
+                  >
+                    <Ban />
+                    Revoke token
+                  </DropdownMenuItem>
+                </>
+              ) : (
+                <DropdownMenuItem onClick={() => showIssueTokenDialog(machine)}>
+                  <KeyRound /> Issue token
+                </DropdownMenuItem>
+              )}
+            </DropdownMenuGroup>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuGroup>
+              <DropdownMenuItem
+                variant="destructive"
+                onClick={() => showDeleteMachineDialog(machine)}
+              >
+                <Trash2 />
+                Delete
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   )
