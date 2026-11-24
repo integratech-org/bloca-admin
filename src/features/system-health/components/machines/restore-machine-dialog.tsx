@@ -63,7 +63,6 @@ export function RestoreMachineDialog() {
             Cancel
           </DialogClose>
           <Button
-            variant="destructive"
             onClick={handleConfirm}
             disabled={restoreMachineMutation.isPending}
           >

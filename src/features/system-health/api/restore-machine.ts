@@ -8,7 +8,7 @@ export type RestoreMachineDTO = {
 }
 
 export const restoreMachine = ({ machineId }: RestoreMachineDTO) => {
-  return api.post(`/api/machines/${machineId}/`)
+  return api.post(`/api/machines/${machineId}/restore/`)
 }
 
 type UseRestoreMachineOptions = {
