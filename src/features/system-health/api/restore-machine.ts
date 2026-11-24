@@ -15,7 +15,7 @@ type UseRestoreMachineOptions = {
   mutationConfig?: MutationConfig<typeof restoreMachine>
 }
 
-export const useRevokeToken = ({
+export const useRestoreMachine = ({
   mutationConfig,
 }: UseRestoreMachineOptions = {}) => {
   const queryClient = useQueryClient()

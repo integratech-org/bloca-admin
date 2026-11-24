@@ -22,7 +22,7 @@ export const updateMachine = ({
   data,
   machineId,
 }: UpdateMachineDTO): Promise<MachineUpdateResult> => {
-  return api.post(`/api/machines/${machineId}/`, data)
+  return api.patch(`/api/machines/${machineId}/`, data)
 }
 
 type UseUpdateMachineOptions = {

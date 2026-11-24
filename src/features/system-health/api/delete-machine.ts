@@ -8,14 +8,14 @@ export type DeleteMachineDTO = {
 }
 
 export const deleteMachine = ({ machineId }: DeleteMachineDTO) => {
-  return api.post(`/api/machines/${machineId}/`)
+  return api.delete(`/api/machines/${machineId}/`)
 }
 
 type UseDeleteMachineOptions = {
   mutationConfig?: MutationConfig<typeof deleteMachine>
 }
 
-export const useRevokeToken = ({
+export const useDeleteMachine = ({
   mutationConfig,
 }: UseDeleteMachineOptions = {}) => {
   const queryClient = useQueryClient()

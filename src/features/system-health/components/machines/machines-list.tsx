@@ -8,6 +8,11 @@ import { DataTableToolbar } from "@/components/data-table/data-table-toolbar"
 import { MachinesFilters } from "./filters"
 import { AddMachineDialog } from "./add-machine-dialog"
 import { MachineTokenDialog } from "./machine-token-dialog"
+import { UpdateMachineDialog } from "./update-machine-dialog"
+import { IssueTokenDialog } from "./issue-token-dialog"
+import { RevokeTokenDialog } from "./revoke-token-dialog"
+import { DeleteMachineDialog } from "./delete-machine-dialog"
+import { RestoreMachineDialog } from "./restore-machine-dialog"
 
 const routeApi = getRouteApi("/_authenticated/system-health/")
 
@@ -59,6 +64,11 @@ export function MachinesList() {
         }}
       />
       <MachineTokenDialog />
+      <UpdateMachineDialog />
+      <IssueTokenDialog />
+      <RevokeTokenDialog />
+      <DeleteMachineDialog />
+      <RestoreMachineDialog />
     </>
   )
 }
