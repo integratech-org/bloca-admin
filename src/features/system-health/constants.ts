@@ -1,7 +1,7 @@
-export const SHOW = [
-  { value: "active", label: "Active" },
-  { value: "deleted", label: "Deleted" },
-  { value: "all", label: "All" },
+export const DELETED = [
+  { value: "exclude", label: "Exclude" },
+  { value: "only", label: "Only" },
+  { value: "include", label: "Include" },
 ] as const
 
 export const TOKEN_STATUS = [

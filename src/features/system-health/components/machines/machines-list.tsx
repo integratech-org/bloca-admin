@@ -21,7 +21,7 @@ export function MachinesList() {
     search,
     page,
     pageSize,
-    show,
+    deleted,
     tokenStatus,
     createdAfter,
     createdBefore,
@@ -33,7 +33,7 @@ export function MachinesList() {
       search,
       page,
       page_size: pageSize,
-      show,
+      deleted,
       token_status: tokenStatus,
       created_after: createdAfter,
       created_before: createdBefore,
@@ -58,7 +58,7 @@ export function MachinesList() {
         filters={
           <MachinesFilters
             values={{
-              show,
+              deleted,
               token_status: tokenStatus,
               created_after: createdAfter,
               created_before: createdBefore,
@@ -67,7 +67,7 @@ export function MachinesList() {
               navigate({
                 search: (prev) => ({
                   ...prev,
-                  show: newFilters.show,
+                  deleted: newFilters.deleted,
                   tokenStatus: newFilters.token_status ?? undefined,
                   createdAfter: newFilters.created_after ?? undefined,
                   createdBefore: newFilters.created_before ?? undefined,

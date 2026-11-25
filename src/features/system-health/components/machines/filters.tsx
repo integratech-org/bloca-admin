@@ -10,7 +10,7 @@ import { CalendarIcon, ListFilter } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { FieldGroup, FieldLegend, FieldSet } from "@/components/ui/field"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { SHOW, TOKEN_STATUS } from "../../constants"
+import { DELETED, TOKEN_STATUS } from "../../constants"
 import { Calendar } from "@/components/ui/calendar"
 import {
   endOfDay,
@@ -27,7 +27,7 @@ import {
 import { useState } from "react"
 import type { DateRange } from "react-day-picker"
 import { Card, CardContent } from "@/components/ui/card"
-import type { MachineFilter, Show, TokenStatus } from "@/types/api"
+import type { MachineFilter, Deleted, TokenStatus } from "@/types/api"
 
 interface Props {
   values: MachineFilter
@@ -67,7 +67,7 @@ export function MachinesFilters({ values, onApply }: Props) {
   const [month, setMonth] = useState(today)
 
   const [open, setOpen] = useState(false)
-  const [show, setShow] = useState<Show>(values?.show ?? "active")
+  const [deleted, setDeleted] = useState<Deleted>(values?.deleted ?? "exclude")
   const [tokenStatus, setTokenStatus] = useState<TokenStatus>(
     values?.token_status ?? "active"
   )
@@ -99,11 +99,11 @@ export function MachinesFilters({ values, onApply }: Props) {
           <Button
             variant="outline"
             onClick={() => {
-              setShow("active")
+              setDeleted("exclude")
               setTokenStatus("active")
               setDate(undefined)
               onApply({
-                show: "active",
+                deleted: "exclude",
                 token_status: "active",
                 created_after: undefined,
                 created_before: undefined,
@@ -122,13 +122,13 @@ export function MachinesFilters({ values, onApply }: Props) {
             <FieldLegend variant="label">Status</FieldLegend>
             <ToggleGroup
               variant="outline"
-              value={[show]}
+              value={[deleted]}
               onValueChange={(v) => {
-                if (v[0]) setShow(v[0] as Show)
+                if (v[0]) setDeleted(v[0] as Deleted)
               }}
               className="flex flex-wrap justify-start"
             >
-              {SHOW.map((option) => (
+              {DELETED.map((option) => (
                 <ToggleGroupItem key={option.value} value={option.value}>
                   {option.label}
                 </ToggleGroupItem>
@@ -291,7 +291,7 @@ export function MachinesFilters({ values, onApply }: Props) {
             size="sm"
             onClick={() => {
               onApply({
-                show,
+                deleted,
                 token_status: tokenStatus,
                 created_after: date?.from
                   ? startOfDay(date.from).toISOString()

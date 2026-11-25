@@ -8,7 +8,7 @@ const machineSearchSchema = z.object({
   search: z.string().optional(),
   page: z.number().default(1),
   pageSize: z.number().default(25),
-  show: z.enum(["active", "deleted", "all"]).default("active"),
+  deleted: z.enum(["exclude", "only", "include"]).default("exclude"),
   tokenStatus: z.enum(["active", "revoked", "not_issued"]).default("active"),
   createdAfter: z.string().optional(),
   createdBefore: z.string().optional(),
