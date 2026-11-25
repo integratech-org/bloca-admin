@@ -12,10 +12,10 @@ export interface paths {
             cookie?: never;
         };
         /** Get Machines */
-        get: operations["machine_get_machines_2324df2f"];
+        get: operations["machine_get_machines_a0e55b4b"];
         put?: never;
         /** Create Machine */
-        post: operations["machine_create_machine_0b4d2f96"];
+        post: operations["machine_create_machine_5c1467ad"];
         delete?: never;
         options?: never;
         head?: never;
@@ -30,18 +30,18 @@ export interface paths {
             cookie?: never;
         };
         /** Get Machine */
-        get: operations["machine_get_machine_6c3f1870"];
+        get: operations["machine_get_machine_9a1d7f17"];
         put?: never;
         post?: never;
         /** Delete Machine */
-        delete: operations["machine_delete_machine_6278a9bc"];
+        delete: operations["machine_delete_machine_a1150da1"];
         options?: never;
         head?: never;
         /** Update Machine */
-        patch: operations["machine_update_machine_41fd577f"];
+        patch: operations["machine_update_machine_2e86fcd0"];
         trace?: never;
     };
-    "/api/machines/{machine_id}/restore": {
+    "/api/machines/{machine_id}/restore/": {
         parameters: {
             query?: never;
             header?: never;
@@ -51,7 +51,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Restore Machine */
-        post: operations["machine_restore_machine_129182f9"];
+        post: operations["machine_restore_machine_d239a752"];
         delete?: never;
         options?: never;
         head?: never;
@@ -68,7 +68,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Issue Token */
-        post: operations["machine_issue_token_18d0d403"];
+        post: operations["machine_issue_token_9de165f0"];
         delete?: never;
         options?: never;
         head?: never;
@@ -85,14 +85,14 @@ export interface paths {
         get?: never;
         put?: never;
         /** Revoke Token */
-        post: operations["machine_revoke_token_866c7167"];
+        post: operations["machine_revoke_token_92077701"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/api/machines/{machine_id}/stream": {
+    "/api/machines/{machine_id}/stream/": {
         parameters: {
             query?: never;
             header?: never;
@@ -100,9 +100,27 @@ export interface paths {
             cookie?: never;
         };
         /** Stream */
-        get: operations["machine_stream_aa09072d"];
+        get: operations["machine_stream_f2cfcdea"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/users/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Users */
+        get: operations["users_get_users_f8dac2c4"];
+        put?: never;
+        /** Create User */
+        post: operations["users_create_user_c900b4dd"];
         delete?: never;
         options?: never;
         head?: never;
@@ -113,6 +131,11 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * DeletedEnum
+         * @enum {string}
+         */
+        DeletedEnum: "exclude" | "only" | "include";
         /** Input */
         Input: {
             /** Search */
@@ -120,19 +143,15 @@ export interface components {
         };
         /** MachineFilterSchema */
         MachineFilterSchema: {
+            /** @default exclude */
+            deleted: "exclude" | "only" | "include";
             /** @default active */
-            show: "active" | "deleted" | "all";
-            token_status?: components["schemas"]["TokenStatus"] | null;
+            token_status: components["schemas"]["TokenStatus"] | null;
             /** Created After */
             created_after?: string | null;
             /** Created Before */
             created_before?: string | null;
         };
-        /**
-         * Show
-         * @enum {string}
-         */
-        Show: "active" | "deleted" | "all";
         /**
          * TokenStatus
          * @enum {string}
@@ -142,7 +161,7 @@ export interface components {
         ninja_extra__ordering__models__Ordering__create_input___locals___DynamicInput: {
             /**
              * Ordering
-             * @default name,created_at
+             * @default email,first_name,last_name,date_joined
              */
             ordering: string | null;
         };
@@ -251,6 +270,99 @@ export interface components {
             /** Name */
             name: string;
         };
+        /**
+         * RoleEnum
+         * @enum {string}
+         */
+        RoleEnum: "system_admin" | "admin" | "operator";
+        /**
+         * ShowEnum
+         * @enum {string}
+         */
+        ShowEnum: "active" | "inactive" | "all";
+        /** UserFilterSchema */
+        UserFilterSchema: {
+            /** @default active */
+            show: "active" | "inactive" | "all";
+            /** @default exclude */
+            deleted: "exclude" | "only" | "include";
+            /** @default all */
+            role: "system_admin" | "admin" | "operator" | "all";
+            /** Date Joined After */
+            date_joined_after?: string | null;
+            /** Date Joined Before */
+            date_joined_before?: string | null;
+        };
+        /** PaginatedResponseSchema[UserOut] */
+        PaginatedResponseSchema_UserOut_: {
+            /** Count */
+            count: number;
+            /** Next */
+            next: string | null;
+            /** Previous */
+            previous: string | null;
+            /** Results */
+            results: components["schemas"]["UserOut"][];
+        };
+        /** UserOut */
+        UserOut: {
+            /** ID */
+            id?: number | null;
+            /** Email */
+            email: string;
+            /**
+             * Username
+             * @description Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+             */
+            username: string;
+            /** First Name */
+            first_name?: string | null;
+            /** Last Name */
+            last_name?: string | null;
+            /**
+             * Active
+             * @description Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+             * @default true
+             */
+            is_active: boolean;
+            /**
+             * Date Joined
+             * Format: date-time
+             */
+            date_joined?: string;
+        };
+        /** UserCreateOut */
+        UserCreateOut: {
+            /** ID */
+            id?: number | null;
+            /** Email */
+            email: string;
+            /** First Name */
+            first_name?: string | null;
+            /** Last Name */
+            last_name?: string | null;
+        };
+        /** UserCreateIn */
+        UserCreateIn: {
+            /**
+             * Email
+             * Format: email
+             * @description Email address
+             */
+            email: string;
+            /**
+             * First Name
+             * @description First name
+             */
+            first_name: string;
+            /**
+             * Last Name
+             * @description Last name
+             */
+            last_name: string;
+            /** @description Role of the user */
+            role: components["schemas"]["RoleEnum"];
+        };
     };
     responses: never;
     parameters: never;
@@ -260,10 +372,10 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    machine_get_machines_2324df2f: {
+    machine_get_machines_a0e55b4b: {
         parameters: {
             query?: {
-                show?: "active" | "deleted" | "all";
+                deleted?: "exclude" | "only" | "include";
                 token_status?: components["schemas"]["TokenStatus"] | null;
                 created_after?: string | null;
                 created_before?: string | null;
@@ -289,7 +401,7 @@ export interface operations {
             };
         };
     };
-    machine_create_machine_0b4d2f96: {
+    machine_create_machine_5c1467ad: {
         parameters: {
             query?: never;
             header?: never;
@@ -313,7 +425,7 @@ export interface operations {
             };
         };
     };
-    machine_get_machine_6c3f1870: {
+    machine_get_machine_9a1d7f17: {
         parameters: {
             query?: never;
             header?: never;
@@ -335,7 +447,7 @@ export interface operations {
             };
         };
     };
-    machine_delete_machine_6278a9bc: {
+    machine_delete_machine_a1150da1: {
         parameters: {
             query?: never;
             header?: never;
@@ -355,7 +467,7 @@ export interface operations {
             };
         };
     };
-    machine_update_machine_41fd577f: {
+    machine_update_machine_2e86fcd0: {
         parameters: {
             query?: never;
             header?: never;
@@ -381,7 +493,7 @@ export interface operations {
             };
         };
     };
-    machine_restore_machine_129182f9: {
+    machine_restore_machine_d239a752: {
         parameters: {
             query?: never;
             header?: never;
@@ -401,7 +513,7 @@ export interface operations {
             };
         };
     };
-    machine_issue_token_18d0d403: {
+    machine_issue_token_9de165f0: {
         parameters: {
             query?: never;
             header?: never;
@@ -423,7 +535,7 @@ export interface operations {
             };
         };
     };
-    machine_revoke_token_866c7167: {
+    machine_revoke_token_92077701: {
         parameters: {
             query?: never;
             header?: never;
@@ -443,7 +555,7 @@ export interface operations {
             };
         };
     };
-    machine_stream_aa09072d: {
+    machine_stream_f2cfcdea: {
         parameters: {
             query?: never;
             header?: never;
@@ -460,6 +572,60 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    users_get_users_f8dac2c4: {
+        parameters: {
+            query?: {
+                show?: "active" | "inactive" | "all";
+                deleted?: "exclude" | "only" | "include";
+                role?: "system_admin" | "admin" | "operator" | "all";
+                date_joined_after?: string | null;
+                date_joined_before?: string | null;
+                search?: string | null;
+                ordering?: string | null;
+                page?: number;
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedResponseSchema_UserOut_"];
+                };
+            };
+        };
+    };
+    users_create_user_c900b4dd: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UserCreateIn"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserCreateOut"];
+                };
             };
         };
     };
