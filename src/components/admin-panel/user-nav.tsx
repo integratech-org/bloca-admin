@@ -17,6 +17,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Link, useLocation } from "@tanstack/react-router"
 import { cn } from "@/lib/utils"
+import { useNavigate } from "@tanstack/react-router"
+import { useLogout } from "@/lib/auth"
+import { useQueryClient } from "@tanstack/react-query"
 
 const items = [
   { to: "/settings/profile", label: "Profile", icon: User },
@@ -26,6 +29,15 @@ const items = [
 export function UserNav() {
   const pathname = useLocation({
     select: (location) => location.pathname,
+  })
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+
+  const logout = useLogout({
+    onSuccess: () => {
+      queryClient.clear()
+      navigate({ to: "/auth/sign-in" })
+    },
   })
 
   return (
@@ -103,7 +115,7 @@ export function UserNav() {
         <DropdownMenuItem
           variant="destructive"
           className="hover:cursor-pointer"
-          onClick={() => {}}
+          onClick={() => logout.mutate({})}
         >
           <LogOut className="mr-3 h-4 w-4 text-muted-foreground" />
           Sign out

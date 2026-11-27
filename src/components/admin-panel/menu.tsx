@@ -8,8 +8,10 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip"
-import { Link, useLocation } from "@tanstack/react-router"
+import { Link, useLocation, useNavigate } from "@tanstack/react-router"
 import { motion } from "motion/react"
+import { useLogout } from "@/lib/auth"
+import { useQueryClient } from "@tanstack/react-query"
 
 interface MenuProps {
   isOpen: boolean | undefined
@@ -19,6 +21,16 @@ export function Menu({ isOpen }: MenuProps) {
   const pathname = useLocation({
     select: (location) => location.pathname,
   })
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+
+  const logout = useLogout({
+    onSuccess: () => {
+      queryClient.clear()
+      navigate({ to: "/auth/sign-in" })
+    },
+  })
+
   const menuList = getMenuList(pathname)
 
   return (
@@ -138,7 +150,7 @@ export function Menu({ isOpen }: MenuProps) {
           <TooltipTrigger
             render={
               <Button
-                onClick={() => {}}
+                onClick={() => logout.mutate({})}
                 variant="outline"
                 className="mt-5 h-10 w-full justify-center"
               >
