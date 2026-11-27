@@ -12,10 +12,10 @@ export interface paths {
             cookie?: never;
         };
         /** Get Machines */
-        get: operations["machine_get_machines_a0e55b4b"];
+        get: operations["machine_get_machines_ad5bf7bf"];
         put?: never;
         /** Create Machine */
-        post: operations["machine_create_machine_5c1467ad"];
+        post: operations["machine_create_machine_de03a3e0"];
         delete?: never;
         options?: never;
         head?: never;
@@ -30,15 +30,15 @@ export interface paths {
             cookie?: never;
         };
         /** Get Machine */
-        get: operations["machine_get_machine_9a1d7f17"];
+        get: operations["machine_get_machine_5dcb3516"];
         put?: never;
         post?: never;
         /** Delete Machine */
-        delete: operations["machine_delete_machine_a1150da1"];
+        delete: operations["machine_delete_machine_483b04a9"];
         options?: never;
         head?: never;
         /** Update Machine */
-        patch: operations["machine_update_machine_2e86fcd0"];
+        patch: operations["machine_update_machine_f31586fe"];
         trace?: never;
     };
     "/api/machines/{machine_id}/restore/": {
@@ -51,7 +51,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Restore Machine */
-        post: operations["machine_restore_machine_d239a752"];
+        post: operations["machine_restore_machine_ee462b9f"];
         delete?: never;
         options?: never;
         head?: never;
@@ -68,7 +68,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Issue Token */
-        post: operations["machine_issue_token_9de165f0"];
+        post: operations["machine_issue_token_d5e458fb"];
         delete?: never;
         options?: never;
         head?: never;
@@ -85,7 +85,7 @@ export interface paths {
         get?: never;
         put?: never;
         /** Revoke Token */
-        post: operations["machine_revoke_token_92077701"];
+        post: operations["machine_revoke_token_0930c3bc"];
         delete?: never;
         options?: never;
         head?: never;
@@ -100,7 +100,7 @@ export interface paths {
             cookie?: never;
         };
         /** Stream */
-        get: operations["machine_stream_f2cfcdea"];
+        get: operations["machine_stream_187463f1"];
         put?: never;
         post?: never;
         delete?: never;
@@ -117,10 +117,79 @@ export interface paths {
             cookie?: never;
         };
         /** Get Users */
-        get: operations["users_get_users_f8dac2c4"];
+        get: operations["users_get_users_7c429cb6"];
         put?: never;
         /** Create User */
-        post: operations["users_create_user_c900b4dd"];
+        post: operations["users_create_user_eea53903"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/users/{user_id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get User */
+        get: operations["users_get_user_1f14f67d"];
+        put?: never;
+        post?: never;
+        /** Delete User */
+        delete: operations["users_delete_user_6f875bf0"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/users/{user_id}/disable/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Disable User */
+        post: operations["users_disable_user_c76b4d01"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/users/{user_id}/enable/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Enable User */
+        post: operations["users_enable_user_c3fefd0a"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/users/{user_id}/restore/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Restore User */
+        post: operations["users_restore_user_e1486fb3"];
         delete?: never;
         options?: never;
         head?: never;
@@ -306,6 +375,7 @@ export interface components {
         };
         /** UserOut */
         UserOut: {
+            role?: components["schemas"]["RoleEnum"] | null;
             /** ID */
             id?: number | null;
             /** Email */
@@ -330,6 +400,8 @@ export interface components {
              * Format: date-time
              */
             date_joined?: string;
+            /** Last Login */
+            last_login?: string | null;
         };
         /** UserCreateOut */
         UserCreateOut: {
@@ -372,7 +444,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    machine_get_machines_a0e55b4b: {
+    machine_get_machines_ad5bf7bf: {
         parameters: {
             query?: {
                 deleted?: "exclude" | "only" | "include";
@@ -401,7 +473,7 @@ export interface operations {
             };
         };
     };
-    machine_create_machine_5c1467ad: {
+    machine_create_machine_de03a3e0: {
         parameters: {
             query?: never;
             header?: never;
@@ -425,7 +497,7 @@ export interface operations {
             };
         };
     };
-    machine_get_machine_9a1d7f17: {
+    machine_get_machine_5dcb3516: {
         parameters: {
             query?: never;
             header?: never;
@@ -447,7 +519,7 @@ export interface operations {
             };
         };
     };
-    machine_delete_machine_a1150da1: {
+    machine_delete_machine_483b04a9: {
         parameters: {
             query?: never;
             header?: never;
@@ -467,7 +539,7 @@ export interface operations {
             };
         };
     };
-    machine_update_machine_2e86fcd0: {
+    machine_update_machine_f31586fe: {
         parameters: {
             query?: never;
             header?: never;
@@ -493,7 +565,7 @@ export interface operations {
             };
         };
     };
-    machine_restore_machine_d239a752: {
+    machine_restore_machine_ee462b9f: {
         parameters: {
             query?: never;
             header?: never;
@@ -513,7 +585,7 @@ export interface operations {
             };
         };
     };
-    machine_issue_token_9de165f0: {
+    machine_issue_token_d5e458fb: {
         parameters: {
             query?: never;
             header?: never;
@@ -535,7 +607,7 @@ export interface operations {
             };
         };
     };
-    machine_revoke_token_92077701: {
+    machine_revoke_token_0930c3bc: {
         parameters: {
             query?: never;
             header?: never;
@@ -555,7 +627,7 @@ export interface operations {
             };
         };
     };
-    machine_stream_f2cfcdea: {
+    machine_stream_187463f1: {
         parameters: {
             query?: never;
             header?: never;
@@ -575,7 +647,7 @@ export interface operations {
             };
         };
     };
-    users_get_users_f8dac2c4: {
+    users_get_users_7c429cb6: {
         parameters: {
             query?: {
                 show?: "active" | "inactive" | "all";
@@ -605,7 +677,7 @@ export interface operations {
             };
         };
     };
-    users_create_user_c900b4dd: {
+    users_create_user_eea53903: {
         parameters: {
             query?: never;
             header?: never;
@@ -626,6 +698,108 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["UserCreateOut"];
                 };
+            };
+        };
+    };
+    users_get_user_1f14f67d: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserOut"];
+                };
+            };
+        };
+    };
+    users_delete_user_6f875bf0: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No Content */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    users_disable_user_c76b4d01: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No Content */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    users_enable_user_c3fefd0a: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No Content */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    users_restore_user_e1486fb3: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No Content */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

@@ -1,13 +1,19 @@
 export const ROLES = [
   { value: "system_admin", label: "System Admin" },
-  { value: "barangay_admin", label: "Barangay Admin" },
+  { value: "admin", label: "Admin" },
   { value: "operator", label: "Operator" },
 ] as const
 
 export const STATUS = [
   { value: "active", label: "Active" },
-  { value: "pending", label: "Pending" },
-  { value: "disabled", label: "Disabled" },
+  { value: "inactive", label: "Inactive" },
+  { value: "all", label: "All" },
+] as const
+
+export const DELETED = [
+  { value: "exclude", label: "Active only" },
+  { value: "only", label: "Deleted only" },
+  { value: "include", label: "All" },
 ] as const
 
 export const JOINED = [
@@ -18,4 +24,5 @@ export const JOINED = [
 
 export type Role = (typeof ROLES)[number]["value"]
 export type Status = (typeof STATUS)[number]["value"]
+export type Deleted = (typeof DELETED)[number]["value"]
 export type Joined = (typeof JOINED)[number]["value"]

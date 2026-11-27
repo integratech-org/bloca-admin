@@ -1,14 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router"
+import { zodValidator } from "@tanstack/zod-adapter"
+import { z } from "zod"
 
 import { PageHeader } from "@/components/page-header"
-import { Card } from "@/components/ui/card"
-import { columns } from "@/features/user-management/components/columns"
-import { UsersDataTable } from "@/features/user-management/components/data-table"
-import { UsersPagination } from "@/features/user-management/components/pagination"
-import { UsersToolbar } from "@/features/user-management/components/toolbar"
-import { mockUsers } from "@/features/user-management/data/mock-users"
+import { UsersList } from "@/features/user-management/components/user-list"
+
+const usersSearchSchema = z.object({
+  search: z.string().optional(),
+  page: z.number().default(1),
+  pageSize: z.number().default(25),
+  deleted: z.enum(["exclude", "only", "include"]).default("exclude"),
+  show: z.enum(["active", "inactive", "all"]).default("active"),
+  role: z.enum(["system_admin", "admin", "operator", "all"]).default("all"),
+  dateJoinedAfter: z.string().optional(),
+  dateJoinedBefore: z.string().optional(),
+})
 
 export const Route = createFileRoute("/_authenticated/user-management/")({
+  validateSearch: zodValidator(usersSearchSchema),
   component: UserManagementPage,
 })
 
@@ -22,11 +31,7 @@ function UserManagementPage() {
       />
 
       <div className="flex flex-col gap-4 lg:min-h-0 lg:flex-1">
-        <UsersToolbar total={mockUsers.length} />
-        <Card className="gap-0 overflow-hidden py-0 lg:min-h-0 lg:flex-1">
-          <UsersDataTable columns={columns} data={mockUsers} />
-        </Card>
-        <UsersPagination />
+        <UsersList />
       </div>
     </div>
   )
