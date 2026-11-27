@@ -7,23 +7,17 @@ import {
 import { type QueryClient } from "@tanstack/react-query"
 import { Toaster } from "sonner"
 import Providers from "./-providers"
-// import { getAuth } from "@/lib/allauth"
+import { userFn, userKey } from "@/lib/auth"
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   {
-    // beforeLoad: async ({ context }) => {
-    //   const session = await context.queryClient.ensureQueryData({
-    //     queryKey: ["authSession"],
-    //     queryFn: async () => {
-    //       const res = await getAuth()
-    //       return {
-    //         isAuthenticated: res.status === 200 && res.meta.is_authenticated,
-    //         user: res.status === 200 ? res.data.user : null,
-    //       }
-    //     },
-    //   })
-    //   return { session }
-    // },
+    beforeLoad: async ({ context }) => {
+      const session = await context.queryClient.ensureQueryData({
+        queryKey: userKey,
+        queryFn: userFn,
+      })
+      return { session }
+    },
     component: RootComponent,
     notFoundComponent: () => {
       return (

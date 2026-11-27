@@ -8,9 +8,9 @@ import {
 import { routeTree } from "./routeTree.gen"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import "./index.css"
-// import { init } from "./init"
+import { init } from "./init"
 
-// init()
+init()
 
 const queryClient = new QueryClient()
 
