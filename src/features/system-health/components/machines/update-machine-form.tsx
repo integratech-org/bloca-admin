@@ -75,8 +75,8 @@ export function UpdateMachineForm({ machine }: Props) {
               </FieldLabel>
               <Input
                 {...field}
-                id="name"
                 aria-invalid={fieldState.invalid}
+                id="name"
                 placeholder="e.g. BLOCA-machine0"
                 autoComplete="off"
               />
@@ -95,8 +95,8 @@ export function UpdateMachineForm({ machine }: Props) {
               <FieldLabel htmlFor="site">Site</FieldLabel>
               <Input
                 {...field}
-                id="site"
                 aria-invalid={fieldState.invalid}
+                id="site"
                 placeholder="e.g. Bagong Silang, Caloocan"
                 autoComplete="off"
               />
