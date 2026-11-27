@@ -10,12 +10,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { MoreHorizontal, Trash2, Eye, Pencil } from "lucide-react"
 import { Link } from "@tanstack/react-router"
+import type { User } from "@/types/api"
 
-export function UserActions({
-  user,
-}: {
-  user: { id: string; status: string }
-}) {
+export function UserActions({ user }: { user: User }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -33,7 +30,7 @@ export function UserActions({
             render={
               <Link
                 to="/user-management/$userId"
-                params={{ userId: user.id }}
+                params={{ userId: String(user.id) }}
                 className="flex items-center"
               >
                 <Eye className="mr-2 h-4 w-4" />

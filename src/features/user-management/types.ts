@@ -1,4 +1,4 @@
-export type UserRole = "Admin" | "Operator"
+export type UserRole = "admin" | "operator" | "system_admin"
 
 export type UserStatus = "Active" | "Inactive" | "Pending"
 

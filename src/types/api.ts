@@ -15,3 +15,13 @@ export type MachineUpdateResult = components["schemas"]["MachineUpdateOut"]
 export type MachineTokenResult = components["schemas"]["MachineIssueTokenOut"]
 export type Deleted = components["schemas"]["DeletedEnum"]
 export type TokenStatus = components["schemas"]["TokenStatus"]
+
+// user types
+export type User = components["schemas"]["UserOut"]
+export type Role = components["schemas"]["RoleEnum"]
+export type UserQuery = NonNullable<
+  paths["/api/users/"]["get"]["parameters"]["query"]
+>
+export type UserPage = components["schemas"]["PaginatedResponseSchema_UserOut_"]
+export type UserCreateInput = components["schemas"]["UserCreateIn"]
+export type UserCreateResult = components["schemas"]["UserCreateOut"]
